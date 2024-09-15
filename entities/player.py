@@ -1,9 +1,12 @@
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
+import math
+
 from constants.player_const import MOVEMENT
 from entities.entity_base import EntityBase
 from constants import player_const
+from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 
 
@@ -55,6 +58,17 @@ class Player(EntityBase):
             ((self.movement_status["down"] * -1) + self.movement_status["up"]) * self.move_speed * dt,
             0
         )
+        
+        if movement_direction.length() > 0:
+            target_rotation = math.degrees(math.atan2(movement_direction.x, -movement_direction.y)) 
+
+            self.model.setH(
+                get_limited_rotation_target(
+                    self.model.getH(),
+                    target_rotation,
+                    player_const.MOVEMENT.PLAYER_MAX_TURN_SPEED_DEGREES * dt
+                )
+            )
 
         if movement_direction.length() > (player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt ) and not self.walk_particles_active:
             self.walk_particles = load_particles("dust")
