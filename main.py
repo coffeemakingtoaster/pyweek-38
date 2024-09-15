@@ -6,6 +6,7 @@ from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
 
+from helpers.config import load_config
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
 
@@ -21,7 +22,7 @@ class main_game(ShowBase):
     def __init__(self):
       
         ShowBase.__init__(self)
-        
+
         # random coords
         base.cam.setPos(0, 50, 0) 
         base.cam.setHpr(0, 180+40, 0)
@@ -49,6 +50,8 @@ class main_game(ShowBase):
         self.active_ui = None 
         
         self.goto_main_menu()
+
+        load_config('./user_settings.json')
  
     def game_loop(self, task):
         

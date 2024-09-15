@@ -1,5 +1,6 @@
 from ui.ui_base import ui_base 
 from constants.events import EVENT_NAMES
+from helpers.config import save_config
 
 from direct.gui.DirectGui import DirectButton, DirectLabel
 
@@ -33,4 +34,5 @@ class main_menu(ui_base):
         messenger.send(EVENT_NAMES.GOTO_SETTINGS_MENU)
         
     def quit_game(self):
+        save_config('./user_settings.json')
         sys.exit()

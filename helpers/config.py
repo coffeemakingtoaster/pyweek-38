@@ -41,7 +41,7 @@ def setup_windowed():
     base.win.requestProperties(wp) 
             
 def save_config(path):
-    config = {"sfx_volume": float(get_sfx_volume()), "music_volume": float(get_music_volume()), "fullscreen": get_fullscreen_value(), "show_fps": True }
+    config = {"sfx_volume": float(get_sfx_volume()), "music_volume": float(get_music_volume()), "fullscreen": get_fullscreen_value(), "show_fps": get_fps_counter_enabled() }
     
     with open(path, "w+") as config_file:
         config_file.write(json.dumps(config))
@@ -74,3 +74,9 @@ def set_fullscreen_value(fullscreen):
         base.win.requestProperties(wp)
     elif not fullscreen and is_currently_in_fullscreen:
        setup_windowed() 
+
+def get_fps_counter_enabled():
+    return base.frameRateMeter != None
+
+def set_fps_counter_enabled(val):
+    base.setFrameRateMeter(val)

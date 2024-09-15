@@ -1,7 +1,7 @@
 from ui.ui_base import ui_base
 from constants.events import EVENT_NAMES
 
-from helpers.config import set_music_volume, set_sfx_volume, set_fullscreen_value, get_music_volume, get_sfx_volume, get_fullscreen_value
+from helpers.config import set_music_volume, set_sfx_volume, set_fullscreen_value, get_music_volume, get_sfx_volume, get_fullscreen_value, get_fps_counter_enabled, set_fps_counter_enabled
 
 from direct.gui.DirectGui import DirectButton, DirectCheckButton, DirectSlider, DirectLabel
 
@@ -31,13 +31,19 @@ class settings_menu(ui_base):
         play_sample_sfx_button = DirectButton(text=("Play sample sound"), pos=(0.5,0,-0.4), scale=0.05, command=self.play_sample_sound)
         self.ui_elements.append(play_sample_sfx_button)
 
-        main_menu_button = DirectButton(text=("return to main menu"), pos=(0,0,-0.6), scale=0.1, command=self.return_to_main_menu)
+        fps_checkbox = DirectCheckButton(text="FPS", pos=(0,0,-0.6),scale=0.2, indicatorValue=get_fps_counter_enabled(), command=self.update_fps)
+        self.ui_elements.append(fps_checkbox)
+
+        main_menu_button = DirectButton(text=("Return to main menu"), pos=(0,0,-0.7), scale=0.1, command=self.return_to_main_menu)
         self.ui_elements.append(main_menu_button)
 
     def return_to_main_menu(self):
         messenger.send(EVENT_NAMES.GOTO_MAIN_MENU)
 
     def toggle_fullscreen(self, status):
+        set_fullscreen_value(status == 1)
+
+    def toggle_fps_counter(self, status):
         set_fullscreen_value(status == 1)
 
     def update_sfx_volume(self):
@@ -51,3 +57,6 @@ class settings_menu(ui_base):
     def play_sample_sound(self):
         sample_sfx = base.loader.loadSfx(join("assets", "sfx", "sample.wav"))
         sample_sfx.play()
+
+    def update_fps(self, status):
+        set_fps_counter_enabled(status == 1)
