@@ -12,17 +12,21 @@ from ui.pause_menu import pause_menu
 from constants.game_state import GAME_STATUS
 
 from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_window
+from helpers.model_helpers import load_model
 
 loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
+        
+        
       
         ShowBase.__init__(self)
+        render.setShaderAuto()
         
         # random coords
-        base.cam.setPos(0, 50, 0) 
-        base.cam.setHpr(0, 180+40, 0)
+        base.cam.setPos(0, 50,0) 
+        base.cam.setHpr(0, 180, 0)
        
         self.game_status = GAME_STATUS.MAIN_MENU 
 
@@ -48,6 +52,13 @@ class main_game(ShowBase):
         self.active_ui = None 
         
         self.goto_main_menu()
+        
+        load_model("Oven").reparentTo(render)
+        
+        ambientLight = AmbientLight("ambientLight")
+        ambientLight.setColor((10, 10, 10, 10))
+        render.setLight(render.attachNewNode(ambientLight))
+        
  
     def game_loop(self, task):
         
@@ -78,7 +89,7 @@ class main_game(ShowBase):
         if self.active_ui is not None:
             self.active_ui.destroy()
         self.active_ui = main_menu()
-        self.setBackgroundColor((0, 0, 0, 1))
+        #self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
         
     def toggle_pause(self):
