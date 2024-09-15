@@ -18,17 +18,27 @@ from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_windo
 from helpers.model_helpers import load_model
 from ui.settings_menu import settings_menu
 
+from entities.player import Player
+
 loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
-      
+
         ShowBase.__init__(self)
         render.setShaderAuto()
+        base.enableParticles()
+        
+        self.player = None
         
         # random coords
-        base.cam.setPos(0, 50,0) 
-        base.cam.setHpr(0, 180, 0)
+        base.cam.setPos(0, 0, 40)
+        # Assumption: Player is spawned at 0,0,0
+        # Simplest way to ensure we look at the player is by using quaterions
+        # This allows us to move the camera without having to recalculate the hpr ourselves :)
+        quat = Quat()
+        lookAt(quat, Point3(0,0,0) - base.cam.getPos(), Vec3.up())
+        base.cam.setQuat(quat)
        
         self.game_status = GAME_STATUS.MAIN_MENU 
 
@@ -54,19 +64,14 @@ class main_game(ShowBase):
         
         self.goto_main_menu()
         
-        load_model("Oven").reparentTo(render)
-        
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((10, 10, 10, 10))
+        ambientLight.setColor((5, 5, 5, 5))
         render.setLight(render.attachNewNode(ambientLight))
 
         load_config('./user_settings.json')
  
     def game_loop(self, task):
-        
-        # use dt for update functions
-        _ = self.clock.dt 
-
+        # Runtime check. DO NOT PUT ANY GAMELOGIC BEFORE THIS
         if self.game_status == GAME_STATUS.STARTING:
             print("Starting")
             self.setup_game()
@@ -74,15 +79,20 @@ class main_game(ShowBase):
 
         if self.game_status != GAME_STATUS.RUNNING:
            return Task.cont 
+ 
+        # use dt for update functions
+        dt = self.clock.dt 
 
-        # TODO: add gamelogic
+
+        self.player.update(dt)
 
         return Task.cont
 
     def setup_game(self):
         self.active_ui.destroy()
-        self.active_hud = hud()
 
+        self.player = Player()
+        self.active_hud = hud()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):
@@ -95,6 +105,9 @@ class main_game(ShowBase):
         if self.active_hud is not None:
             self.active_hud.destroy()
             self.active_hud = None
+
+        if self.player is not None:
+            self.player.destroy()
 
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
