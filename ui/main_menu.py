@@ -11,7 +11,8 @@ class main_menu(ui_base):
     def __init__(self):
         ui_base.__init__(self)
 
-        TEXT_COLOR = (0.839, 0.36, 0.188, 1) # RGB: 214, 92, 48
+        TEXT_COLOR = (0.968, 0.929, 0.835, 1) # rgb(247, 237, 213)
+        TEXT_ALTERNATE_COLOR = (0.62, 0.67, 0.345, 1) # rgb(158, 172, 88)
         #TEXT_BOX_COLOR = (0.921, 0.776, 0.317, 1) # RGB: 235, 198, 81
         TEXT_BOX_COLOR = (1, 1, 1, 1) # RGB: 235, 198, 81
         
@@ -66,7 +67,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.start_game, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_COLOR),
+                    text_fg=(TEXT_ALTERNATE_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,
@@ -83,7 +84,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.start_game, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_COLOR),
+                    text_fg=(TEXT_ALTERNATE_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,
@@ -100,7 +101,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.quit_game, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_COLOR),
+                    text_fg=(TEXT_ALTERNATE_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,
