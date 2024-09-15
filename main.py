@@ -10,8 +10,10 @@ from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
 
 from constants.game_state import GAME_STATUS
+from constants.events import EVENT_NAMES 
 
 from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_window
+from ui.settings_menu import settings_menu
 
 loadPrcFile("./settings.prc")
 
@@ -27,17 +29,16 @@ class main_game(ShowBase):
         self.game_status = GAME_STATUS.MAIN_MENU 
 
         # Create event handlers for events fired by UI
-        self.accept("start_game", self.set_game_status, [GAME_STATUS.STARTING])
+        self.accept(EVENT_NAMES.START_GAME, self.set_game_status, [GAME_STATUS.STARTING])
 
         # Create event handlers for events fired by keyboard
-        self.accept("escape", self.toggle_pause)
+        self.accept(EVENT_NAMES.ESCAPE, self.toggle_pause)
 
-        # Create event handlers for events fired by keyboard
-        self.accept("escape", self.toggle_pause)
+        self.accept(EVENT_NAMES.PAUSE_GAME, self.toggle_pause)
         
-        self.accept("pause_game", self.toggle_pause)
-        
-        self.accept("goto_main_menu", self.goto_main_menu)
+        self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
+        self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
+
 
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
@@ -80,6 +81,12 @@ class main_game(ShowBase):
         self.active_ui = main_menu()
         self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
+
+    def goto_settings_menu(self):
+        if self.active_ui is not None:
+            self.active_ui.destroy()
+        self.active_ui = settings_menu()
+        self.set_game_status(GAME_STATUS.SETTINGS)
         
     def toggle_pause(self):
         if self.game_status == GAME_STATUS.RUNNING:
