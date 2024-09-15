@@ -7,6 +7,7 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from helpers.config import load_config
+from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
 
@@ -23,11 +24,11 @@ loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
+
         ShowBase.__init__(self)
         render.setShaderAuto()
         
         self.player = None
-        
         
         # random coords
         base.cam.setPos(0, -7, 10)
@@ -46,7 +47,6 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
 
-
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
         self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9,0.9 ), scale=0.07,fg=(255,0,0, 1))
@@ -54,6 +54,7 @@ class main_game(ShowBase):
         base.disableMouse()
 
         self.active_ui = None 
+        self.active_hud = None
         
         self.goto_main_menu()
         
@@ -62,7 +63,6 @@ class main_game(ShowBase):
         ambientLight = AmbientLight("ambientLight")
         ambientLight.setColor((5, 5, 5, 5))
         render.setLight(render.attachNewNode(ambientLight))
-        
 
         load_config('./user_settings.json')
  
@@ -85,7 +85,9 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
+
         self.player = Player()
+        self.active_hud = hud()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):
@@ -95,6 +97,10 @@ class main_game(ShowBase):
     def goto_main_menu(self):
         if self.active_ui is not None:
             self.active_ui.destroy()
+        if self.active_hud is not None:
+            self.active_hud.destroy()
+            self.active_hud = None
+
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
