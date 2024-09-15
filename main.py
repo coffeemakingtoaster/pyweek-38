@@ -21,8 +21,6 @@ loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
-        
-        
       
         ShowBase.__init__(self)
         render.setShaderAuto()
@@ -44,7 +42,6 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
 
-
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
         self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9,0.9 ), scale=0.07,fg=(255,0,0, 1))
@@ -52,6 +49,7 @@ class main_game(ShowBase):
         base.disableMouse()
 
         self.active_ui = None 
+        self.active_hud = None
         
         self.goto_main_menu()
         
@@ -60,7 +58,6 @@ class main_game(ShowBase):
         ambientLight = AmbientLight("ambientLight")
         ambientLight.setColor((10, 10, 10, 10))
         render.setLight(render.attachNewNode(ambientLight))
-        
 
         load_config('./user_settings.json')
  

@@ -8,6 +8,9 @@ class Review:
         self.review_text = text
         self.user_name = name
 
+    def print(self):
+        print(f'By \033[92m{self.user_name}\033[00m:\n\t\033[94m{self.review_text}\033[00m')
+
 NEUTRAL_USERNAMES = list(set([
     "WillyWacker",
     "WillyWonka",
