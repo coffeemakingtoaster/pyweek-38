@@ -27,6 +27,7 @@ class main_game(ShowBase):
 
         ShowBase.__init__(self)
         render.setShaderAuto()
+        base.enableParticles()
         
         self.player = None
         

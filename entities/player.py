@@ -4,6 +4,7 @@ from panda3d.core import Vec3
 from constants.player_const import MOVEMENT
 from entities.entity_base import EntityBase
 from constants import player_const
+from helpers.model_helpers import load_particles
 
 
 class Player(EntityBase):
@@ -31,6 +32,9 @@ class Player(EntityBase):
         self.model.setPos(0, 0, 0)
         self.model.reparentTo(render)
 
+        self.walk_particles = load_particles("dust")
+        self.walk_particles_active = False
+
     def set_movement_status(self, direction):
         self.movement_status[direction] = 1
 
@@ -51,6 +55,15 @@ class Player(EntityBase):
             ((self.movement_status["down"] * -1) + self.movement_status["up"]) * self.move_speed * dt,
             0
         )
+
+        if movement_direction.length() > (player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt ) and not self.walk_particles_active:
+            self.walk_particles = load_particles("dust")
+            self.walk_particles.start(self.model, renderParent=render)
+            self.walk_particles_active = True
+
+        if movement_direction.length() < (player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt ) and self.walk_particles_active:
+            self.walk_particles.softStop()
+            self.walk_particles_active = False 
 
         self.model.setFluidPos(
             self.model.getX() + movement_direction.x,
