@@ -27,5 +27,5 @@ class ui_base(DirectObject.DirectObject):
         self.ui_elements = []
         
     def load_background_image(self):
-        background = OnscreenImage(join("assets", "images","main_menu_background.png"), pos=(-0.1,0,0), scale=(1521 * 0.0012,1,859 * 0.0012)) 
+        background = OnscreenImage(join("assets", "images","mainmenubg.jpeg"), pos=(-0.1,0,0), scale=(1521 * 0.0012,1,859 * 0.0012)) 
         self.ui_elements.append(background)
