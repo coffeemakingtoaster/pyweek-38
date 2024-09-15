@@ -7,6 +7,7 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from helpers.config import load_config
+from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
 
@@ -17,19 +18,27 @@ from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_windo
 from helpers.model_helpers import load_model
 from ui.settings_menu import settings_menu
 
+from entities.player import Player
+
 loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
-        
-        
-      
+
         ShowBase.__init__(self)
         render.setShaderAuto()
+        base.enableParticles()
+        
+        self.player = None
         
         # random coords
-        base.cam.setPos(0, -7,10) 
-        base.cam.setHpr(0, -50, 0)
+        base.cam.setPos(0, 0, 40)
+        # Assumption: Player is spawned at 0,0,0
+        # Simplest way to ensure we look at the player is by using quaterions
+        # This allows us to move the camera without having to recalculate the hpr ourselves :)
+        quat = Quat()
+        lookAt(quat, Point3(0,0,0) - base.cam.getPos(), Vec3.up())
+        base.cam.setQuat(quat)
        
         self.game_status = GAME_STATUS.MAIN_MENU 
 
@@ -44,7 +53,6 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
 
-
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
         self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9,0.9 ), scale=0.07,fg=(255,0,0, 1))
@@ -52,23 +60,18 @@ class main_game(ShowBase):
         base.disableMouse()
 
         self.active_ui = None 
+        self.active_hud = None
         
         self.goto_main_menu()
         
-        load_model("Countertop_Large").reparentTo(render)
-        load_model("Dot").reparentTo(render)
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((2, 3, 3, 1))
+        ambientLight.setColor((5, 5, 5, 5))
         render.setLight(render.attachNewNode(ambientLight))
-        
 
         load_config('./user_settings.json')
  
     def game_loop(self, task):
-        
-        # use dt for update functions
-        _ = self.clock.dt 
-
+        # Runtime check. DO NOT PUT ANY GAMELOGIC BEFORE THIS
         if self.game_status == GAME_STATUS.STARTING:
             print("Starting")
             self.setup_game()
@@ -76,13 +79,20 @@ class main_game(ShowBase):
 
         if self.game_status != GAME_STATUS.RUNNING:
            return Task.cont 
+ 
+        # use dt for update functions
+        dt = self.clock.dt 
 
-        # TODO: add gamelogic
+
+        self.player.update(dt)
 
         return Task.cont
 
     def setup_game(self):
         self.active_ui.destroy()
+
+        self.player = Player()
+        self.active_hud = hud()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):
@@ -92,6 +102,13 @@ class main_game(ShowBase):
     def goto_main_menu(self):
         if self.active_ui is not None:
             self.active_ui.destroy()
+        if self.active_hud is not None:
+            self.active_hud.destroy()
+            self.active_hud = None
+
+        if self.player is not None:
+            self.player.destroy()
+
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
