@@ -28,8 +28,8 @@ class main_game(ShowBase):
         render.setShaderAuto()
         
         # random coords
-        base.cam.setPos(0, 50,0) 
-        base.cam.setHpr(0, 180, 0)
+        base.cam.setPos(0, -7,10) 
+        base.cam.setHpr(0, -50, 0)
        
         self.game_status = GAME_STATUS.MAIN_MENU 
 
@@ -55,10 +55,10 @@ class main_game(ShowBase):
         
         self.goto_main_menu()
         
-        load_model("Oven").reparentTo(render)
-        
+        load_model("Countertop_Large").reparentTo(render)
+        load_model("Dot").reparentTo(render)
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((10, 10, 10, 10))
+        ambientLight.setColor((2, 3, 3, 1))
         render.setLight(render.attachNewNode(ambientLight))
         
 
