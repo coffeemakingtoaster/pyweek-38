@@ -17,19 +17,21 @@ from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_windo
 from helpers.model_helpers import load_model
 from ui.settings_menu import settings_menu
 
+from entities.player import Player
+
 loadPrcFile("./settings.prc")
 
 class main_game(ShowBase):
     def __init__(self):
-        
-        
-      
         ShowBase.__init__(self)
         render.setShaderAuto()
         
+        self.player = None
+        
+        
         # random coords
-        base.cam.setPos(0, 50,0) 
-        base.cam.setHpr(0, 180, 0)
+        base.cam.setPos(0, -7, 10)
+        base.cam.setHpr(0, -50, 0)
        
         self.game_status = GAME_STATUS.MAIN_MENU 
 
@@ -55,10 +57,10 @@ class main_game(ShowBase):
         
         self.goto_main_menu()
         
-        load_model("Oven").reparentTo(render)
+        load_model("Player").reparentTo(render)
         
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((10, 10, 10, 10))
+        ambientLight.setColor((5, 5, 5, 5))
         render.setLight(render.attachNewNode(ambientLight))
         
 
@@ -83,6 +85,7 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
+        self.player = Player()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):

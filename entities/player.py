@@ -1,42 +1,58 @@
 from direct.actor.Actor import Actor
+from panda3d.core import Point3, Vec3
+
+from constants.player_const import MOVEMENT
 from entities.entity_base import EntityBase
+from constants import player_const
 
 
 class Player(EntityBase):
     def __init__(self):
         super().__init__()
 
-        self.model = Actor("assets/models/PlayerStandin.bam", {"Idle": "assets/models/PlayerStandin.bam"})
-        self.model.setPos(0, 0, 0)
-        self.model.reparentTo(self.render)
-
+        self.id = "player"
+        self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
+        self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
 
         # Keybinds for movement
-        self.accept("a",self.set_movement_status, ["left"])
+        self.accept("a", self.set_movement_status, ["left"])
         self.accept("a-up", self.unset_movement_status, ["left"])
-        self.accept("d",self.set_movement_status, ["right"])
+        self.accept("d", self.set_movement_status, ["right"])
         self.accept("d-up", self.unset_movement_status, ["right"])
-        self.accept("w",self.set_movement_status, ["up"])
+        self.accept("w", self.set_movement_status, ["up"])
         self.accept("w-up", self.unset_movement_status, ["up"])
-        self.accept("s",self.set_movement_status, ["down"])
+        self.accept("s", self.set_movement_status, ["down"])
         self.accept("s-up", self.unset_movement_status, ["down"])
 
-        self.accept("e",self.set_interact)
-        # self.accept("e-up", self.unset_interact)
-        
-        
-        self.id = "player"
+        self.accept("e", self.set_interact)
+        self.accept("e-up", self.unset_interact)
 
-        def set_movement_status(self, direction):
-            self.movement_status[direction] = 1
+        self.model = Actor("assets/models/Player/Player.bam", {"Idle": "assets/models/Player/Player.bam"})
+        self.model.setPos(0, 0, 0)
+        self.model.reparentTo(render)
 
-        def unset_movement_status(self, direction):
-            self.movement_status[direction] = 0
-        
-        def set_interact(self):
-            print("Interacting.")
-        
-        
-        def update(self, dt): 
-            self.model.node().resetAllPrevTransform()
-            
+        self.last_position = Point3(0, 2, 0)
+
+    def set_movement_status(self, direction):
+        self.movement_status[direction] = 1
+
+    def unset_movement_status(self, direction):
+        self.movement_status[direction] = 0
+
+    def set_interact(self):
+        print("Interacting.")
+
+    def unset_interact(self):
+        print("Disabling interact.")
+
+    def update(self, dt):
+        self.model.node().resetAllPrevTransform()
+
+        movement_direction = Vec3(
+            ((self.movement_status["left"] * -1) + self.movement_status["right"]) * self.moveSpeed * dt, 0,
+            ((self.movement_status["down"]) + self.movement_status["up"] * -1) * self.moveSpeed * dt)
+
+        self.model.setFluidPos(self.model.getX() + movement_direction.x, player_const.MOVEMENT.PLAYER_FIXED_HEIGHT,
+                               self.model.getZ() + movement_direction.z)
+
+        self.last_position = self.model.getPos()
