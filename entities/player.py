@@ -1,5 +1,5 @@
 from direct.actor.Actor import Actor
-from panda3d.core import Point3, Vec3
+from panda3d.core import Vec3
 
 from constants.player_const import MOVEMENT
 from entities.entity_base import EntityBase
@@ -31,8 +31,6 @@ class Player(EntityBase):
         self.model.setPos(0, 0, 0)
         self.model.reparentTo(render)
 
-        self.last_position = Point3(0, 2, 0)
-
     def set_movement_status(self, direction):
         self.movement_status[direction] = 1
 
@@ -49,10 +47,19 @@ class Player(EntityBase):
         self.model.node().resetAllPrevTransform()
 
         movement_direction = Vec3(
-            ((self.movement_status["left"] * -1) + self.movement_status["right"]) * self.moveSpeed * dt, 0,
-            ((self.movement_status["down"]) + self.movement_status["up"] * -1) * self.moveSpeed * dt)
+            ((self.movement_status["left"] * -1) + self.movement_status["right"]) * self.move_speed * dt,
+            ((self.movement_status["down"] * -1) + self.movement_status["up"]) * self.move_speed * dt,
+            0
+        )
 
-        self.model.setFluidPos(self.model.getX() + movement_direction.x, player_const.MOVEMENT.PLAYER_FIXED_HEIGHT,
-                               self.model.getZ() + movement_direction.z)
+        self.model.setFluidPos(
+            self.model.getX() + movement_direction.x,
+            self.model.getY() + movement_direction.y,
+            player_const.MOVEMENT.PLAYER_FIXED_HEIGHT
+        )
 
-        self.last_position = self.model.getPos()
+    def destroy(self):
+        self.ignoreAll()
+        if self.model is not None:
+            self.model.cleanup()
+            self.model.removeNode()
