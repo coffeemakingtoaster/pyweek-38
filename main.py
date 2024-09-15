@@ -7,6 +7,7 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from helpers.config import load_config
+from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
 
@@ -80,6 +81,8 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
+        self.active_hud = hud()
+
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):
@@ -89,6 +92,10 @@ class main_game(ShowBase):
     def goto_main_menu(self):
         if self.active_ui is not None:
             self.active_ui.destroy()
+        if self.active_hud is not None:
+            self.active_hud.destroy()
+            self.active_hud = None
+
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
