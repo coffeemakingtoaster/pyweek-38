@@ -5,7 +5,7 @@ from direct.particles.ParticleEffect import ParticleEffect
 # load_model will assume that the model is under
 # /assets/models/<name>/<name>.obj
 def load_model(name):
-    model = loader.loadModel(join("assets","models",name, name+".egg"))
+    model = loader.loadModel(join("assets","models",name, name+".bam"))
     
     #texture = loader.loadTexture("assets/models/"+name+"/"+name+".jpeg")
     #model.setTexture(texture)
