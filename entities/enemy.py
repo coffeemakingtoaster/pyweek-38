@@ -17,7 +17,7 @@ class Enemy(EntityBase):
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
 
-        self.model = Actor("assets/models/Oven/Oven.bam", {"Idle": "assets/models/Oven/Oven.bam"})
+        self.model = Actor("assets/models/MapObjects/Oven/Oven.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
 
         self.model.reparentTo(render)

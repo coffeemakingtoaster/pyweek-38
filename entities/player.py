@@ -31,7 +31,7 @@ class Player(EntityBase):
         self.accept("e", self.set_interact)
         self.accept("e-up", self.unset_interact)
 
-        self.model = Actor("assets/models/Player/Player.bam", {"Idle": "assets/models/Player/Player.bam"})
+        self.model = Actor("assets/models/MapObjects/Player/Player.bam", {"Idle": "assets/models/MapObjects/Player/Player.bam"})
         self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
         self.model.reparentTo(render)
 
