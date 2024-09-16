@@ -25,7 +25,7 @@ def load_map(json_data,render):
             slnp.setHpr(0,-90,0)
             render.setLight(slnp)
             lights.append(slnp)
-        if name == "ItemArea":
+        #if name == "ItemArea":
             
         
         else:
