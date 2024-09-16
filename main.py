@@ -29,6 +29,7 @@ class main_game(ShowBase):
         ShowBase.__init__(self)
         render.setShaderAuto()
         base.enableParticles()
+        base.cTrav = None
         
         self.enemy = None
         self.player = None
@@ -71,6 +72,7 @@ class main_game(ShowBase):
         ambientLight.setColor((5, 5, 5, 5))
         render.setLight(render.attachNewNode(ambientLight))
 
+
         load_config('./user_settings.json')
  
     def game_loop(self, task):
@@ -95,10 +97,11 @@ class main_game(ShowBase):
     def setup_game(self):
         self.active_ui.destroy()
 
+        base.cTrav = CollisionTraverser()
+
         self.player = Player()
-        self.enemies = [Enemy(3, 3)]
+        self.enemies = [Enemy(3, 3),Enemy(3, 3)]
         self.active_hud = hud()
-        # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
     def set_game_status(self, status):
         self.status_display["text"] = status
@@ -110,6 +113,9 @@ class main_game(ShowBase):
         if self.active_hud is not None:
             self.active_hud.destroy()
             self.active_hud = None
+
+        if base.cTrav is not None:
+            base.cTrav.clearColliders()
 
         if self.player is not None:
             self.player.destroy()
