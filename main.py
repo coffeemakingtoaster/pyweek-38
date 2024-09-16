@@ -7,10 +7,10 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from helpers.config import load_config
+from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
 from ui.main_menu import main_menu
-from ui.pause_menu import pause_menu
-
+from ui.pause_menu import pause_menu 
 from constants.game_state import GAME_STATUS
 from constants.events import EVENT_NAMES 
 
@@ -134,5 +134,12 @@ def start_game():
     game = main_game()
     game.run()
 
+def display_pathfinding_test():
+    get_path_from_to_tile_type((1,1), 'B', True)
+    get_path_from_to_tile_type((1,1), 'B', False)
+    get_path_from_to_tile_type((4,5), 'A', True)
+    get_path_from_to_tile_type((3,1), 'C', True)
+
 if __name__ == "__main__":
+    display_pathfinding_test()
     start_game()
