@@ -136,9 +136,9 @@ def start_game():
 
 def display_pathfinding_test():
     get_path_from_to_tile_type((1,1), 'B', True)
-    get_path_from_to_tile_type((1,1), 'B', False)
-    get_path_from_to_tile_type((4,5), 'A', True)
-    get_path_from_to_tile_type((3,1), 'C', True)
+    print(get_path_from_to_tile_type((1,1), 'B', False))
+    print(get_path_from_to_tile_type((4,5), 'A', True))
+    print(get_path_from_to_tile_type((3,1), 'C', True))
 
 if __name__ == "__main__":
     display_pathfinding_test()
