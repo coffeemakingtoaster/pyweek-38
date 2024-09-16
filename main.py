@@ -19,6 +19,7 @@ from helpers.model_helpers import load_model
 from ui.settings_menu import settings_menu
 
 from entities.player import Player
+from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
 
@@ -29,7 +30,9 @@ class main_game(ShowBase):
         render.setShaderAuto()
         base.enableParticles()
         
+        self.enemy = None
         self.player = None
+        self.enemies = []
         
         # random coords
         base.cam.setPos(0, 0, 40)
@@ -40,7 +43,7 @@ class main_game(ShowBase):
         lookAt(quat, Point3(0,0,0) - base.cam.getPos(), Vec3.up())
         base.cam.setQuat(quat)
        
-        self.game_status = GAME_STATUS.MAIN_MENU 
+        self.game_status = GAME_STATUS.MAIN_MENU
 
         # Create event handlers for events fired by UI
         self.accept(EVENT_NAMES.START_GAME, self.set_game_status, [GAME_STATUS.STARTING])
@@ -82,8 +85,9 @@ class main_game(ShowBase):
  
         # use dt for update functions
         dt = self.clock.dt 
-
-
+        
+        for enemy in self.enemies:
+            enemy.update(dt)
         self.player.update(dt)
 
         return Task.cont
@@ -92,6 +96,7 @@ class main_game(ShowBase):
         self.active_ui.destroy()
 
         self.player = Player()
+        self.enemies = [Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
         
@@ -108,6 +113,11 @@ class main_game(ShowBase):
 
         if self.player is not None:
             self.player.destroy()
+
+        if len(self.enemies) != 0:
+            for i in self.enemies:
+                i.destroy()
+            self.enemies = []
 
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
