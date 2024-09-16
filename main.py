@@ -36,6 +36,10 @@ class main_game(ShowBase):
         self.enemy = None
         self.player = None
         self.enemies = []
+
+        properties = WindowProperties()
+        properties.setSize(1280, 720)
+        self.win.requestProperties(properties)
         
         # random coords
         base.cam.setPos(0, -13, 13)
