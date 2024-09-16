@@ -16,6 +16,20 @@ def __find_closest_target_dist(pos, target):
         dist = min((pos[0] - target_pos[0])**2 + (pos[1] - target_pos[1])**2, dist)
     return dist
 
+def __optimize_waypoints(waypoints):
+    if len(waypoints) < 3:
+        return waypoints
+    optimized = []
+    diff = (0,0)
+    for i in range(1,len(waypoints) - 1):
+        d = (waypoints[i][0] - waypoints[i-1][0],waypoints[i][1] - waypoints[i-1][1])
+        if d[0] == diff[0] and d[1] == diff[1]:
+            continue
+        diff = d
+        optimized.append(waypoints[i - 1])
+    optimized.append(waypoints[-1])
+    return optimized
+
 def __get_adjacent(pos):
     res = []
     if pos[0] >= 1:
@@ -71,8 +85,10 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
 
     waypoints = []
 
-    while backtrack_pos != start_pos:
+    while True:
         waypoints.append(backtrack_pos)
+        if backtrack_pos == start_pos:
+            break
         min_val = visited[__pos_to_string(backtrack_pos)].score
         for pos in __get_adjacent(backtrack_pos):
             if __pos_to_string(pos) not in visited:
@@ -87,7 +103,7 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
     print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
 
     if not debug_print:
-        return waypoints
+        return __optimize_waypoints(waypoints)
 
     # Backtrack
     map_overlay = []
@@ -108,4 +124,4 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
                 continue
             print(PATHFINDING_MAP[i][j],end="")
         print()
-    return waypoints
+    return __optimize_waypoints(waypoints)

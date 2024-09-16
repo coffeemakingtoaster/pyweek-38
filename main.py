@@ -21,6 +21,7 @@ from ui.settings_menu import settings_menu
 
 from entities.player import Player
 import json
+from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
 
@@ -30,8 +31,11 @@ class main_game(ShowBase):
         ShowBase.__init__(self)
         render.setShaderAuto()
         base.enableParticles()
+        base.cTrav = None
         
+        self.enemy = None
         self.player = None
+        self.enemies = []
         
         # random coords
         base.cam.setPos(0, -13, 13)
@@ -42,7 +46,7 @@ class main_game(ShowBase):
         lookAt(quat, Point3(0,0,0) - base.cam.getPos(), Vec3.up())
         base.cam.setQuat(quat)
        
-        self.game_status = GAME_STATUS.MAIN_MENU 
+        self.game_status = GAME_STATUS.MAIN_MENU
 
         # Create event handlers for events fired by UI
         self.accept(EVENT_NAMES.START_GAME, self.set_game_status, [GAME_STATUS.STARTING])
@@ -75,6 +79,7 @@ class main_game(ShowBase):
         render.setLight(render.attachNewNode(ambientLight))
         
 
+
         load_config('./user_settings.json')
  
     def game_loop(self, task):
@@ -89,8 +94,9 @@ class main_game(ShowBase):
  
         # use dt for update functions
         dt = self.clock.dt 
-
-
+        
+        for enemy in self.enemies:
+            enemy.update(dt)
         self.player.update(dt)
 
         return Task.cont
@@ -98,7 +104,11 @@ class main_game(ShowBase):
     def setup_game(self):
         self.active_ui.destroy()
         self.load_game()
+
+        base.cTrav = CollisionTraverser()
+
         self.player = Player()
+        self.enemies = [Enemy(3, 3),Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game staff and initialize the ui uwu
     
@@ -120,8 +130,16 @@ class main_game(ShowBase):
             self.active_hud.destroy()
             self.active_hud = None
 
+        if base.cTrav is not None:
+            base.cTrav.clearColliders()
+
         if self.player is not None:
             self.player.destroy()
+
+        if len(self.enemies) != 0:
+            for i in self.enemies:
+                i.destroy()
+            self.enemies = []
 
         self.active_ui = main_menu()
         #self.setBackgroundColor((0, 0, 0, 1))
@@ -150,9 +168,9 @@ def start_game():
 
 def display_pathfinding_test():
     get_path_from_to_tile_type((1,1), 'B', True)
-    get_path_from_to_tile_type((1,1), 'B', False)
-    get_path_from_to_tile_type((4,5), 'A', True)
-    get_path_from_to_tile_type((3,1), 'C', True)
+    print(get_path_from_to_tile_type((1,1), 'B', False))
+    print(get_path_from_to_tile_type((4,5), 'A', True))
+    print(get_path_from_to_tile_type((3,1), 'C', True))
 
 if __name__ == "__main__":
     display_pathfinding_test()
