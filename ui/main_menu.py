@@ -82,7 +82,7 @@ class main_menu(ui_base):
                     parent = menu_box,
                     pos=(0,0,-0.25), 
                     scale=0.12, 
-                    command=self.start_game, 
+                    command=self.open_settings, 
                     relief=DGG.FLAT, 
                     text_fg=(TEXT_ALTERNATE_COLOR),
                     text_font = self.font, 
