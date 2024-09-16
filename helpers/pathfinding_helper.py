@@ -109,9 +109,3 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
             print(PATHFINDING_MAP[i][j],end="")
         print()
     return waypoints
-
-if __name__ == '__main__':
-    get_path_from_to_tile_type((1,1), 'B', True)
-    get_path_from_to_tile_type((1,1), 'B', False)
-    get_path_from_to_tile_type((4,5), 'A', True)
-    get_path_from_to_tile_type((3,1), 'C', True)
