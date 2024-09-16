@@ -10,7 +10,9 @@ def load_model(name):
     #texture = loader.loadTexture("assets/models/"+name+"/"+name+".jpeg")
     #model.setTexture(texture)
     return model
-
+def load_mapObj(name):
+    model = loader.loadModel(join("assets","models/MapObjects",name,name+".bam"))
+    return model
 
 def load_particles(name):
    p = ParticleEffect()

@@ -17,8 +17,10 @@ from constants.events import EVENT_NAMES
 from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_window
 from helpers.model_helpers import load_model
 from ui.settings_menu import settings_menu
+from entities.map_loader import load_map
 
 from entities.mapper import Mapper
+import json
 
 loadPrcFile("./settings.prc")
 
@@ -65,7 +67,11 @@ class main_game(ShowBase):
         self.goto_main_menu()
         
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((3, 3, 3, 3))
+        ambientLight.setColor((.1, .1, .1, 1))
+        directionalLight = DirectionalLight("directionalLight")
+        directionalLight.setDirection(LVector3(0, -45, -45))
+        directionalLight.setColor((2, 2, 2, 1))
+        render.setLight(render.attachNewNode(directionalLight))
         render.setLight(render.attachNewNode(ambientLight))
 
         load_config('./user_settings.json')
@@ -90,6 +96,10 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
+        with open('./map.json', 'r') as file:
+            data = json.load(file)
+        
+        self.map,self.lights = load_map(data,render)
 
         self.mapper = Mapper()
         self.active_hud = hud()

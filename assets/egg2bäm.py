@@ -10,7 +10,7 @@ def convert_egg_to_bam(directory):
                 bam_file = egg_file.replace(".egg", ".bam")
 
                 # Prepare the egg2bam command
-                command = ["egg2bam", egg_file, bam_file]
+                command = ["egg2bam","-o",bam_file, egg_file]
                 print(f"Converting: {egg_file} -> {bam_file}")
 
                 try:
