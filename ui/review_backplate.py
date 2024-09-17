@@ -62,8 +62,6 @@ class ReviewDisplay:
                 text_font=self.font
             )
 
-
-
         self.username_label = DirectLabel(
                 text=user_name,
                 scale=0.05,
