@@ -20,6 +20,7 @@ class Oven(Station):
             self.inventory.append(item)
             self.play_anim("Open")
             self.play_anim("Closed")
+            #player holding = empty_plate
             #domethodlater(duration,finishcooking)
         else:
             #Error Sound
