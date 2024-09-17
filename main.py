@@ -10,20 +10,22 @@ from helpers.config import load_config
 from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
 from ui.main_menu import main_menu
-from ui.pause_menu import pause_menu 
+from ui.pause_menu import pause_menu
 from constants.game_state import GAME_STATUS
-from constants.events import EVENT_NAMES 
+from constants.events import EVENT_NAMES
 
-from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_window
+from helpers.game_helpers import release_mouse_from_window, lock_mouse_in_window
 from helpers.model_helpers import load_model
 from entities.map_loader import load_map
 from ui.settings_menu import settings_menu
 
+from entities.dish import Dish
 from entities.player import Player
 import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
+
 
 class main_game(ShowBase):
     def __init__(self):
@@ -32,7 +34,7 @@ class main_game(ShowBase):
         render.setShaderAuto()
         base.enableParticles()
         base.cTrav = None
-        
+
         self.enemy = None
         self.player = None
         self.enemies = []
@@ -40,16 +42,16 @@ class main_game(ShowBase):
         properties = WindowProperties()
         properties.setSize(1280, 720)
         self.win.requestProperties(properties)
-        
+
         # random coords
         base.cam.setPos(0, -13, 13)
         # Assumption: Player is spawned at 0,0,0
         # Simplest way to ensure we look at the player is by using quaterions
         # This allows us to move the camera without having to recalculate the hpr ourselves :)
         quat = Quat()
-        lookAt(quat, Point3(0,0,0) - base.cam.getPos(), Vec3.up())
+        lookAt(quat, Point3(0, 0, 0) - base.cam.getPos(), Vec3.up())
         base.cam.setQuat(quat)
-       
+
         self.game_status = GAME_STATUS.MAIN_MENU
 
         # Create event handlers for events fired by UI
@@ -59,21 +61,21 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.ESCAPE, self.toggle_pause)
 
         self.accept(EVENT_NAMES.PAUSE_GAME, self.toggle_pause)
-        
+
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
 
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
-        self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9,0.9 ), scale=0.07,fg=(255,0,0, 1))
-        
+        self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9, 0.9), scale=0.07, fg=(255, 0, 0, 1))
+
         base.disableMouse()
 
-        self.active_ui = None 
+        self.active_ui = None
         self.active_hud = None
-        
+
         self.goto_main_menu()
-        
+
         ambientLight = AmbientLight("ambientLight")
         ambientLight.setColor((.1, .1, .1, 1))
         directionalLight = DirectionalLight("directionalLight")
@@ -81,11 +83,9 @@ class main_game(ShowBase):
         directionalLight.setColor((2, 2, 2, 1))
         render.setLight(render.attachNewNode(directionalLight))
         render.setLight(render.attachNewNode(ambientLight))
-        
-
 
         load_config('./user_settings.json')
- 
+
     def game_loop(self, task):
         # Runtime check. DO NOT PUT ANY GAMELOGIC BEFORE THIS
         if self.game_status == GAME_STATUS.STARTING:
@@ -94,11 +94,11 @@ class main_game(ShowBase):
             self.set_game_status(GAME_STATUS.RUNNING)
 
         if self.game_status != GAME_STATUS.RUNNING:
-           return Task.cont 
- 
-        # use dt for update functions
-        dt = self.clock.dt 
-        
+            return Task.cont
+
+            # use dt for update functions
+        dt = self.clock.dt
+
         for enemy in self.enemies:
             enemy.update(dt)
         self.player.update(dt)
@@ -111,18 +111,22 @@ class main_game(ShowBase):
 
         base.cTrav = CollisionTraverser()
 
+        hel = load_model("empty_plate")
+        hel.reparentTo(render)
+        hel.setPos(0, 2, 4)
+        self.dish = Dish("empty_plate", hel)
+
         self.player = Player()
-        self.enemies = [Enemy(3, 3),Enemy(3, 3)]
+        self.enemies = [Enemy(3, 3), Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game stuff and initialize the ui uwu
-    
+
     def load_game(self):
         with open('./map.json', 'r') as file:
             data = json.load(file)
-        
+
         self.map = load_map(data)
-        
-    
+
     def set_game_status(self, status):
         self.status_display["text"] = status
         self.game_status = status
@@ -146,7 +150,7 @@ class main_game(ShowBase):
             self.enemies = []
 
         self.active_ui = main_menu()
-        #self.setBackgroundColor((0, 0, 0, 1))
+        # self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
 
     def goto_settings_menu(self):
@@ -154,7 +158,7 @@ class main_game(ShowBase):
             self.active_ui.destroy()
         self.active_ui = settings_menu()
         self.set_game_status(GAME_STATUS.SETTINGS)
-        
+
     def toggle_pause(self):
         if self.game_status == GAME_STATUS.RUNNING:
             self.set_game_status(GAME_STATUS.PAUSED)
@@ -162,19 +166,22 @@ class main_game(ShowBase):
             self.active_ui = pause_menu()
         elif self.game_status == GAME_STATUS.PAUSED:
             self.active_ui.destroy()
-            lock_mouse_in_window() 
+            lock_mouse_in_window()
             self.set_game_status(GAME_STATUS.RUNNING)
+
 
 def start_game():
     print("Starting game..")
     game = main_game()
     game.run()
 
+
 def display_pathfinding_test():
-    get_path_from_to_tile_type((1,1), 'B', True)
-    print(get_path_from_to_tile_type((1,1), 'B', False))
-    print(get_path_from_to_tile_type((4,5), 'A', True))
-    print(get_path_from_to_tile_type((3,1), 'C', True))
+    get_path_from_to_tile_type((1, 1), 'B', True)
+    print(get_path_from_to_tile_type((1, 1), 'B', False))
+    print(get_path_from_to_tile_type((4, 5), 'A', True))
+    print(get_path_from_to_tile_type((3, 1), 'C', True))
+
 
 if __name__ == "__main__":
     display_pathfinding_test()

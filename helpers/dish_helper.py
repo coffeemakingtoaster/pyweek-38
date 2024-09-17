@@ -22,6 +22,7 @@ def add_ingredient(dish, ingredient):
                 case "unplated_pizza":
                     transform("plated_pizza", dish)
 
+
         # Steak dish
         case "plated_fries":
             match ingredient:
@@ -31,6 +32,7 @@ def add_ingredient(dish, ingredient):
             match ingredient:
                 case "fries":
                     transform("finished_steak", dish)
+
         # Salad dish
         case "plated_chopped_tomato":
             match ingredient:
