@@ -1,5 +1,5 @@
 from direct.actor.Actor import Actor
-from panda3d.core import Vec3
+from panda3d.core import Vec3, Point3, CollisionNode, CollisionSphere
 
 import math
 
@@ -33,12 +33,19 @@ class Player(EntityBase):
         self.accept("e", self.set_interact)
         self.accept("e-up", self.unset_interact)
 
-        self.model = Actor("assets/models/Player/Player.bam", {"Idle": "assets/models/Player/Player.bam"})
-        self.model.setPos(0, 0, 0)
+        self.model = Actor("assets/models/MapObjects/Player/Player.bam", {"Idle": "assets/models/MapObjects/Player/Player.bam"})
+        self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
         self.model.reparentTo(render)
 
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
+        self.__add_player_collider()
+
+    def __add_player_collider(self):
+        self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
+        self.hitbox.show()
+        self.hitbox.setPos(0, 0, 0)
+        self.hitbox.node().addSolid(CollisionSphere(Point3(0, 0, 0),1))
 
 
     
@@ -49,6 +56,7 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
+        
         print("Interacting.")
 
     def unset_interact(self):

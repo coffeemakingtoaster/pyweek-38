@@ -1,0 +1,32 @@
+<CoordinateSystem> { Z-Up }
+
+<Comment> {
+  "bam2egg 'models\Oven\Oven-Open.bam' 'models\Oven\Oven-Open.egg'"
+}
+<Table> {
+  <Bundle> Armature {
+    <Table> "<skeleton>" {
+      <Table> Bone {
+        <Xfm$Anim_S$> xform {
+          <Scalar> fps { 24 }
+          <S$Anim> h { <V> { -90 } }
+          <S$Anim> r { <V> { 90 } }
+          <S$Anim> y { <V> { 0.350899010896683 } }
+        }
+        <Table> Bone.001 {
+          <Xfm$Anim_S$> xform {
+            <Scalar> fps { 24 }
+            <S$Anim> h {
+              <V> {
+                89.8764 89.6085 88.8403 87.6247 86.0137 84.0595 81.8155
+                79.3367 76.6797 73.9028 71.0656 68.2285 65.4516 62.7946
+                60.3157 58.0718 56.1176 54.5065 53.2909 52.5228
+              }
+            }
+            <S$Anim> y { <V> { 0.881798982620239 } }
+          }
+        }
+      }
+    }
+  }
+}

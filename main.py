@@ -16,9 +16,11 @@ from constants.events import EVENT_NAMES
 
 from helpers.game_helpers import  release_mouse_from_window, lock_mouse_in_window
 from helpers.model_helpers import load_model
+from entities.map_loader import load_map
 from ui.settings_menu import settings_menu
 
 from entities.player import Player
+import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
@@ -29,13 +31,18 @@ class main_game(ShowBase):
         ShowBase.__init__(self)
         render.setShaderAuto()
         base.enableParticles()
+        base.cTrav = None
         
         self.enemy = None
         self.player = None
         self.enemies = []
+
+        properties = WindowProperties()
+        properties.setSize(1280, 720)
+        self.win.requestProperties(properties)
         
         # random coords
-        base.cam.setPos(0, 0, 40)
+        base.cam.setPos(0, -13, 13)
         # Assumption: Player is spawned at 0,0,0
         # Simplest way to ensure we look at the player is by using quaterions
         # This allows us to move the camera without having to recalculate the hpr ourselves :)
@@ -68,8 +75,14 @@ class main_game(ShowBase):
         self.goto_main_menu()
         
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((5, 5, 5, 5))
+        ambientLight.setColor((.1, .1, .1, 1))
+        directionalLight = DirectionalLight("directionalLight")
+        directionalLight.setDirection(LVector3(0, -45, -45))
+        directionalLight.setColor((2, 2, 2, 1))
+        render.setLight(render.attachNewNode(directionalLight))
         render.setLight(render.attachNewNode(ambientLight))
+        
+
 
         load_config('./user_settings.json')
  
@@ -94,12 +107,22 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
+        self.load_game()
+
+        base.cTrav = CollisionTraverser()
 
         self.player = Player()
-        self.enemies = [Enemy(3, 3)]
+        self.enemies = [Enemy(3, 3),Enemy(3, 3)]
         self.active_hud = hud()
-        # TODO: this would be the place to setup the game staff and initialize the ui uwu
+        # TODO: this would be the place to setup the game stuff and initialize the ui uwu
+    
+    def load_game(self):
+        with open('./map.json', 'r') as file:
+            data = json.load(file)
         
+        self.map = load_map(data)
+        
+    
     def set_game_status(self, status):
         self.status_display["text"] = status
         self.game_status = status
@@ -110,6 +133,9 @@ class main_game(ShowBase):
         if self.active_hud is not None:
             self.active_hud.destroy()
             self.active_hud = None
+
+        if base.cTrav is not None:
+            base.cTrav.clearColliders()
 
         if self.player is not None:
             self.player.destroy()

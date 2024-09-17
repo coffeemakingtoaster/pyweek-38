@@ -1,0 +1,41 @@
+<CoordinateSystem> { Z-Up }
+
+<Comment> {
+  "bam2egg 'models\Freezerdoor\Freezerdoor-Open.bam' 'models\Freezerdoor\Freezerdoor-Open.egg'"
+}
+<Table> {
+  <Bundle> Armature {
+    <Table> "<skeleton>" {
+      <Table> Bone {
+        <Xfm$Anim_S$> xform {
+          <Scalar> fps { 24 }
+          <S$Anim> h { <V> { -180 } }
+          <S$Anim> p { <V> { 90 } }
+          <S$Anim> r { <V> { 180 } }
+        }
+        <Table> Bone.001 {
+          <Xfm$Anim_S$> xform {
+            <Scalar> fps { 24 }
+            <S$Anim> h {
+              <V> {
+                -180 90.0001 90 90 90 90 90 90 90
+              }
+            }
+            <S$Anim> p {
+              <V> {
+                -90 -87.7322 -81.527 -72.2644 -60.9915 -49.0085 -37.7356
+                -28.473 -22.2678
+              }
+            }
+            <S$Anim> r {
+              <V> {
+                -180 90.0001 90 90 90 90 90 90 90
+              }
+            }
+            <S$Anim> y { <V> { 1 } }
+          }
+        }
+      }
+    }
+  }
+}
