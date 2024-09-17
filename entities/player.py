@@ -6,6 +6,7 @@ import math
 from constants.player_const import MOVEMENT
 from entities.entity_base import EntityBase
 from constants import player_const
+from entities.item_base import ItemBase
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 
@@ -17,6 +18,7 @@ class Player(EntityBase):
         self.id = "player"
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
+        self.holding = ItemBase("empty_hands", None)
 
         # Keybinds for movement
         self.accept("a", self.set_movement_status, ["left"])
@@ -45,6 +47,8 @@ class Player(EntityBase):
         self.hitbox.setPos(0, 0, 0)
         self.hitbox.node().addSolid(CollisionSphere(Point3(0, 0, 0),1))
 
+
+    
     def set_movement_status(self, direction):
         self.movement_status[direction] = 1
 
