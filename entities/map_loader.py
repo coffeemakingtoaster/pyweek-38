@@ -4,6 +4,7 @@ from helpers.model_helpers import load_model, load_mapObj
 from panda3d.core import *
 from entities.station import Station
 from entities.oven import Oven
+from entities.plate_station import Plate_Station
 from direct.actor.Actor import Actor
 
 def load_map(json_data):
@@ -21,7 +22,7 @@ def load_map(json_data):
         
         if name == "Dot":
             slight = Spotlight('slight')
-            slight.setColor((2.5, 2.5, 1.5, 0))
+            slight.setColor((2, 2, 1, 0))
             lens = PerspectiveLens()
             slight.setLens(lens)
             slnp = render.attachNewNode(slight)
@@ -34,7 +35,11 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.reparentTo(render)
             stations.append(Oven(actor))
-        
+        elif name == "Washer":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.reparentTo(render)
+            stations.append(Oven(actor))
         else:
         # Create a model instance for each object and add it to the list
             model = load_mapObj(name)

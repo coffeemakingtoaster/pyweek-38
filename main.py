@@ -38,13 +38,17 @@ class main_game(ShowBase):
         self.enemy = None
         self.player = None
         self.enemies = []
+        
+        self.map_models =[]
+        self.map_lights =[]
+        self.map_stations =[]
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
         self.win.requestProperties(properties)
 
         # random coords
-        base.cam.setPos(0, -13, 13)
+        base.cam.setPos(0, -15, 13)
         # Assumption: Player is spawned at 0,0,0
         # Simplest way to ensure we look at the player is by using quaterions
         # This allows us to move the camera without having to recalculate the hpr ourselves :)
