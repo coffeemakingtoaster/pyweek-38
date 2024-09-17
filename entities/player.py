@@ -20,7 +20,7 @@ class Player(EntityBase):
         self.id = "player"
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
-        self.holding = ItemBase("empty_hands", load_model("empty_plate"))
+        self.holding = ItemBase("empty_hands", load_model("empty_hands"))
 
         # Keybinds for movement
         self.accept("a", self.set_movement_status, ["left"])
@@ -70,7 +70,9 @@ class Player(EntityBase):
         # ep = load_model(new_item.id)
         ep = new_item.model
         ep.reparentTo(self.model)
-        ep.setPos(3, 0, 0)
+        
+        #TODO: After player model is made, set height
+        ep.setPos(0, -0.5, 0.80)
         self.holding = new_item
 
         # ep = load_model("empty_plate")
