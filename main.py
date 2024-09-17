@@ -110,7 +110,7 @@ class main_game(ShowBase):
         self.player = Player()
         self.enemies = [Enemy(3, 3),Enemy(3, 3)]
         self.active_hud = hud()
-        # TODO: this would be the place to setup the game staff and initialize the ui uwu
+        # TODO: this would be the place to setup the game stuff and initialize the ui uwu
     
     def load_game(self):
         with open('./map.json', 'r') as file:

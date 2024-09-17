@@ -2,12 +2,16 @@
 import json
 from helpers.model_helpers import load_model, load_mapObj
 from panda3d.core import *
+from entities.station import Station
+from entities.oven import Oven
+from direct.actor.Actor import Actor
 
 def load_map(json_data,render):
     
     objects = json_data["Objects"]
     models = []
     lights = []
+    stations = []
     
 
     for obj in objects:
@@ -25,8 +29,11 @@ def load_map(json_data,render):
             slnp.setHpr(0,-90,0)
             render.setLight(slnp)
             lights.append(slnp)
-        #if name == "ItemArea":
-            
+        elif name == "Oven":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam","Close":"assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.reparentTo(render)
+            stations.append(Oven(actor))
         
         else:
         # Create a model instance for each object and add it to the list
@@ -37,4 +44,4 @@ def load_map(json_data,render):
             models.append(model)
         
 
-    return models , lights
+    return models , lights, stations

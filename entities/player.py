@@ -52,6 +52,7 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
+        
         print("Interacting.")
 
     def unset_interact(self):
