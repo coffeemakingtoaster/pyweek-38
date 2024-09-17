@@ -6,7 +6,7 @@ from entities.station import Station
 from entities.oven import Oven
 from direct.actor.Actor import Actor
 
-def load_map(json_data,render):
+def load_map(json_data):
     
     objects = json_data["Objects"]
     models = []

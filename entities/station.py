@@ -25,9 +25,6 @@ class Station(EntityBase):
         self.model.removeNode()
         self.ignore_all()
     
-    def finish_cooking(self):
-        print("Finished Cooking")
-    
     
     
     

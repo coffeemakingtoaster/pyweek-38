@@ -11,9 +11,9 @@ class Oven(Station):
         
         
         
-        super().__init__(id,actor)
+        super().__init__(self.id,actor)
     
-    def interact(self,item):
+    def interact(self,item,player):
         
         if item.id == "raw_pizza":
             print("Yay Pizza")

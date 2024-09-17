@@ -99,7 +99,7 @@ class main_game(ShowBase):
         with open('./map.json', 'r') as file:
             data = json.load(file)
         
-        self.map,self.lights = load_map(data,render)
+        self.map,self.lights = load_map(data)
 
         self.mapper = Mapper()
         self.active_hud = hud()

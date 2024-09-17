@@ -120,7 +120,7 @@ class main_game(ShowBase):
         with open('./map.json', 'r') as file:
             data = json.load(file)
         
-        self.map = load_map(data,render)
+        self.map = load_map(data)
         
     
     def set_game_status(self, status):
