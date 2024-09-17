@@ -64,5 +64,9 @@ def add_ingredient(dish, ingredient):
 
 
 def transform(dish_id, dish):
+    pos = dish.model.getPos()
+    dish.model.removeNode()
     dish.model = load_model(dish_id)
+    dish.model.setPos(pos)
+    dish.model.reparentTo(render)
     dish.id = dish_id

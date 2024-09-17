@@ -12,4 +12,5 @@ class Dish(ItemBase):
         self.bad_dish = False
 
     def add_ingredient(self, ingredient):
+        print("HSUDHSDH")
         add_ingredient(self, ingredient)
