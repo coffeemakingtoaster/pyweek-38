@@ -115,12 +115,12 @@ class main_game(ShowBase):
 
         base.cTrav = CollisionTraverser()
 
-        hel = load_model("empty_plate")
-        hel.reparentTo(render)
-        hel.setPos(0, 0, 3)
-        self.dish = Dish("empty_plate", hel)
-        self.dish.add_ingredient("fries")
-        print(self.dish.model)
+        # hel = load_model("empty_plate")
+        # hel.reparentTo(render)
+        # hel.setPos(0, 0, 3)
+        # self.dish = Dish("empty_plate", hel)
+        # self.dish.add_ingredient("fries")
+        # print(self.dish.model)
 
         self.player = Player()
         self.enemies = [Enemy(3, 3), Enemy(3, 3)]
