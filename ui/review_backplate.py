@@ -1,5 +1,5 @@
 from panda3d.core import TransparencyAttrib, TextNode
-from direct.gui.DirectGui import DirectLabel, OnscreenImage
+from direct.gui.DirectGui import DirectFrame, DirectLabel, OnscreenImage
 from direct.showbase.ShowBase import taskMgr
 from direct.task import Task
 from helpers.model_helpers import load_font
@@ -24,6 +24,7 @@ OFFSET_MAP = {
 
 font = load_font('Rubik-Light')
 
+# This would have been better when just wrapping all of it in a frame...but anyways who cares
 class ReviewDisplay:
     def __init__(self, review: Review) -> None: 
 
@@ -75,9 +76,54 @@ class ReviewDisplay:
 
         self.image.setTransparency(TransparencyAttrib.MAlpha)
 
+        self.review = review
+
+        self.rating_frame = self.__build_rating_frame()
+
         self.task = taskMgr.doMethodLater(5, self.gracefully_destroy_review, "destroy")
         self.is_dead = False
-        self.review = review
+
+    def __build_rating_frame(self):
+        frame = DirectFrame(pos=(0,0,0),frameColor=(0,0,0,1),frameSize=())
+
+        # Keep a reference to save them from the garbage collector
+        self.star_images = []
+        
+        i = 0
+        while i < self.review.star_count:
+            self.star_images.append(
+                OnscreenImage(
+                    scale=( 
+                        0.03,
+                        0.03,
+                        0.03
+                    ),
+                    pos=((0.06 * i), 0, 0),
+                    image=join("assets", "images", "hud", f"star.png")
+                )
+            )
+            i+=1
+        
+        print(f"{self.review.star_count}:{i}")
+        if self.review.star_count%1 != 0:
+            print("img")
+            self.star_images.append(
+                OnscreenImage(
+                    scale=( 
+                        0.03/2,
+                        0.03,
+                        0.03
+                    ),
+                    pos=((0.06 * (i - 1))+0.04, 0, 0),
+                    image=join("assets", "images", "hud", f"half_star.png")
+                )
+            )
+
+        for img in self.star_images:
+            img.setTransparency(TransparencyAttrib.MAlpha)
+            img.reparentTo(frame)
+
+        return frame
 
     def __get_size(self,text: str):
         if len(text) < TEXT_WRAP * 2:
@@ -92,6 +138,9 @@ class ReviewDisplay:
         self.image.destroy()
         self.review_label.destroy()
         self.username_label.destroy()
+        self.rating_frame.remove()
+        for img in self.star_images:
+            img.remove()
         self.is_dead = True
         return Task.done
 
@@ -100,6 +149,9 @@ class ReviewDisplay:
         self.image.remove()
         self.review_label.remove()
         self.username_label.remove()
+        self.rating_frame.remove()
+        for img in self.star_images:
+            img.remove()
         self.is_dead = True
 
     def set_pos(self, pos):
@@ -118,6 +170,12 @@ class ReviewDisplay:
             self.image.getPos()[0] - 0.3,
             self.image.getPos()[1],
             self.image.getPos()[2] + self.image.getScale()[2] - 0.04
+        )
+
+        self.rating_frame.setPos(
+            self.image.getPos()[0] + 0.2,
+            self.image.getPos()[1],
+            self.image.getPos()[2] + self.image.getScale()[2] - 0.03
         )
 
     def get_bottom_offset(self):
