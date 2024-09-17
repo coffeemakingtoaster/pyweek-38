@@ -40,6 +40,16 @@ class ReviewDisplay:
         if len(user_name) > 10:
             user_name = f"{user_name[:7]}..."
 
+        self.image = OnscreenImage(
+            scale=( 
+                    0.5,
+                    1,
+                    HEIGHT_MAP[self.__get_size(review_text)]
+                ),
+                pos=(-1.35, 0, 0.95),
+                image=join("assets", "images", "hud", f"review_backplate_{self.__get_size(review_text)}.png")
+            )
+
         self.review_label = DirectLabel(
                 text=review_text,
                 scale=0.05,
@@ -52,15 +62,7 @@ class ReviewDisplay:
                 text_font=self.font
             )
 
-        self.image = OnscreenImage(
-            scale=( 
-                    0.5,
-                    1,
-                    HEIGHT_MAP[self.__get_size(review_text)]
-                ),
-                pos=(-1.35, 0, 0.95),
-                image=join("assets", "images", "hud", f"review_backplate_{self.__get_size(review_text)}.png")
-            )
+
 
         self.username_label = DirectLabel(
                 text=user_name,
@@ -104,7 +106,6 @@ class ReviewDisplay:
             )
             i+=1
         
-        print(f"{self.review.star_count}:{i}")
         if self.review.star_count%1 != 0:
             print("img")
             self.star_images.append(
