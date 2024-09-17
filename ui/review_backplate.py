@@ -9,19 +9,27 @@ from os.path import join
 
 TEXT_WRAP = 17
 
+__base = 0.07
 HEIGHT_MAP = {
-    's':0.05,
-    'm':0.1,
-    'l':0.2
+    's':__base,
+    'm':1.605042017 * __base,
+    'l':2.319327731 * __base
 } 
+
+OFFSET_MAP = {
+    's': 0.024,
+    'm': 0.019,
+    'l': - 0.05 
+}
 
 font = load_font('Rubik-Light')
 
 class ReviewDisplay:
-    def __init__(self, review: Review) -> None:
-        review_text=f"{review.review_text}"
+    def __init__(self, review: Review) -> None: 
 
         self.font = load_font('Rubik-Light')
+
+        review_text=f"{review.review_text}"
 
         user_name=f"{review.user_name}"
 
@@ -35,11 +43,11 @@ class ReviewDisplay:
                 text=review_text,
                 scale=0.05,
                 pos=(0,0,0),
-                text_fg=(255,0,0,1),
+                text_fg=(0,0,0,1),
                 relief=None, 
                 text_bg=(0,0,0,0),
                 text_wordwrap=TEXT_WRAP,
-                text_align=TextNode.ACenter,
+                text_align=TextNode.ALeft,
                 text_font=self.font
             )
 
@@ -57,7 +65,7 @@ class ReviewDisplay:
                 text=user_name,
                 scale=0.05,
                 pos=(-1,0,-1),
-                text_fg=(255,0,0,1),
+                text_fg=(0,0,0,1),
                 relief=None, 
                 text_bg=(0,0,0,0),
                 text_wordwrap=TEXT_WRAP,
@@ -70,11 +78,11 @@ class ReviewDisplay:
         self.task = taskMgr.doMethodLater(5, self.gracefully_destroy_review, "destroy")
         self.is_dead = False
         self.review = review
-    
+
     def __get_size(self,text: str):
         if len(text) < TEXT_WRAP * 2:
             return 's'
-        if len(text) < TEXT_WRAP * 4:
+        if len(text) < TEXT_WRAP * 4.5:
             return 'm'
         return 'l'
     
@@ -101,15 +109,15 @@ class ReviewDisplay:
         )
 
         self.review_label.setPos(
-            self.image.getPos()[0],
+            self.image.getPos()[0] - self.image.getScale()[0] + 0.05,
             self.image.getPos()[1],
-            self.image.getPos()[2] + max(self.image.getScale()[2] / 4, 0.01)
+            self.image.getPos()[2] - OFFSET_MAP[self.__get_size(self.review_label['text'])]
         )
 
         self.username_label.setPos(
-            self.image.getPos()[0] - 0.2,
+            self.image.getPos()[0] - 0.3,
             self.image.getPos()[1],
-            self.image.getPos()[2] + max(self.image.getScale()[2]/ 2.5 , 0.01)
+            self.image.getPos()[2] + self.image.getScale()[2] - 0.04
         )
 
     def get_bottom_offset(self):
