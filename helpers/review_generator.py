@@ -4,9 +4,10 @@ class Review:
     review_text = "" 
     user_name = "" 
 
-    def __init__(self, text, name) -> None:
+    def __init__(self, text, name, star_count) -> None:
         self.review_text = text
         self.user_name = name
+        self.star_count = star_count
 
     def print(self):
         print(f'By \033[92m{self.user_name}\033[00m:\n\t\033[94m{self.review_text}\033[00m')
@@ -163,7 +164,7 @@ POSITIVE_REVIEWS_POSTTEXT = [
     "I would recommend it to a friend...if I had any."
     "Sadly my girlfriend broke up with me during our dinner.",
     "Can I get the chefs number?",
-    "I will try to cook %s at home now!"
+    "I will try to cook {} at home now!"
 ]
 
 NEGATIVE_REVIEWS_PRETEXT = [
@@ -225,8 +226,11 @@ def get_review_for_food(
     something_else=False,
     is_player_food=False,
 ):
+    
+    food_shittiness_score = sum([too_much_salt, too_spicy, burned, delayed, something_else])
+
     # positive?
-    if is_player_food or sum([too_much_salt, too_spicy, burned, delayed, something_else]) == 0:
+    if (is_player_food and food_shittiness_score < 3) or food_shittiness_score == 0:
         return __get_positive_review(food_name)
 
     # negative?
@@ -253,7 +257,7 @@ def get_review_for_food(
     if __chance(2) or len(review) == 0:
         review.append(random.choice(NEGATIVE_REVIEWS_POSTTEXT).format(food_name))
 
-    return Review(' '.join(review), get_user_name(True))
+    return Review(' '.join(review), get_user_name(True),random.randrange(1,5)/2)
 
 def __get_positive_review(food_name):
     review = [] 
@@ -264,7 +268,7 @@ def __get_positive_review(food_name):
     # 1 in 2 chance of getting a posttext
     if __chance(2):
         review.append(random.choice(POSITIVE_REVIEWS_POSTTEXT).format(food_name))
-    return Review(' '.join(review),get_user_name(False))
+    return Review(' '.join(review),get_user_name(False),random.randrange(7,9)/2)
 
 # This may be flawed...however I do not care tyvm
 def __chance(a):

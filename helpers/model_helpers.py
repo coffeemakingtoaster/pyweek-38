@@ -18,3 +18,7 @@ def load_particles(name):
    p = ParticleEffect()
    p.loadConfig(join("assets","particles",name, "{}.ptf".format(name))) 
    return p
+
+def load_font(name):
+   if 'loader' in locals():
+      return loader.loadFont(join("assets","fonts",f"{name}.ttf"))
