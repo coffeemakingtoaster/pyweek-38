@@ -14,10 +14,11 @@ from helpers.model_helpers import load_particles, load_model
 
 
 class Player(EntityBase):
-    def __init__(self):
+    def __init__(self,stations):
         super().__init__()
 
         self.id = "player"
+        self.stations = stations
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
@@ -36,13 +37,14 @@ class Player(EntityBase):
         self.accept("e-up", self.unset_interact)
 
         self.model = Actor("assets/models/MapObjects/Player/Player.bam",
-                           {"Idle": "assets/models/MapObjects/Player/Player.bam"})
+                           {"Walk": "assets/models/MapObjects/Player/Player-Walk.bam"})
         self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
         self.model.reparentTo(render)
 
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         self.__add_player_collider()
+        self.model.loop("Walk")
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
@@ -57,9 +59,8 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
-        # TODO: Find Station
-        # station.interact
-        self.set_holding(Dish("empty_plate", load_model("empty_plate")))
+        self.find_station().interact(self.holding,self)
+        #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         print("Interacting.")
 
     def unset_interact(self):
@@ -67,7 +68,7 @@ class Player(EntityBase):
 
     def set_holding(self, new_item):
         self.holding.model.removeNode()
-        # ep = load_model(new_item.id)
+        
         ep = new_item.model
         ep.reparentTo(self.model)
         
@@ -79,7 +80,22 @@ class Player(EntityBase):
         # ep.reparentTo(self.model)
         # ep.setPos(2, 0, 2)
 
+    def find_station(self):
+        point = self.holding.model.getPos() +  self.model.getPos()
+        lowest_distance = 200
+        closest_station = None
+        
+        for station in self.stations:
+            if (station.model.getPos() - point).length() < lowest_distance:
+                lowest_distance = (station.model.getPos() - point).length()
+                closest_station = station
+        
+        return closest_station
+                
+    
+    
     def update(self, dt):
+        
         self.model.node().resetAllPrevTransform()
 
         movement_direction = Vec3(
@@ -99,16 +115,16 @@ class Player(EntityBase):
                 )
             )
 
-        if movement_direction.length() > (
-                player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and not self.walk_particles_active:
-            self.walk_particles = load_particles("dust")
-            self.walk_particles.start(self.model, renderParent=render)
-            self.walk_particles_active = True
+        #if movement_direction.length() > (
+                #player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and not self.walk_particles_active:
+            #self.walk_particles = load_particles("dust")
+            #self.walk_particles.start(self.model, renderParent=render)
+            #self.walk_particles_active = True
 
-        if movement_direction.length() < (
-                player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and self.walk_particles_active:
-            self.walk_particles.softStop()
-            self.walk_particles_active = False
+        #if movement_direction.length() < (
+                #player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and self.walk_particles_active:
+            #self.walk_particles.softStop()
+            #self.walk_particles_active = False
 
         self.model.setFluidPos(
             self.model.getX() + movement_direction.x,

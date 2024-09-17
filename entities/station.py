@@ -14,7 +14,7 @@ class Station(EntityBase):
         
         self.name = name
         self.model = actor
-        self.inventory = []
+       
         
     
     
@@ -24,6 +24,9 @@ class Station(EntityBase):
     def destroy(self):
         self.model.removeNode()
         self.ignore_all()
+    
+    def interact(self,item,player):
+        print("Interact: "+ self.name)
     
     
     

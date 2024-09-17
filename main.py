@@ -48,7 +48,7 @@ class main_game(ShowBase):
         self.win.requestProperties(properties)
 
         # random coords
-        base.cam.setPos(0, -15, 13)
+        base.cam.setPos(0, -13, 13)
         # Assumption: Player is spawned at 0,0,0
         # Simplest way to ensure we look at the player is by using quaterions
         # This allows us to move the camera without having to recalculate the hpr ourselves :)
@@ -112,17 +112,12 @@ class main_game(ShowBase):
     def setup_game(self):
         self.active_ui.destroy()
         self.load_game()
+        
+        print(self.map_stations)
 
         base.cTrav = CollisionTraverser()
 
-        # hel = load_model("empty_plate")
-        # hel.reparentTo(render)
-        # hel.setPos(0, 0, 3)
-        # self.dish = Dish("empty_plate", hel)
-        # self.dish.add_ingredient("fries")
-        # print(self.dish.model)
-
-        self.player = Player()
+        self.player = Player(self.map_stations)
         self.enemies = [Enemy(3, 3), Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game stuff and initialize the ui uwu
@@ -131,7 +126,7 @@ class main_game(ShowBase):
         with open('./map.json', 'r') as file:
             data = json.load(file)
 
-        self.map = load_map(data)
+        self.map_models,self.map_lights,self.map_stations = load_map(data)
 
     def set_game_status(self, status):
         self.status_display["text"] = status

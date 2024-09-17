@@ -39,7 +39,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.reparentTo(render)
-            stations.append(Oven(actor))
+            stations.append(Plate_Station(actor))
         else:
         # Create a model instance for each object and add it to the list
             model = load_mapObj(name)

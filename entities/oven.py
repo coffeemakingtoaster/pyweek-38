@@ -14,7 +14,7 @@ class Oven(Station):
         super().__init__(self.id,actor)
     
     def interact(self,item,player):
-        
+        self.play_anim("Open")
         if item.id == "raw_pizza":
             print("Yay Pizza")
             self.inventory.append(item)
