@@ -14,5 +14,6 @@ class Plate_Station(Station):
     def interact(self,item,player):
         
         if item.id == "empty_hands" and inventory[0] is not None:
-            player.holding = inventory[0]
-            
+            player.setHolding(inventory[0])
+            return True
+        return False
