@@ -115,9 +115,9 @@ class main_game(ShowBase):
         
         self.enemies = [Enemy(3, 3,"B")]
         self.active_hud = hud()
+        # DO NOT DELETE please uwu 
         # show pathfinding grid
-        self.visualizer = PathfinderVisualizer()
-        # TODO: this would be the place to setup the game stuff and initialize the ui uwu
+        # self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
