@@ -6,6 +6,7 @@ from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
 
+from entities.camera_movement import CameraMovement
 from helpers.config import load_config
 from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
@@ -35,6 +36,8 @@ class main_game(ShowBase):
         base.enableParticles()
         base.cTrav = None
 
+        self.camera_movement = None
+        self.camera = base.cam
         self.enemy = None
         self.player = None
         self.enemies = []
@@ -46,15 +49,6 @@ class main_game(ShowBase):
         properties = WindowProperties()
         properties.setSize(1280, 720)
         self.win.requestProperties(properties)
-
-        # random coords
-        base.cam.setPos(0, -13, 13)
-        # Assumption: Player is spawned at 0,0,0
-        # Simplest way to ensure we look at the player is by using quaterions
-        # This allows us to move the camera without having to recalculate the hpr ourselves :)
-        quat = Quat()
-        lookAt(quat, Point3(0, 0, 0) - base.cam.getPos(), Vec3.up())
-        base.cam.setQuat(quat)
 
         self.game_status = GAME_STATUS.MAIN_MENU
 
@@ -106,6 +100,7 @@ class main_game(ShowBase):
         for enemy in self.enemies:
             enemy.update(dt)
         self.player.update(dt)
+        self.camera_movement.update(dt)
 
         return Task.cont
 
@@ -118,6 +113,8 @@ class main_game(ShowBase):
         base.cTrav = CollisionTraverser()
 
         self.player = Player(self.map_stations)
+        self.camera_movement = CameraMovement(self.player.model, self.camera)
+        
         self.enemies = [Enemy(3, 3), Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game stuff and initialize the ui uwu
@@ -140,7 +137,7 @@ class main_game(ShowBase):
             self.active_hud = None
 
         if base.cTrav is not None:
-            base.cTrav.clearColliders()
+           base.cTrav.clearColliders()
 
         if self.player is not None:
             self.player.destroy()
