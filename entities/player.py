@@ -69,6 +69,8 @@ class Player(EntityBase):
     def set_holding(self, new_item):
         self.holding.model.removeNode()
         
+        print(new_item.model)
+        
         ep = new_item.model
         ep.reparentTo(self.model)
         

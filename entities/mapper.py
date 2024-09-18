@@ -30,7 +30,7 @@ class Mapper(EntityBase):
 
         self.id = "player"
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
-        self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
+        self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0,"upwards":0,"downwards":0}
         self.turn_status = {"up": 0, "down": 0}
 
         # Keybinds for movement
@@ -42,6 +42,10 @@ class Mapper(EntityBase):
         self.accept("w-up", self.unset_movement_status, ["up"])
         self.accept("s", self.set_movement_status, ["down"])
         self.accept("s-up", self.unset_movement_status, ["down"])
+        self.accept("r", self.set_movement_status, ["upwards"])
+        self.accept("r-up", self.unset_movement_status, ["upwards"])
+        self.accept("f", self.set_movement_status, ["downwards"])
+        self.accept("f-up", self.unset_movement_status, ["downwards"])
         
         self.accept("o", self.set_turn_status, ["up"])
         self.accept("o-up", self.unset_turn_status, ["up"])
@@ -73,6 +77,7 @@ class Mapper(EntityBase):
         self.model.reparentTo(render)
 
     def set_movement_status(self, direction):
+        print("move")
         self.movement_status[direction] = 1
 
     def unset_movement_status(self, direction):
@@ -178,7 +183,7 @@ class Mapper(EntityBase):
         movement_direction = Vec3(
             ((self.movement_status["left"] * -1) + self.movement_status["right"]) * (1+self.fast) * dt,
             ((self.movement_status["down"] * -1) + self.movement_status["up"]) * (1+self.fast) * dt,
-            0
+            ((self.movement_status["downwards"] * -1) + self.movement_status["upwards"]) * (1+self.fast) * dt
         )
         
         self.model.setH(self.model.getH() + ((self.turn_status["up"] * -1) + self.turn_status["down"]) * 20 * dt)
@@ -186,7 +191,7 @@ class Mapper(EntityBase):
         self.model.setPos(
             self.model.getX() + movement_direction.x,
             self.model.getY() + movement_direction.y,
-            player_const.MOVEMENT.PLAYER_FIXED_HEIGHT
+            self.model.getZ() + movement_direction.z
         )
 
     def destroy(self):
