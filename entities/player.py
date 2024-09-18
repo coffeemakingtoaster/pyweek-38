@@ -48,7 +48,7 @@ class Player(EntityBase):
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
-        self.hitbox.show()
+        #self.hitbox.show()
         self.hitbox.setPos(0, 0, 0)
         self.hitbox.node().addSolid(CollisionSphere(Point3(0, 0, 0), 1))
 
@@ -71,14 +71,15 @@ class Player(EntityBase):
         if type(self.holding) == Dish and new_item.id is not "empty_hands":
             self.holding.add_ingredient(new_item.id)
             self.holding.model.reparentTo(self.model)
+            return True
             
         else:
             self.holding.model.removeNode()
 
             ep = new_item.model
+            print(new_item.model)
             ep.reparentTo(self.model)
 
-            #TODO: After player model is made, set height
             ep.setPos(0, -0.5, 0.80)
             self.holding = new_item
 

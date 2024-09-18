@@ -115,7 +115,7 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        self.enemies = [Enemy(3, 3), Enemy(3, 3)]
+        #self.enemies = [Enemy(3, 3), Enemy(3, 3)]
         self.active_hud = hud()
         # TODO: this would be the place to setup the game stuff and initialize the ui uwu
 
