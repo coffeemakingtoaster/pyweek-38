@@ -44,7 +44,7 @@ class Player(EntityBase):
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         self.__add_player_collider()
-        self.model.loop("Walk")
+        #self.model.loop("Walk")
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
