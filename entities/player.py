@@ -48,7 +48,7 @@ class Player(EntityBase):
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
-        self.hitbox.show()
+        #self.hitbox.show()
         self.hitbox.setPos(0, 0, 0)
         self.hitbox.node().addSolid(CollisionSphere(Point3(0, 0, 0), 1))
 
@@ -67,20 +67,25 @@ class Player(EntityBase):
         print("Disabling interact.")
 
     def set_holding(self, new_item):
-        self.holding.model.removeNode()
         
-        print(new_item.model)
-        
-        ep = new_item.model
-        ep.reparentTo(self.model)
-        
-        #TODO: After player model is made, set height
-        ep.setPos(0, -0.5, 0.80)
-        self.holding = new_item
+        if type(self.holding) == Dish and new_item.id is not "empty_hands":
+            self.holding.add_ingredient(new_item.id)
+            self.holding.model.reparentTo(self.model)
+            return True
+            
+        else:
+            self.holding.model.removeNode()
 
-        # ep = load_model("empty_plate")
-        # ep.reparentTo(self.model)
-        # ep.setPos(2, 0, 2)
+            ep = new_item.model
+            print(new_item.model)
+            ep.reparentTo(self.model)
+
+            ep.setPos(0, -0.5, 0.80)
+            self.holding = new_item
+
+            # ep = load_model("empty_plate")
+            # ep.reparentTo(self.model)
+            # ep.setPos(2, 0, 2)
 
     def find_station(self):
         point = self.holding.model.getPos() +  self.model.getPos()
