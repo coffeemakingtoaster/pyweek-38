@@ -7,6 +7,7 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from entities.camera_movement import CameraMovement
+from entities.pathfinding_visualizer import PathfinderVisualizer
 from helpers.config import load_config
 from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
@@ -16,17 +17,14 @@ from constants.game_state import GAME_STATUS
 from constants.events import EVENT_NAMES
 
 from helpers.game_helpers import release_mouse_from_window, lock_mouse_in_window
-from helpers.model_helpers import load_model
 from entities.map_loader import load_map
 from ui.settings_menu import settings_menu
 
-from entities.dish import Dish
 from entities.player import Player
 import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
-
 
 class main_game(ShowBase):
     def __init__(self):
@@ -115,8 +113,10 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        #self.enemies = [Enemy(3, 3), Enemy(3, 3)]
+        self.enemies = [Enemy(3, 3), Enemy(3, 3,"B")]
         self.active_hud = hud()
+        # show pathfinding grid
+        self.visualizer = PathfinderVisualizer()
         # TODO: this would be the place to setup the game stuff and initialize the ui uwu
 
     def load_game(self):
@@ -175,10 +175,7 @@ def start_game():
 
 
 def display_pathfinding_test():
-    get_path_from_to_tile_type((1, 1), 'B', True)
-    print(get_path_from_to_tile_type((1, 1), 'B', False))
     print(get_path_from_to_tile_type((4, 5), 'A', True))
-    print(get_path_from_to_tile_type((3, 1), 'C', True))
 
 
 if __name__ == "__main__":
