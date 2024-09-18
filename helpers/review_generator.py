@@ -124,7 +124,8 @@ NEGATIVE_USERNAMES = list(set([
     "IwriteReviews",
     "TootleReviewer",
     "DontTrustTheGovernment123",
-    "FortniteEnjoyer"
+    "FortniteEnjoyer",
+    "PinapplePizzaEnjoyer",
 ]))
 
 def get_user_name(is_negative_review=True):
@@ -172,7 +173,8 @@ NEGATIVE_REVIEWS_PRETEXT = [
     "Horrible day!",
     "This restaurant is the reason my wife left me.",
     "Yesterday was the worst day of my life because of this restaurant!",
-    "Dear Mr. Restaurant manager: I would like to make a complaint!"
+    "Dear Mr. Restaurant manager: I would like to make a complaint!",
+    "Is this kitchen ran by rats?!"
 ]
 
 NEGATIVE_REVIEWS_MAIN_TOO_MUCH_SALT=[
@@ -206,7 +208,8 @@ NEGATIVE_REVIEWS_POSTTEXT = [
     "I will sue this place!",
     "I am recommending this to my worst enemy!",
     "Getting bullied in high school was more enjoyable than eating here.",
-    "I hope this place closes soon."
+    "I hope this place closes soon.",
+    "If you like your taste buds, don't eat here."
 ]
 
 '''
