@@ -1,5 +1,6 @@
 from helpers.model_helpers import load_model
 
+did_it_add = False
 
 def add_ingredient(dish, ingredient):
     match dish.id:
@@ -21,6 +22,7 @@ def add_ingredient(dish, ingredient):
                     transform("plated_soup", dish)
                 case "unplated_pizza":
                     transform("plated_pizza", dish)
+                
 
 
         # Steak dish
@@ -59,11 +61,11 @@ def add_ingredient(dish, ingredient):
                 case "chopped_cheese":
                     transform("raw_pizza", dish)
 
-        case _:
-            return False
+    return did_it_add
 
 
 def transform(dish_id, dish):
+    did_it_add = True
     pos = dish.model.getPos()
     dish.model.removeNode()
     dish.model = load_model(dish_id)

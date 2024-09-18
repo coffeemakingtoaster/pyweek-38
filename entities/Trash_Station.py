@@ -18,7 +18,7 @@ class Trash_Station(Station):
     
     def interact(self,item,player):
         
-        if type(item) == Ingredient:
+        if type(item) == Ingredient or item.id == "empty_plate":
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
             return True
         return False

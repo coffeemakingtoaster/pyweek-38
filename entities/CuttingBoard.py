@@ -14,14 +14,14 @@ class CuttingBoard(Station):
         
         self.inventory = None
         self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion"]
-        self.cuts = ["chopped_tomato","chopped_potato","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion"]
+        self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion"]
         super().__init__(self.id,actor)
     
     def interact(self,item,player):
         
-        if item.id == "empty_hands" and self.inventory.id in self.cuts:
-            player.set_holding(self.inventory)
-            
+        if (item.id == "empty_hands" or item.id == "empty_plate") and self.inventory.id in self.cuts:
+            player.set_holding(Ingredient(self.inventory.id,self.inventory.model))
+            self.clean()
             self.inventory = None
             return True
         elif item.id in self.cuttables and self.inventory is None:
