@@ -1,6 +1,9 @@
 from queue import PriorityQueue
-from constants.map import TARGET_MAP, PATHFINDING_MAP
+from constants.enemy_const import MOVEMENT
+from constants.map import MAP_COORD_BOUNDS_X, MAP_COORD_BOUNDS_Y, MAP_DIMENSIONS, TARGET_MAP, PATHFINDING_MAP
 import datetime
+
+from panda3d.core import Point3
 
 class VisitedNode:
     def __init__(self,score,dist_to_target) -> None:
@@ -17,6 +20,7 @@ def __find_closest_target_dist(pos, target):
     return dist
 
 def __optimize_waypoints(waypoints):
+    return waypoints
     if len(waypoints) < 3:
         return waypoints
     optimized = []
@@ -32,35 +36,54 @@ def __optimize_waypoints(waypoints):
 
 def __get_adjacent(pos):
     res = []
-    if pos[0] >= 1:
-        if PATHFINDING_MAP[pos[0]-1][pos[1]] != "#":
+
+    #x
+    if pos[0] > 0:
+        if not __is_wall((pos[0]-1, pos[1])):
             res.append((pos[0]-1, pos[1]))
-    if pos[0] < len(PATHFINDING_MAP[0]) - 1:
-        if PATHFINDING_MAP[pos[0]+1][pos[1]] != "#":
+
+    if pos[0] < MAP_DIMENSIONS[0] - 1:
+        if not __is_wall((pos[0]+1, pos[1])):
             res.append((pos[0]+1, pos[1]))
-    if pos[1] >= 1:
-        if PATHFINDING_MAP[pos[0]][pos[1]-1] != "#":
+
+    #y
+    if pos[1] > 0:
+        if not __is_wall((pos[0], pos[1]-1)):
             res.append((pos[0], pos[1]-1))
-    if pos[1] < len(PATHFINDING_MAP) - 1:
-        if PATHFINDING_MAP[pos[0]][pos[1]+1] != "#":
-            res.append((pos[0], pos[1]+1)) 
+
+    if pos[1] < MAP_DIMENSIONS[1] - 1:
+        if not __is_wall((pos[0], pos[1] + 1)):
+            res.append((pos[0], pos[1] + 1))
+
     return res
+
+def __is_wall(pos):
+    return PATHFINDING_MAP[pos[0]][pos[1]] == "#"
 
 def __pos_to_string(pos):
     return f"{pos[0]}{pos[1]}"
 
 def get_path_from_to_tile_type(start_pos, target, debug_print=False):
+    
+    # if out of bounds -> try and correct rounding errors/try to walk back into bounds
+    if not (0 <= start_pos[0] < len(PATHFINDING_MAP)) or not (0 <= start_pos[1] < len(PATHFINDING_MAP[0])):
+        start_pos = (
+            max(min(start_pos[0],len(PATHFINDING_MAP) - 1),0),
+            max(min(start_pos[1],len(PATHFINDING_MAP[0]) - 1),0)
+        )
+        
     start_time = datetime.datetime.now()
     todo_queue = PriorityQueue()
-    todo_queue.put(start_pos)
+    todo_queue.put((1,start_pos))
     visited = dict()
     visited[__pos_to_string(start_pos)] = VisitedNode(0,0)
 
     target_pos = None
-   
+  
     # build value grid
     while not todo_queue.empty():
-        current = todo_queue.get()
+        current = todo_queue.get()[1]
+
         current_node = visited.get(__pos_to_string(current))
 
         if PATHFINDING_MAP[current[0]][current[1]] == target:
@@ -75,9 +98,10 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
                 __find_closest_target_dist(adj, target)
             )
             visited[__pos_to_string(adj)] = adj_visited
-            todo_queue.put(adj)
-    
+            todo_queue.put((adj_visited.rating, adj))
+   
     if target_pos is None:
+
         print("Could not find target....")
         return []
 
@@ -85,8 +109,13 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
 
     waypoints = []
 
+    count = 0
+
     while True:
-        waypoints.append(backtrack_pos)
+        # This should in theory never happen...however better be safe than sorry
+        if count > 1000:
+            return waypoints + [target_pos]
+        waypoints.insert(0,backtrack_pos)
         if backtrack_pos == start_pos:
             break
         min_val = visited[__pos_to_string(backtrack_pos)].score
@@ -99,6 +128,8 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
             if min_val > node.score:
                 backtrack_pos = pos
                 min_val = node.score
+        count += 1
+
     diff = (datetime.datetime.now() - start_time)
     print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
 
@@ -125,3 +156,19 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
             print(PATHFINDING_MAP[i][j],end="")
         print()
     return __optimize_waypoints(waypoints)
+
+def grid_pos_to_global(gridpos):
+    return Point3(
+        gridpos[1] * (abs(MAP_COORD_BOUNDS_X[0] - MAP_COORD_BOUNDS_X[1])/ MAP_DIMENSIONS[1]) + MAP_COORD_BOUNDS_X[0],
+        # this is needed as the transition direction for the y axis is flipped.
+        # while the x axis goes from negative to positive, this is the other way round
+        -gridpos[0] * (abs(MAP_COORD_BOUNDS_Y[0] - MAP_COORD_BOUNDS_Y[1])/ MAP_DIMENSIONS[0]) + MAP_COORD_BOUNDS_Y[0],
+        MOVEMENT.ENEMY_FIXED_HEIGHT
+    )
+
+def global_pos_to_grid(global_pos):
+
+    return (
+        abs(int(round((global_pos.y - MAP_COORD_BOUNDS_Y[0]) * (MAP_DIMENSIONS[0]/abs(MAP_COORD_BOUNDS_Y[0] - MAP_COORD_BOUNDS_Y[1]))))),
+        abs(int(((global_pos.x - MAP_COORD_BOUNDS_X[0]) * (MAP_DIMENSIONS[1]/abs(MAP_COORD_BOUNDS_X[0] - MAP_COORD_BOUNDS_X[1])))))
+    )

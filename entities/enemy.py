@@ -11,8 +11,12 @@ from helpers.model_helpers import load_particles
 import random
 import uuid
 
+from helpers.pathfinding_helper import get_path_from_to_tile_type, global_pos_to_grid, grid_pos_to_global
+
+__POSSIBLE_TARGETS = ['A','B']
+
 class Enemy(EntityBase):
-    def __init__(self, spawn_x, spawn_y):
+    def __init__(self, spawn_x, spawn_y, target = "A"):
         super().__init__()
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
@@ -25,11 +29,10 @@ class Enemy(EntityBase):
         self.__spawn_viewcone()
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
-        self.desired_pos = Vec3(
-                random.randrange(-10,10),
-                random.randrange(-10,10),
-                MOVEMENT.ENEMY_FIXED_HEIGHT
-            )
+        self.target = target 
+        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target, True) 
+        print(self.waypoints)
+        self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
 
     def __spawn_viewcone(self):
         # setup hitboxes
@@ -56,19 +59,26 @@ class Enemy(EntityBase):
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
         current_pos = self.model.getPos()
-        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y, 2)
+        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y, current_pos.z - self.desired_pos.z)
         normalized = Point2(delta_to_end.x, delta_to_end.y).normalized()
 
         x_direction = normalized.x * self.move_speed * dt
         y_direction = normalized.y * self.move_speed * dt
 
-        if delta_to_end.length() <= 3:
+        if delta_to_end.length() <= 0.5:
             x_direction = 0
             y_direction = 0
-            self.desired_pos = Vec3(
-                random.randrange(-10,10),
-                random.randrange(-10,10),
-                MOVEMENT.ENEMY_FIXED_HEIGHT
+            if len(self.waypoints) == 0:
+                if self.target == "B":
+                    self.target = "A"
+                else:
+                    self.target = "B"
+                self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.get_central_pos()),self.target, True) 
+            next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
+            self.desired_pos = Point3(
+                next_pos.x - self.model.getScale().x/2,
+                next_pos.y - self.model.getScale().y/2,
+                next_pos.z
             )
 
         if delta_to_end.length() > 3:
@@ -84,6 +94,13 @@ class Enemy(EntityBase):
 
         self.model.setX(self.model.getX() - x_direction)
         self.model.setY(self.model.getY() - y_direction)
+
+    def get_central_pos(self):
+        return Point3(
+            self.model.getPos().x + self.model.getScale().x/2,
+            self.model.getPos().y + self.model.getScale().y/2,
+            self.model.getPos().z
+        )
 
     def destroy(self):
         self.ignoreAll()

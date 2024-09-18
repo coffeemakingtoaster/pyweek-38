@@ -11,6 +11,7 @@ from constants import player_const
 from entities.item_base import ItemBase
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles, load_model
+from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global
 
 
 class Player(EntityBase):
@@ -122,22 +123,14 @@ class Player(EntityBase):
                 )
             )
 
-        #if movement_direction.length() > (
-                #player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and not self.walk_particles_active:
-            #self.walk_particles = load_particles("dust")
-            #self.walk_particles.start(self.model, renderParent=render)
-            #self.walk_particles_active = True
-
-        #if movement_direction.length() < (
-                #player_const.MOVEMENT.PLAYER_DUST_PARTICLES_MIN_WALKING_SPEED * dt) and self.walk_particles_active:
-            #self.walk_particles.softStop()
-            #self.walk_particles_active = False
-
         self.model.setFluidPos(
             self.model.getX() + movement_direction.x,
             self.model.getY() + movement_direction.y,
             player_const.MOVEMENT.PLAYER_FIXED_HEIGHT
         )
+        # Pathfinding mapping debug log
+        #print(f"Player: {self.model.getPos()} {global_pos_to_grid(self.model.getPos())} {grid_pos_to_global(global_pos_to_grid(self.model.getPos()))}")
+
 
     def destroy(self):
         self.ignoreAll()
