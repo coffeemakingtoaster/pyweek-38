@@ -22,7 +22,7 @@ class CuttingBoard(Station):
         
         
         #Picking Up Stuff from board
-        if "empty_hands" and self.inventory.id in self.cuts:
+        if item.id == "empty_hands" and self.inventory.id in self.cuts:
             player.set_holding(Ingredient(self.inventory.id,load_model(self.inventory.id)))
             self.clean()
             self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
@@ -46,8 +46,14 @@ class CuttingBoard(Station):
                 self.clean()
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()
+        
+        elif item.id in self.cuttables:
+            player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
+            self.clean()
+            self.inventory = type(item)(item.id,load_model(item.id))
+            self.render()
+            return True    
             
-            return True
         return False
     
     

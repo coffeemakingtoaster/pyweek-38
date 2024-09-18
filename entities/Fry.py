@@ -8,9 +8,9 @@ from entities.dish import Dish
 from entities.ingredient import Ingredient
 from helpers.model_helpers import load_model
 
-class Oven(Station):
+class Fry(Station):
     def __init__(self,actor):
-        self.id = "Oven"
+        self.id = "Fry"
         self.duration = 10
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
@@ -19,20 +19,16 @@ class Oven(Station):
     
     def interact(self,item,player):
         
-        if item.id == "raw_pizza":
-            print("Yay Pizza")
-            self.inventory = Dish(item.id,load_model(item.id))
-            self.play_anim("Open")
-            player.set_holding(Dish("empty_plate",load_model("empty_plate")))
-            self.play_anim("Close")
-        elif item.id == "empty_plate":
-            player.set_holding(Ingredient("unplated_pizza",load_model("plated_pizza")))
+        if item.id == "chopped_potatoes":
+            print("potatoes!!!")
+            #TODO
+            self.inventory = Ingredient("fries",load_model("fries"))
+            self.play_anim("Fry")
+            player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+        elif (item.id == "empty_hands" or type(item) == Dish) and  self.inventory.id == "fries":
+            player.set_holding(Ingredient("fries",load_model("fries")))
         
         
         else:
             #Error Sound
-            print("I only eat pizza :()")
-            
-            
-
-
+            print("I only eat fries :()")

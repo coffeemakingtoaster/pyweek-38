@@ -61,32 +61,40 @@ class Player(EntityBase):
     def set_interact(self):
         self.find_station().interact(self.holding,self)
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
-        print("Interacting.")
+        #print("Interacting.")
 
     def unset_interact(self):
-        print("Disabling interact.")
+        return
+        #print("Disabling interact.")
 
     def set_holding(self, new_item):
         
-        if type(self.holding) == Dish and new_item.id is not "empty_hands":
-            self.holding.add_ingredient(new_item.id)
-            self.holding.model.reparentTo(self.model)
-            return True
+        if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish :
             
+            if self.holding.add_ingredient(new_item.id):
+                self.holding.model.reparentTo(self.model)
+                return True
+            else:
+                return False
+            
+
         else:
-            self.holding.model.removeNode()
-
-            ep = new_item.model
-            print(new_item.model)
-            ep.reparentTo(self.model)
-
-            ep.setPos(0, -0.5, 0.80)
-            self.holding = new_item
+            self.hardset(new_item)
 
             # ep = load_model("empty_plate")
             # ep.reparentTo(self.model)
             # ep.setPos(2, 0, 2)
 
+    def hardset(self,item):
+        self.holding.model.removeNode()
+
+        ep = item.model
+        print(item.model)
+        ep.reparentTo(self.model)
+
+        ep.setPos(0, -0.5, 0.80)
+        self.holding = item
+        
     def find_station(self):
         point = self.holding.model.getPos() +  self.model.getPos()
         lowest_distance = 200

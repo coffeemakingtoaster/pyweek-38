@@ -21,13 +21,25 @@ class ItemArea(Station):
             if self.inventory.add_ingredient(item.id):
                 self.inventory.model.reparentTo(self.model)
                 player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+            else:
+                player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
+                self.clean()
+                self.inventory = type(item)(item.id,load_model(item.id))
+                self.render()
+                return True
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
                 self.clean()
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()
-            
+            else:
+                player.hardset(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
+                self.clean()
+                self.inventory = type(item)(item.id,load_model(item.id))
+                self.render()
+                
         else:
+            print("Hello Edgecase")
             player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
             self.clean()
             self.inventory = type(item)(item.id,load_model(item.id))

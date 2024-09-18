@@ -10,6 +10,8 @@ from entities.Food_Station import Food_Station
 from entities.Trash_Station import Trash_Station
 from entities.CuttingBoard import CuttingBoard
 from entities.ItemArea import ItemArea
+from entities.Fry import Fry
+from entities.pan import Pan
 
 def load_map(json_data):
     
@@ -113,12 +115,25 @@ def load_map(json_data):
             actor.reparentTo(render)
             stations.append(CuttingBoard(actor))
         elif name == "ItemArea":
+            actor = Actor("assets/models/empty_hands/empty_hands.bam")
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(ItemArea(actor))  
+        elif name == "Fry":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam",{"Fry": "assets/models/MapObjects/"+name+"/"+name+"-Fry.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(Fry(actor))
+        elif name == "Pan":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam")
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
-            
             actor.reparentTo(render)
-            stations.append(ItemArea(actor))  
+            stations.append(Pan(actor))  
+            
+            
         
         
         else:
