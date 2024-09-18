@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+from constants.enemy_const import MOVEMENT
 from constants.map import MAP_COORD_BOUNDS_X, MAP_COORD_BOUNDS_Y, MAP_DIMENSIONS, TARGET_MAP, PATHFINDING_MAP
 import datetime
 
@@ -19,13 +20,14 @@ def __find_closest_target_dist(pos, target):
     return dist
 
 def __optimize_waypoints(waypoints):
+    return waypoints
     if len(waypoints) < 3:
         return waypoints
     optimized = []
     diff = (0,0)
     for i in range(1,len(waypoints) - 1):
         d = (waypoints[i][0] - waypoints[i-1][0],waypoints[i][1] - waypoints[i-1][1])
-        if d[0] == diff[0] and d[1] == diff[1] or waypoints[i] == waypoints[i-1]:
+        if d[0] == diff[0] and d[1] == diff[1]:
             continue
         diff = d
         optimized.append(waypoints[i - 1])
@@ -113,7 +115,7 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
         # This should in theory never happen...however better be safe than sorry
         if count > 1000:
             return waypoints + [target_pos]
-        waypoints.append(backtrack_pos)
+        waypoints.insert(0,backtrack_pos)
         if backtrack_pos == start_pos:
             break
         min_val = visited[__pos_to_string(backtrack_pos)].score
@@ -130,8 +132,6 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
 
     diff = (datetime.datetime.now() - start_time)
     print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
-
-    waypoints = list(set(waypoints))
 
     if not debug_print:
         return __optimize_waypoints(waypoints)
@@ -155,8 +155,6 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
                 continue
             print(PATHFINDING_MAP[i][j],end="")
         print()
-    print(__optimize_waypoints(waypoints)
-)
     return __optimize_waypoints(waypoints)
 
 def grid_pos_to_global(gridpos):
@@ -165,7 +163,7 @@ def grid_pos_to_global(gridpos):
         # this is needed as the transition direction for the y axis is flipped.
         # while the x axis goes from negative to positive, this is the other way round
         -gridpos[0] * (abs(MAP_COORD_BOUNDS_Y[0] - MAP_COORD_BOUNDS_Y[1])/ MAP_DIMENSIONS[0]) + MAP_COORD_BOUNDS_Y[0],
-        0
+        MOVEMENT.ENEMY_FIXED_HEIGHT
     )
 
 def global_pos_to_grid(global_pos):

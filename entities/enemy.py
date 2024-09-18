@@ -30,7 +30,8 @@ class Enemy(EntityBase):
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         self.target = target 
-        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target) 
+        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target, True) 
+        print(self.waypoints)
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
 
     def __spawn_viewcone(self):
@@ -58,7 +59,7 @@ class Enemy(EntityBase):
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
         current_pos = self.model.getPos()
-        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y, 2)
+        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y, current_pos.z - self.desired_pos.z)
         normalized = Point2(delta_to_end.x, delta_to_end.y).normalized()
 
         x_direction = normalized.x * self.move_speed * dt
@@ -73,6 +74,8 @@ class Enemy(EntityBase):
                 else:
                     self.target = "B"
                 self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target, True) 
+                print(self.waypoints)
+            print(len(self.waypoints))
             self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
 
         if delta_to_end.length() > 3:

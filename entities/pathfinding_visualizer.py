@@ -1,8 +1,5 @@
-import math
-
-from direct.actor.Actor import Actor
 from direct.showbase.Loader import DirectObject
-from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
+from panda3d.core import CollisionNode, CollisionBox, Point3
 
 from constants.map import PATHFINDING_MAP
 
@@ -37,6 +34,3 @@ class PathfinderVisualizer(DirectObject):
                 hitbox.node().addSolid(CollisionBox(Point3(0,0,0), TILE_SIZE_X, TILE_SIZE_Y, height))
                 self.nodes.append(node)
                 self.hitboxes.append(hitbox)
-
-
-

@@ -9,7 +9,7 @@ from direct.task.Task import Task
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
 from helpers.config import load_config
-from helpers.pathfinding_helper import get_path_from_to_tile_type
+from helpers.pathfinding_helper import get_path_from_to_tile_type 
 from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
@@ -113,7 +113,7 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        self.enemies = [Enemy(3, 3), Enemy(3, 3,"B")]
+        self.enemies = [Enemy(3, 3,"B")]
         self.active_hud = hud()
         # show pathfinding grid
         self.visualizer = PathfinderVisualizer()
