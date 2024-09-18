@@ -10,7 +10,6 @@ class FreezerDoor(Station):
 
     def interact(self, item, player):
         player_position = player.model.getX()
-        print(player_position)
         if player.id == "player":
             if self.open:
                 self.model.play("Close")
