@@ -9,6 +9,7 @@ from direct.actor.Actor import Actor
 from entities.Food_Station import Food_Station
 from entities.Trash_Station import Trash_Station
 from entities.CuttingBoard import CuttingBoard
+from entities.freezer_door import FreezerDoor
 
 def load_map(json_data):
     
@@ -111,6 +112,12 @@ def load_map(json_data):
             actor.setH(rotation)
             actor.reparentTo(render)
             stations.append(CuttingBoard(actor))
+        elif name == "Freezerdoor":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam", "Close": "assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(FreezerDoor(actor))
         else:
         # Create a model instance for each object and add it to the list
             model = load_mapObj(name)
