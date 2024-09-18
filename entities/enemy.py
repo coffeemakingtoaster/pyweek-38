@@ -73,10 +73,13 @@ class Enemy(EntityBase):
                     self.target = "A"
                 else:
                     self.target = "B"
-                self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target, True) 
-                print(self.waypoints)
-            print(len(self.waypoints))
-            self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
+                self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.get_central_pos()),self.target, True) 
+            next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
+            self.desired_pos = Point3(
+                next_pos.x - self.model.getScale().x/2,
+                next_pos.y - self.model.getScale().y/2,
+                next_pos.z
+            )
 
         if delta_to_end.length() > 3:
             target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y)) 
@@ -91,6 +94,13 @@ class Enemy(EntityBase):
 
         self.model.setX(self.model.getX() - x_direction)
         self.model.setY(self.model.getY() - y_direction)
+
+    def get_central_pos(self):
+        return Point3(
+            self.model.getPos().x + self.model.getScale().x/2,
+            self.model.getPos().y + self.model.getScale().y/2,
+            self.model.getPos().z
+        )
 
     def destroy(self):
         self.ignoreAll()
