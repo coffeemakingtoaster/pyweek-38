@@ -3,6 +3,7 @@ import math
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
 
+from constants.layers import VIEW_COLLISION_BITMASK
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
 from helpers.math_helper import get_limited_rotation_target
@@ -58,6 +59,8 @@ class Enemy(EntityBase):
     def __spawn_viewcone(self):
         # setup hitboxes
         self.viewcone = self.model.attachNewNode(CollisionNode("enemy_viewcone"))
+        self.viewcone.setCollideMask(VIEW_COLLISION_BITMASK)
+
         self.viewcone.show()
         self.viewcone.setPos(0, 0, 0)
         self.viewcone.node().addSolid(CollisionBox(Point3(0.5, 0.5, 0.5), 1, 1, 1))

@@ -104,20 +104,19 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
-        self.load_game()
-        
-        print(self.map_stations)
-
         base.cTrav = CollisionTraverser()
 
+        self.load_game()
+        
+        #print(self.map_stations)
+        
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
         self.enemies = [Enemy(3, 3,"B", True)]
         self.active_hud = hud()
-        # print(len(render.getChildren()))
 
-        # DO NOT DELETE please uwu
+        # DO NOT DELETE please uwu 
         # show pathfinding grid
         # self.visualizer = PathfinderVisualizer()
 
