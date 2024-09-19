@@ -15,7 +15,7 @@ import uuid
 import random
 
 from helpers.pathfinding_helper import get_path_from_to_tile_type, global_pos_to_grid, grid_pos_to_global
-from helpers.recipe_helper import RECIPES, Step, build_overwrite_routine
+from helpers.recipe_helper import RECIPES, Step, build_overwrite_routine, get_routine_at_step
 
 
 class Enemy(EntityBase):
@@ -114,11 +114,24 @@ class Enemy(EntityBase):
             x_direction = 0
             y_direction = 0
             if len(self.waypoints) == 0:
+                if not self.__interact_with_item_and_get_success(self.recipe_step.target):
+                    # -1 -> get a new recipe! This one is blocked
+                    if self.recipe_step.onfail_goto_step == -1:
+                        self.recipe_step.next = None
+                    else:
+                        # goto failover step
+                        self.recipe_step = Step(
+                            "tmp",
+                            target=None,
+                            next=get_routine_at_step(self.recipe, self.recipe_step.onfail_goto_step)
+                        )
+
                 if self.recipe_step.next is None:
                     print("new recipe!")
                     self.recipe = random.choice(list(RECIPES.keys()))
                     self.recipe_step = RECIPES[self.recipe]
-                elif random.randrange(4) == 2:
+                # currently disabled
+                elif False:
                     self.recipe_step = build_overwrite_routine(self.recipe_step.next)
                 else:
                    self.recipe_step = self.recipe_step.next
@@ -146,6 +159,9 @@ class Enemy(EntityBase):
 
         self.model.setX(self.model.getX() - x_direction)
         self.model.setY(self.model.getY() - y_direction)
+
+    def __interact_with_item_and_get_success(self, target):
+        return True 
 
     def get_central_pos(self):
         return Point3(

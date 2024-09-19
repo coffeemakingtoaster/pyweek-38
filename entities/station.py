@@ -31,9 +31,3 @@ class Station(EntityBase):
     
     def interact(self,item,player):
         print("Interact: "+ self.name)
-    
-    
-    
-    
-    
-    
