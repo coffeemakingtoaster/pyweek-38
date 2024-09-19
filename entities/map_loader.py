@@ -10,6 +10,7 @@ from entities.Food_Station import Food_Station
 from entities.Trash_Station import Trash_Station
 from entities.CuttingBoard import CuttingBoard
 from entities.ItemArea import ItemArea
+from entities.freezer_door import FreezerDoor
 from entities.Fry import Fry
 from entities.pan import Pan
 from entities.IceMaker import IceMaker
@@ -138,6 +139,21 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
+            stations.append(ItemArea(actor))  
+        
+        
+        elif name == "Freezerdoor":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam", "Close": "assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(FreezerDoor(actor))
+        elif name == "Storagedoor":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam", "Close": "assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(FreezerDoor(actor))
             stations.append(Pan(actor))
         elif name == "Pot":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam")
