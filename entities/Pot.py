@@ -19,7 +19,7 @@ class Pot(Station):
     
     def interact(self,item,player):
         
-        if item.id == "chopped_potatoes" or item.id == "chopped_onion":
+        if (item.id == "chopped_potatoes" or item.id == "chopped_onion") and self.inventory is not "unplated_soup":
             if item.id not in self.inventory:
                 print("Yay" + item.id)
                 self.inventory.append(item.id)
