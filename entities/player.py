@@ -23,6 +23,7 @@ class Player(EntityBase):
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
+        
 
         # Keybinds for movement
         self.accept("a", self.set_movement_status, ["left"])
@@ -45,6 +46,8 @@ class Player(EntityBase):
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         self.__add_player_collider()
+        self.holding.model.setPos(0, -0.4, 0.76)
+        self.holding.model.reparentTo(self.model)
         #self.model.loop("Walk")
 
     def __add_player_collider(self):
@@ -93,11 +96,11 @@ class Player(EntityBase):
         print(item.model)
         ep.reparentTo(self.model)
 
-        ep.setPos(0, -0.5, 0.80)
+        ep.setPos(0, -0.5, 0.76)
         self.holding = item
         
     def find_station(self):
-        point = self.holding.model.getPos() +  self.model.getPos()
+        point = self.holding.model.getPos(render)
         lowest_distance = 200
         closest_station = None
         
@@ -106,6 +109,7 @@ class Player(EntityBase):
                 lowest_distance = (station.model.getPos() - point).length()
                 closest_station = station
         
+        print(closest_station.model.getPos())
         return closest_station
                 
     

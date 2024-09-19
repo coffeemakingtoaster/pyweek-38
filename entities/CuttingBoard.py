@@ -61,7 +61,7 @@ class CuttingBoard(Station):
     def render(self):
         
         ep = self.inventory.model
-        ep.setPos(0,0,0.78)
+        ep.setPos(0,0,0.03)
         ep.reparentTo(self.model)
         
         

@@ -14,6 +14,7 @@ class Station(EntityBase):
         
         self.name = name
         self.model = actor
+        self.task = None
        
         
     
