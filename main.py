@@ -113,7 +113,7 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        self.enemies = [Enemy(3, 3,"B")]
+        self.enemies = [Enemy(3, 3,"B", True)]
         self.active_hud = hud()
         # DO NOT DELETE please uwu 
         # show pathfinding grid
