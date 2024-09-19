@@ -3,6 +3,7 @@ import math
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
 
+from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
@@ -27,7 +28,6 @@ class Enemy(EntityBase):
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
 
         self.model.reparentTo(render)
-
         self.__spawn_viewcone()
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
@@ -35,6 +35,13 @@ class Enemy(EntityBase):
         self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target) 
         self.__show_waypoints()
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
+        self.accept(EVENT_NAMES.SNEAKING, self.__hide_viewcone)
+
+    def __hide_viewcone(self, sneak):
+        if sneak:
+            self.viewcone.unstash()
+        elif not sneak:
+            self.viewcone.stash()
 
     def __show_waypoints(self):
         if not self.display_waypoint_info:

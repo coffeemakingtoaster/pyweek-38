@@ -1,8 +1,10 @@
 from direct.actor.Actor import Actor
+from direct.showbase.MessengerGlobal import messenger
 from panda3d.core import Vec3, Point3, CollisionNode, CollisionSphere
 
 import math
 
+from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
 from constants.player_const import MOVEMENT
 from entities import station
@@ -17,7 +19,7 @@ from entities.CuttingBoard import CuttingBoard
 
 
 class Player(EntityBase):
-    def __init__(self,stations):
+    def __init__(self, stations):
         super().__init__()
 
         self.id = "player"
@@ -26,6 +28,7 @@ class Player(EntityBase):
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
         self.interacting_station = None
+        self.sneaking = False
         
 
         # Keybinds for movement
@@ -37,6 +40,8 @@ class Player(EntityBase):
         self.accept("w-up", self.unset_movement_status, ["up"])
         self.accept("s", self.set_movement_status, ["down"])
         self.accept("s-up", self.unset_movement_status, ["down"])
+        
+        self.accept("q", self.sneako_mode)
 
         self.accept("e", self.set_interact)
         self.accept("e-up", self.unset_interact)
@@ -51,12 +56,12 @@ class Player(EntityBase):
         self.__add_player_collider()
         self.holding.model.setPos(0, -0.4, 0.76)
         self.holding.model.reparentTo(self.model)
-        #self.model.loop("Walk")
+        # self.model.loop("Walk")
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
         self.hitbox.setCollideMask(VIEW_COLLISION_BITMASK)
-        #self.hitbox.show()
+        # self.hitbox.show()
         self.hitbox.setPos(0, 0, 0)
         self.hitbox.node().addSolid(CollisionSphere(Point3(0, 0, 0), 1))
 
@@ -67,8 +72,7 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
-        self.interacting_station = self.find_station()
-        self.interacting_station.interact(self.holding,self)
+        self.find_station().interact(self.holding,self)
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
@@ -77,18 +81,23 @@ class Player(EntityBase):
             self.interacting_station.stop_cut()
         self.interacting_station = None
         return
-        #print("Disabling interact.")
+        # print("Disabling interact.")
+
+    def sneako_mode(self):
+        self.sneaking = not self.sneaking
+        messenger.send(EVENT_NAMES.SNEAKING, [self.sneaking])
+        print(self.sneaking)
 
     def set_holding(self, new_item):
-        
-        if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish :
-            
+
+        if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
+
             if self.holding.add_ingredient(new_item.id):
                 self.holding.model.reparentTo(self.model)
                 return True
             else:
                 return False
-            
+
 
         else:
             self.hardset(new_item)
@@ -97,7 +106,7 @@ class Player(EntityBase):
             # ep.reparentTo(self.model)
             # ep.setPos(2, 0, 2)
 
-    def hardset(self,item):
+    def hardset(self, item):
         self.holding.model.removeNode()
 
         ep = item.model
@@ -106,24 +115,21 @@ class Player(EntityBase):
 
         ep.setPos(0, -0.5, 0.76)
         self.holding = item
-        
+
     def find_station(self):
         point = self.holding.model.getPos(render)
         lowest_distance = 200
         closest_station = None
-        
+
         for station in self.stations:
-            
-            
-            if Vec3(station.model.getX() - point.x, station.model.getY() - point.y, 0).length() < lowest_distance:
-                lowest_distance = Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length()
+            if Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length() < lowest_distance:
+                lowest_distance = (station.model.getPos() - point).length()
                 closest_station = station
         
-        
+        print(closest_station.model.getPos())
         return closest_station
-                
+
     def update(self, dt):
-        #print(self.holding.model.getPos(render))
         
         self.model.node().resetAllPrevTransform()
 
@@ -132,7 +138,7 @@ class Player(EntityBase):
             ((self.movement_status["down"] * -1) + self.movement_status["up"]) * self.move_speed * dt,
             0
         )
-        
+
         if movement_direction.length() > 0:
             target_rotation = math.degrees(math.atan2(movement_direction.x, -movement_direction.y))
 
@@ -153,27 +159,32 @@ class Player(EntityBase):
 
         # Pathfinding mapping debug log
         # print(f"Player: {self.model.getPos()} {global_pos_to_grid(self.model.getPos())} {grid_pos_to_global(global_pos_to_grid(self.model.getPos()))}")
-    
-    def __adapt_movement_to_collision(self, movement_direction): 
-        if (collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), movement_direction)) is not None:
+
+    def __adapt_movement_to_collision(self, movement_direction):
+        if (
+        collision := get_first_intersection(self.model.getPos() + Point3(0, 0, 0.5), movement_direction)) is not None:
             if ((collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6) > movement_direction.length():
                 return movement_direction
             # diagonal movement
             if movement_direction.x != 0 and movement_direction.y != 0:
-                if (x_collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), Vec3(movement_direction.x,0,0))) is not None:
+                if (x_collision := get_first_intersection(self.model.getPos() + Point3(0, 0, 0.5),
+                                                          Vec3(movement_direction.x, 0, 0))) is not None:
                     movement_direction.x = min(
-                            (x_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, abs(movement_direction.x)
-                        )/abs(movement_direction.x) * movement_direction.x
-                if (y_collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), Vec3(0,movement_direction.y,0))) is not None:
+                        (x_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6,
+                        abs(movement_direction.x)
+                    ) / abs(movement_direction.x) * movement_direction.x
+                if (y_collision := get_first_intersection(self.model.getPos() + Point3(0, 0, 0.5),
+                                                          Vec3(0, movement_direction.y, 0))) is not None:
                     movement_direction.y = min(
-                            (y_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, abs(movement_direction.y)
-                        )/abs(movement_direction.y) * movement_direction.y
+                        (y_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6,
+                        abs(movement_direction.y)
+                    ) / abs(movement_direction.y) * movement_direction.y
             else:
                 movement_direction = movement_direction.normalized() * min(
-                    (collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, movement_direction.length()
+                    (collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6,
+                    movement_direction.length()
                 )
         return movement_direction
-
 
     def destroy(self):
         self.ignoreAll()
