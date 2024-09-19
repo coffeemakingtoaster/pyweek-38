@@ -57,11 +57,13 @@ class Enemy(EntityBase):
 
         for pos in self.waypoints:
             node = render.attachNewNode(f"waypoint_marker{pos[0]}{pos[1]}")
-            node.setPos(grid_pos_to_global((pos[0], pos[1])))
-            # setup hitboxes
+            node.setPos(grid_pos_to_global((pos[0],pos[1])))
+
             hitbox = node.attachNewNode(CollisionNode(f"wp{pos[0]}:{pos[1]}"))
             hitbox.show()
-            hitbox.node().addSolid(CollisionBox(Point3(-0.1, -0.1, 0), 0.2, 0.2, 0.5))
+            hitbox.node().addSolid(CollisionBox(Point3(-0.1,-0.1,0), 0.2, 0.2, 0.5))
+            hitbox.setCollideMask(0)
+
             self.waypoint_displays.append(node)
             self.waypoint_hitboxes.append(hitbox)
 

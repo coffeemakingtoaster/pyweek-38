@@ -152,7 +152,7 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
             if map_overlay[i][j] is not None:
                 print(map_overlay[i][j],end="")
                 continue
-            print(PATHFINDING_MAP[i][j],end="")
+            print(PATHFINDING_MAP[i][j][0],end="")
         print()
     return __optimize_waypoints(waypoints)
 
