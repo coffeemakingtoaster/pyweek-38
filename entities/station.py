@@ -23,8 +23,10 @@ class Station(EntityBase):
         self.model.play(anim)
 
     def destroy(self):
+        
         self.model.removeNode()
         self.ignore_all()
+        taskMgr.remove(self.task)
     
     def interact(self,item,player):
         print("Interact: "+ self.name)

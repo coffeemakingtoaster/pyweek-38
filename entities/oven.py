@@ -27,6 +27,7 @@ class Oven(Station):
         elif item.id == "empty_plate" and self.inventory.id == "unplated_pizza":
             player.set_holding(Ingredient("unplated_pizza",load_model("plated_pizza")))
             self.play_anim("Close")
+            self.clean()
         
         
         else:
@@ -40,4 +41,7 @@ class Oven(Station):
         self.play_anim("Close")
         player.set_holding(Dish("empty_plate",load_model("empty_plate")))
         self.task = taskMgr.do_method_later(self.duration,self.finish_bake,"task")
+    def clean(self):
+        self.inventory.model.removeNode()
+        self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
                 

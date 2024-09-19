@@ -12,6 +12,8 @@ class CuttingBoard(Station):
     def __init__(self,actor):
         self.id = "CuttingBoard"
         
+        self.duration = 2
+        
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion"]
         self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion"]
@@ -37,10 +39,7 @@ class CuttingBoard(Station):
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
             #TODO: Wait
-            cuttable_id = self.cuts[self.cuttables.index(self.inventory.id)]
-            self.clean()
-            self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
-            self.render()
+            self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
                 self.clean()
@@ -67,4 +66,10 @@ class CuttingBoard(Station):
         
     def clean(self):
         self.inventory.model.removeNode()
+        
+    def finish_cut(self,name):
+        cuttable_id = self.cuts[self.cuttables.index(self.inventory.id)]
+        self.clean()
+        self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
+        self.render()
     
