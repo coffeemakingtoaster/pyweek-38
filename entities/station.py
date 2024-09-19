@@ -1,4 +1,5 @@
 from direct.actor.Actor import Actor
+from direct.task.TaskManagerGlobal import taskMgr
 from panda3d.core import Vec3
 
 import math
@@ -27,6 +28,7 @@ class Station(EntityBase):
         if self.model is not None:
             self.model.cleanup()
             self.model.removeNode()
+            taskMgr.remove(self.task)
 
     
     def interact(self,item,player):
