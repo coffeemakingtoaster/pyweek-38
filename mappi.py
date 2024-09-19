@@ -30,6 +30,7 @@ class main_game(ShowBase):
         ShowBase.__init__(self)
         render.setShaderAuto()
         base.enableParticles()
+        base.cTrav = CollisionTraverser()
         
         self.mapper = None
         
