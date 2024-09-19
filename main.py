@@ -73,23 +73,25 @@ class main_game(ShowBase):
         self.goto_main_menu()
 
         ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((.1, .1, .1, 1))
+        ambientLight.setColor((.5, .5, .5, 1))
+        alnp = render.attachNewNode(ambientLight)
+        render.setLight(alnp)
         # Create a spotlight
         slight = Spotlight('slight')
-        slight.setColor((3, 3, 3, 1))  # Set light color
-        slight.setShadowCaster(True, 2048, 2048)  # Enable shadow casting
+        slight.setColor((4, 4, 4, 1))  # Set light color
+        slight.setShadowCaster(True, 4096, 4096)  # Enable shadow casting
 
         # Create a lens for the spotlight and set its field of view
         lens = PerspectiveLens()
-        lens.setFov(40)  # Field of view angle (degree)
+        lens.setFov(120)  # Field of view angle (degree)
         slight.setLens(lens)
 
         # Attach the spotlight to a NodePath
         slnp = self.render.attachNewNode(slight)
 
         # Position and rotate the spotlight
-        slnp.setPos(0, -14, 14)  # Position the spotlight
-        slnp.setHpr(0,-45,0)   # Make the spotlight point at the model
+        slnp.setPos(0, 17, 17)  # Position the spotlight
+        slnp.setHpr(0,-135,0)   # Make the spotlight point at the model
 
         # Attach the spotlight to the scene
         self.render.setLight(slnp)

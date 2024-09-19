@@ -1,8 +1,8 @@
 <CoordinateSystem> { Z-up } 
 <Material> Black {
-  <Scalar> baser { 0.014536765404045582 }
-  <Scalar> baseg { 0.010282084345817566 }
-  <Scalar> baseb { 0.015950186178088188 }
+  <Scalar> baser { 0.14536765404045582 }
+  <Scalar> baseg { 0.10282084345817566 }
+  <Scalar> baseb { 0.15950186178088188 }
   <Scalar> basea { 1.0 }
   <Scalar> ambr { 0.014536765404045582 }
   <Scalar> ambg { 0.010282084345817566 }
@@ -24,9 +24,9 @@
 }
 
 <Material> Grey {
-  <Scalar> baser { 0.037409912794828415 }
-  <Scalar> baseg { 0.037409912794828415 }
-  <Scalar> baseb { 0.037409912794828415 }
+  <Scalar> baser { 0.37409912794828415 }
+  <Scalar> baseg { 0.37409912794828415 }
+  <Scalar> baseb { 0.37409912794828415 }
   <Scalar> basea { 1.0 }
   <Scalar> ambr { 0.037409912794828415 }
   <Scalar> ambg { 0.037409912794828415 }

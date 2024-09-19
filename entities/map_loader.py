@@ -31,7 +31,7 @@ def load_map(json_data):
         position = obj["position"]
         rotation = obj["rotation"]
         
-        if name == "Dddot":
+        if name == "Dffot":
             slight = Spotlight('slight')
             slight.setColor((2, 2, 1, 0))
             lens = PerspectiveLens()

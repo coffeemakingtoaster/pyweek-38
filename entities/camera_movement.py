@@ -21,7 +21,7 @@ class CameraMovement(EntityBase, ABC):
         self.player_model.node().resetAllPrevTransform()
 
         self.s = Vec3(((self.player_model.getX() - self.camera.getX()) * 2 * dt),
-                      (((self.player_model.getY() - 6) - self.camera.getY()) * 2 * dt)
+                      (((self.player_model.getY() - 5) - self.camera.getY()) * 2 * dt)
                       , 0)
 
         self.camera.setFluidPos(
