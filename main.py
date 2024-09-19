@@ -9,7 +9,7 @@ from direct.task.Task import Task
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
 from helpers.config import load_config
-from helpers.pathfinding_helper import get_path_from_to_tile_type 
+from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
@@ -26,6 +26,7 @@ from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
 
+
 class main_game(ShowBase):
     def __init__(self):
 
@@ -39,10 +40,10 @@ class main_game(ShowBase):
         self.enemy = None
         self.player = None
         self.enemies = []
-        
-        self.map_models =[]
-        self.map_lights =[]
-        self.map_stations =[]
+
+        self.map_models = []
+        self.map_lights = []
+        self.map_stations = []
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -107,13 +108,13 @@ class main_game(ShowBase):
         base.cTrav = CollisionTraverser()
 
         self.load_game()
-        
-        #print(self.map_stations)
-        
+
+        # print(self.map_stations)
+
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
-        
-        #self.enemies = [Enemy(3, 3,"B")]
+
+        self.enemies = [Enemy(3, 3,"B")]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 
@@ -124,15 +125,7 @@ class main_game(ShowBase):
         with open('./map.json', 'r') as file:
             data = json.load(file)
 
-        for model in self.map_models:
-            model.removeNode()
-        for light in self.map_lights:
-            render.clearLight(light)
-            light.removeNode()
-        for station in self.map_stations:
-            station.destroy()
-
-        self.map_models,self.map_lights,self.map_stations = load_map(data)
+        self.map_models, self.map_lights, self.map_stations = load_map(data)
 
     def set_game_status(self, status):
         self.status_display["text"] = status
@@ -146,7 +139,7 @@ class main_game(ShowBase):
             self.active_hud = None
 
         if base.cTrav is not None:
-           base.cTrav.clearColliders()
+            base.cTrav.clearColliders()
 
         if self.player is not None:
             self.player.destroy()
@@ -155,8 +148,16 @@ class main_game(ShowBase):
             for i in self.enemies:
                 i.destroy()
             self.enemies = []
-
         self.active_ui = main_menu()
+
+        for model in self.map_models:
+            model.removeNode()
+        for light in self.map_lights:
+            render.clearLight(light)
+            light.removeNode()
+        for station in self.map_stations:
+            station.destroy()
+
         # self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
 

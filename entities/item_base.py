@@ -10,11 +10,3 @@ class ItemBase(EntityBase):
 
         self.id = id
         self.model = model
-
-    @abstractmethod
-    def pick_up(self):
-        pass
-
-    @abstractmethod
-    def put_down(self):
-        pass
