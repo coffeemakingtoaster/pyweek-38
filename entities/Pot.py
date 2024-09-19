@@ -38,3 +38,4 @@ class Pot(Station):
     def finish_soup(self,name):
         self.inventory = "unplated_soup"
         #self.play_anim("Open")
+        self.task = None

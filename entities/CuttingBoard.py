@@ -72,4 +72,5 @@ class CuttingBoard(Station):
         self.clean()
         self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
         self.render()
+        self.task = None
     

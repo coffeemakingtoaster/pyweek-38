@@ -104,17 +104,18 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
-        self.load_game()
-        
-        print(self.map_stations)
-
         base.cTrav = CollisionTraverser()
 
+        self.load_game()
+        
+        #print(self.map_stations)
+        
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        self.enemies = [Enemy(3, 3,"B", True)]
+        #self.enemies = [Enemy(3, 3,"B")]
         self.active_hud = hud()
+
         # DO NOT DELETE please uwu 
         # show pathfinding grid
         # self.visualizer = PathfinderVisualizer()
@@ -122,6 +123,14 @@ class main_game(ShowBase):
     def load_game(self):
         with open('./map.json', 'r') as file:
             data = json.load(file)
+
+        for model in self.map_models:
+            model.removeNode()
+        for light in self.map_lights:
+            render.clearLight(light)
+            light.removeNode()
+        for station in self.map_stations:
+            station.destroy()
 
         self.map_models,self.map_lights,self.map_stations = load_map(data)
 
@@ -150,6 +159,8 @@ class main_game(ShowBase):
         self.active_ui = main_menu()
         # self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
+
+        print(len(render.getChildren()))
 
     def goto_settings_menu(self):
         if self.active_ui is not None:

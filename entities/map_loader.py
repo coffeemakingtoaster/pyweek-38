@@ -1,8 +1,8 @@
 
-import json
-from helpers.model_helpers import load_model, load_mapObj
+from constants.layers import MAP_COLLISION_BITMASK
+from constants.map import MODEL_COLLISION_DIMENSION_LOOKUP, MODEL_COLLISION_OFFSET_LOOKUP 
+from helpers.model_helpers import load_mapObj
 from panda3d.core import *
-from entities.station import Station
 from entities.oven import Oven
 from entities.plate_station import Plate_Station
 from direct.actor.Actor import Actor
@@ -15,13 +15,14 @@ from entities.pan import Pan
 from entities.IceMaker import IceMaker
 from entities.Pot import Pot
 
+# dummy notifier. This is just needed as a param and doesnt actually do anythin :)
+__notifier = CollisionHandlerEvent()
+
 def load_map(json_data):
-    
     objects = json_data["Objects"]
     models = []
     lights = []
     stations = []
-    
 
     for obj in objects:
         name = obj["name"]
@@ -42,12 +43,14 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam","Close":"assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
+            __add_collision_box(element=actor, dimension=LVector3(0.45,0.38,2),offset=Point3(0.45,0.4,0.5))
             actor.reparentTo(render)
             stations.append(Oven(actor))
         elif name == "Washer":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
+            __add_collision_box(element=actor, dimension=LVector3(0.61,0.5,1),offset=Point3(0.6,0.3,0))
             actor.reparentTo(render)
             stations.append(Plate_Station(actor))
         elif name == "Cheese_Station":
@@ -108,6 +111,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
+            __add_collision_box(element=actor, dimension=LVector3(0.25,0.25,1),offset=Point3(0,0,0.5))
             actor.reparentTo(render)
             stations.append(Trash_Station(actor))
         elif name == "CuttingBoard":
@@ -126,6 +130,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam",{"Fry": "assets/models/MapObjects/"+name+"/"+name+"-Fry.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
+            __add_collision_box(element=actor, dimension=LVector3(0.25,0.4,2), offset=Point3(0.2,0.3,0))
             actor.reparentTo(render)
             stations.append(Fry(actor))
         elif name == "Pan":
@@ -147,17 +152,52 @@ def load_map(json_data):
             actor.reparentTo(render)
             stations.append(IceMaker(actor))  
             
-            
-        
-        
         else:
         # Create a model instance for each object and add it to the list
             model = load_mapObj(name)
             model.setPos(position["x"],position["y"],position["z"])
             model.setH(rotation)
+            if name == "Floor":
+                __add_wall_collision(model)
+            elif name in MODEL_COLLISION_OFFSET_LOOKUP and name in MODEL_COLLISION_DIMENSION_LOOKUP:
+                __add_collision_box(element=model, dimension=MODEL_COLLISION_DIMENSION_LOOKUP[name], offset=MODEL_COLLISION_OFFSET_LOOKUP[name])
+            else:
+                print(name)
             
             model.reparentTo(render)
             models.append(model)
-        
 
     return models , lights, stations
+
+def __add_wall_collision(element):
+    # add walls inside the map
+    __add_collision_box(element, LVector3(0.1,1.6,1), Point3(9.4,5.5,0))
+    __add_collision_box(element, LVector3(0.1,0.5,1), Point3(9.4,2.5,0))
+    __add_collision_box(element, LVector3(0.1,0.5,1), Point3(9.4,0.5,0))
+
+    # add map borders
+    __add_collision_plane(element, Point3(0,0,0),LVector3(1,0,0))
+    __add_collision_plane(element, Point3(0,0,0),LVector3(0,1,0))
+    __add_collision_plane(element, Point3(12,7.2,0),LVector3(-1,0,0))
+    __add_collision_plane(element, Point3(12,7.2,0),LVector3(0,-1,0))
+
+
+def __add_collision_plane(element, point: Point3, normal: LVector3, show=False):
+    # setup hitboxes
+    node = element.attachNewNode(CollisionNode(f"object_map_collision"))
+    node.node().setCollideMask(MAP_COLLISION_BITMASK)
+    node.setPos(0,0,0)
+    if show:
+        node.show()
+    node.node().addSolid(CollisionPlane(LPlane(normal, point)))
+    base.cTrav.addCollider(node, __notifier)
+
+def __add_collision_box(element, dimension: LVector3, offset=Point3(0,0,0), show=False):
+    # setup hitboxes
+    node = element.attachNewNode(CollisionNode(f"object_map_collision"))
+    node.node().setCollideMask(MAP_COLLISION_BITMASK)
+    node.setPos(0,0,0)
+    if show:
+        node.show()
+    node.node().addSolid(CollisionBox(offset,dimension.x, dimension.y, dimension.z))
+    base.cTrav.addCollider(node, __notifier)

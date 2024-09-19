@@ -37,6 +37,7 @@ class Oven(Station):
     def finish_bake(self,name):
         self.inventory = Ingredient("unplated_pizza",load_model("plated_pizza"))
         self.play_anim("Open")
+        self.task = None
     def close_door(self,player):
         self.play_anim("Close")
         player.set_holding(Dish("empty_plate",load_model("empty_plate")))

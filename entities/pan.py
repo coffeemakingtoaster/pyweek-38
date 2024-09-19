@@ -1,7 +1,3 @@
-from direct.actor.Actor import Actor
-from panda3d.core import Vec3
-
-import math
 from entities.station import Station
 from entities.item_base import ItemBase
 from entities.dish import Dish
@@ -51,3 +47,4 @@ class Pan(Station):
         self.clean()
         self.inventory = Ingredient("steak",load_model("steak"))
         self.render()
+        self.task = None
