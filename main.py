@@ -6,6 +6,7 @@ from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
 
+from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
 from helpers.config import load_config
@@ -25,7 +26,6 @@ import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
-
 
 class main_game(ShowBase):
     def __init__(self):
@@ -134,12 +134,12 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
-        self.enemies = [Enemy(3, 3, "B")]
+        self.enemies = [Enemy(3, 3, True)]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
-        # self.visualizer = PathfinderVisualizer()
+        #self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
@@ -214,10 +214,8 @@ def start_game():
     game = main_game()
     game.run()
 
-
 def display_pathfinding_test():
-    print(get_path_from_to_tile_type((4, 5), 'A', True))
-
+    print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, True))
 
 if __name__ == "__main__":
     display_pathfinding_test()

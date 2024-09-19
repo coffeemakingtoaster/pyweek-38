@@ -26,7 +26,7 @@ def __optimize_waypoints(waypoints):
     diff = (0,0)
     for i in range(1,len(waypoints) - 1):
         d = (waypoints[i][0] - waypoints[i-1][0],waypoints[i][1] - waypoints[i-1][1])
-        if d[0] == diff[0] and d[1] == diff[1]:
+        if (d[0] == diff[0] and d[1] == diff[1]) or (d[0] == 0 and d[1] == 0):
             continue
         diff = d
         optimized.append(waypoints[i - 1])
@@ -63,13 +63,16 @@ def __pos_to_string(pos):
     return f"{pos[0]}{pos[1]}"
 
 def get_path_from_to_tile_type(start_pos, target, debug_print=False):
-    
+   
     # if out of bounds -> try and correct rounding errors/try to walk back into bounds
     if not (0 <= start_pos[0] < len(PATHFINDING_MAP)) or not (0 <= start_pos[1] < len(PATHFINDING_MAP[0])):
         start_pos = (
             max(min(start_pos[0],len(PATHFINDING_MAP) - 1),0),
             max(min(start_pos[1],len(PATHFINDING_MAP[0]) - 1),0)
         )
+
+    if PATHFINDING_MAP[start_pos[0]][start_pos[1]] == "#":
+        print("\033[91m interrupt!\033[00m")
         
     start_time = datetime.datetime.now()
     todo_queue = PriorityQueue()
@@ -78,7 +81,7 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
     visited[__pos_to_string(start_pos)] = VisitedNode(0,0)
 
     target_pos = None
-  
+
     # build value grid
     while not todo_queue.empty():
         current = todo_queue.get()[1]
@@ -98,7 +101,7 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
             )
             visited[__pos_to_string(adj)] = adj_visited
             todo_queue.put((adj_visited.rating, adj))
-   
+  
     if target_pos is None:
 
         print("Could not find target....")
@@ -112,8 +115,8 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
 
     while True:
         # This should in theory never happen...however better be safe than sorry
-        if count > 1000:
-            return waypoints + [target_pos]
+        if count > 100:
+            return __optimize_waypoints(waypoints + [target_pos])
         waypoints.insert(0,backtrack_pos)
         if backtrack_pos == start_pos:
             break
