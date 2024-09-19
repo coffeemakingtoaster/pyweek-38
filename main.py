@@ -7,8 +7,9 @@ from direct.gui.OnscreenText import OnscreenText
 from direct.task.Task import Task
 
 from entities.camera_movement import CameraMovement
+from entities.pathfinding_visualizer import PathfinderVisualizer
 from helpers.config import load_config
-from helpers.pathfinding_helper import get_path_from_to_tile_type
+from helpers.pathfinding_helper import get_path_from_to_tile_type 
 from ui.hud import hud
 from ui.main_menu import main_menu
 from ui.pause_menu import pause_menu
@@ -16,17 +17,14 @@ from constants.game_state import GAME_STATUS
 from constants.events import EVENT_NAMES
 
 from helpers.game_helpers import release_mouse_from_window, lock_mouse_in_window
-from helpers.model_helpers import load_model
 from entities.map_loader import load_map
 from ui.settings_menu import settings_menu
 
-from entities.dish import Dish
 from entities.player import Player
 import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
-
 
 class main_game(ShowBase):
     def __init__(self):
@@ -106,22 +104,33 @@ class main_game(ShowBase):
 
     def setup_game(self):
         self.active_ui.destroy()
-        self.load_game()
-        
-        print(self.map_stations)
-
         base.cTrav = CollisionTraverser()
 
+        self.load_game()
+        
+        #print(self.map_stations)
+        
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
         
-        #self.enemies = [Enemy(3, 3), Enemy(3, 3)]
+        #self.enemies = [Enemy(3, 3,"B")]
         self.active_hud = hud()
-        # TODO: this would be the place to setup the game stuff and initialize the ui uwu
+
+        # DO NOT DELETE please uwu 
+        # show pathfinding grid
+        # self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
             data = json.load(file)
+
+        for model in self.map_models:
+            model.removeNode()
+        for light in self.map_lights:
+            render.clearLight(light)
+            light.removeNode()
+        for station in self.map_stations:
+            station.destroy()
 
         self.map_models,self.map_lights,self.map_stations = load_map(data)
 
@@ -151,6 +160,8 @@ class main_game(ShowBase):
         # self.setBackgroundColor((0, 0, 0, 1))
         self.set_game_status(GAME_STATUS.MAIN_MENU)
 
+        print(len(render.getChildren()))
+
     def goto_settings_menu(self):
         if self.active_ui is not None:
             self.active_ui.destroy()
@@ -175,10 +186,7 @@ def start_game():
 
 
 def display_pathfinding_test():
-    get_path_from_to_tile_type((1, 1), 'B', True)
-    print(get_path_from_to_tile_type((1, 1), 'B', False))
     print(get_path_from_to_tile_type((4, 5), 'A', True))
-    print(get_path_from_to_tile_type((3, 1), 'C', True))
 
 
 if __name__ == "__main__":

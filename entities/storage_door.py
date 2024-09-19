@@ -3,7 +3,7 @@ from entities.station import Station
 
 class StorageDoor(Station):
     def __init__(self, actor):
-        self.name = "freezer_door"
+        self.name = "storage_door"
         super().__init__(self.name, actor)
 
         self.open = False

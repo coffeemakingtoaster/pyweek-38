@@ -12,6 +12,8 @@ class CuttingBoard(Station):
     def __init__(self,actor):
         self.id = "CuttingBoard"
         
+        self.duration = 2
+        
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion"]
         self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion"]
@@ -22,7 +24,7 @@ class CuttingBoard(Station):
         
         
         #Picking Up Stuff from board
-        if "empty_hands" and self.inventory.id in self.cuts:
+        if item.id == "empty_hands" and self.inventory.id in self.cuts:
             player.set_holding(Ingredient(self.inventory.id,load_model(self.inventory.id)))
             self.clean()
             self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
@@ -37,17 +39,20 @@ class CuttingBoard(Station):
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
             #TODO: Wait
-            cuttable_id = self.cuts[self.cuttables.index(self.inventory.id)]
-            self.clean()
-            self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
-            self.render()
+            self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
                 self.clean()
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()
+        
+        elif item.id in self.cuttables:
+            player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
+            self.clean()
+            self.inventory = type(item)(item.id,load_model(item.id))
+            self.render()
+            return True    
             
-            return True
         return False
     
     
@@ -55,10 +60,17 @@ class CuttingBoard(Station):
     def render(self):
         
         ep = self.inventory.model
-        ep.setPos(0,0,0.78)
+        ep.setPos(0,0,0.03)
         ep.reparentTo(self.model)
         
         
     def clean(self):
         self.inventory.model.removeNode()
+        
+    def finish_cut(self,name):
+        cuttable_id = self.cuts[self.cuttables.index(self.inventory.id)]
+        self.clean()
+        self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
+        self.render()
+        self.task = None
     
