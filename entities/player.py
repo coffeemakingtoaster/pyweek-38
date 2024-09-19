@@ -147,9 +147,22 @@ class Player(EntityBase):
     
     def __adapt_movement_to_collision(self, movement_direction): 
         if (collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), movement_direction)) is not None:
-            movement_direction = movement_direction.normalized() * min(
-                (collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, movement_direction.length()
-            )
+            if ((collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6) > movement_direction.length():
+                return movement_direction
+            # diagonal movement
+            if movement_direction.x != 0 and movement_direction.y != 0:
+                if (x_collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), Vec3(movement_direction.x,0,0))) is not None:
+                    movement_direction.x = min(
+                            (x_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, abs(movement_direction.x)
+                        )/abs(movement_direction.x) * movement_direction.x
+                if (y_collision := get_first_intersection(self.model.getPos() + Point3(0,0,0.5), Vec3(0,movement_direction.y,0))) is not None:
+                    movement_direction.y = min(
+                            (y_collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, abs(movement_direction.y)
+                        )/abs(movement_direction.y) * movement_direction.y
+            else:
+                movement_direction = movement_direction.normalized() * min(
+                    (collision.getSurfacePoint(render) - self.model.getPos()).length() - 0.6, movement_direction.length()
+                )
         return movement_direction
 
 

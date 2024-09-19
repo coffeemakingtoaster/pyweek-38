@@ -37,7 +37,7 @@ def get_first_intersection(starting_pos, direction) -> CollisionEntry:
     if len(pq.getEntries()) == 0:
         return None
     pq.sort_entries()
-    #picker_np.removeNode()
+    picker_np.removeNode()
     if pq.getNumEntries() > 0:
         return pq.getEntry(0)
     return None

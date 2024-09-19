@@ -1,5 +1,4 @@
 
-from direct.directnotify.Notifier import Notifier
 from constants.layers import MAP_COLLISION_BITMASK
 from constants.map import MODEL_COLLISION_DIMENSION_LOOKUP, MODEL_COLLISION_OFFSET_LOOKUP 
 from helpers.model_helpers import load_mapObj
@@ -158,8 +157,8 @@ def load_map(json_data):
             model = load_mapObj(name)
             model.setPos(position["x"],position["y"],position["z"])
             model.setH(rotation)
-            if name == "floor":
-                __add_wall_collision()
+            if name == "Floor":
+                __add_wall_collision(model)
             elif name in MODEL_COLLISION_OFFSET_LOOKUP and name in MODEL_COLLISION_DIMENSION_LOOKUP:
                 __add_collision_box(element=model, dimension=MODEL_COLLISION_DIMENSION_LOOKUP[name], offset=MODEL_COLLISION_OFFSET_LOOKUP[name])
             else:
@@ -170,25 +169,35 @@ def load_map(json_data):
 
     return models , lights, stations
 
-def __add_wall_collision():
-    pass
+def __add_wall_collision(element):
+    # add walls inside the map
+    __add_collision_box(element, LVector3(0.1,1.6,1), Point3(9.4,5.5,0))
+    __add_collision_box(element, LVector3(0.1,0.5,1), Point3(9.4,2.5,0))
+    __add_collision_box(element, LVector3(0.1,0.5,1), Point3(9.4,0.5,0))
+
+    # add map borders
+    __add_collision_plane(element, Point3(0,0,0),LVector3(1,0,0))
+    __add_collision_plane(element, Point3(0,0,0),LVector3(0,1,0))
+    __add_collision_plane(element, Point3(12,7.2,0),LVector3(-1,0,0))
+    __add_collision_plane(element, Point3(12,7.2,0),LVector3(0,-1,0))
 
 
-def __add_collision_plane(element, point: Point3, normal: LVector3):
-    node = element.attachNewNode(f"map_object_hitbox")
-    node.setPos(0,0,0)
-    node.node().setCollideMask(MAP_COLLISION_BITMASK)
-    # setup hitboxes
-    hitbox = node.attachNewNode(CollisionNode(f"object_map_collision"))
-    hitbox.show()
-    hitbox.node().addSolid(CollisionPlane(normal, point))
-    base.cTrav.addCollider(node,__notifier)
-
-def __add_collision_box(element, dimension: LVector3, offset=Point3(0,0,0)):
+def __add_collision_plane(element, point: Point3, normal: LVector3, show=False):
     # setup hitboxes
     node = element.attachNewNode(CollisionNode(f"object_map_collision"))
-    #node.node().setCollideMask(MAP_COLLISION_BITMASK)
+    node.node().setCollideMask(MAP_COLLISION_BITMASK)
     node.setPos(0,0,0)
-    #node.show()
+    if show:
+        node.show()
+    node.node().addSolid(CollisionPlane(LPlane(normal, point)))
+    base.cTrav.addCollider(node, __notifier)
+
+def __add_collision_box(element, dimension: LVector3, offset=Point3(0,0,0), show=False):
+    # setup hitboxes
+    node = element.attachNewNode(CollisionNode(f"object_map_collision"))
+    node.node().setCollideMask(MAP_COLLISION_BITMASK)
+    node.setPos(0,0,0)
+    if show:
+        node.show()
     node.node().addSolid(CollisionBox(offset,dimension.x, dimension.y, dimension.z))
     base.cTrav.addCollider(node, __notifier)
