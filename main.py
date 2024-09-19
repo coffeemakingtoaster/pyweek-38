@@ -74,11 +74,28 @@ class main_game(ShowBase):
 
         ambientLight = AmbientLight("ambientLight")
         ambientLight.setColor((.1, .1, .1, 1))
-        directionalLight = DirectionalLight("directionalLight")
-        directionalLight.setDirection(LVector3(0, -45, -45))
-        directionalLight.setColor((2, 2, 2, 1))
-        render.setLight(render.attachNewNode(directionalLight))
-        render.setLight(render.attachNewNode(ambientLight))
+        # Create a spotlight
+        slight = Spotlight('slight')
+        slight.setColor((3, 3, 3, 1))  # Set light color
+        slight.setShadowCaster(True, 2048, 2048)  # Enable shadow casting
+
+        # Create a lens for the spotlight and set its field of view
+        lens = PerspectiveLens()
+        lens.setFov(40)  # Field of view angle (degree)
+        slight.setLens(lens)
+
+        # Attach the spotlight to a NodePath
+        slnp = self.render.attachNewNode(slight)
+
+        # Position and rotate the spotlight
+        slnp.setPos(0, -14, 14)  # Position the spotlight
+        slnp.setHpr(0,-45,0)   # Make the spotlight point at the model
+
+        # Attach the spotlight to the scene
+        self.render.setLight(slnp)
+
+        # Enable shader generation to receive shadows
+        self.render.setShaderAuto()
 
         load_config('./user_settings.json')
 

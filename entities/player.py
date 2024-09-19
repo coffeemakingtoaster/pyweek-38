@@ -113,14 +113,17 @@ class Player(EntityBase):
         closest_station = None
         
         for station in self.stations:
-            if Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length() < lowest_distance:
-                lowest_distance = (station.model.getPos() - point).length()
+            
+            
+            if Vec3(station.model.getX() - point.x, station.model.getY() - point.y, 0).length() < lowest_distance:
+                lowest_distance = Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length()
                 closest_station = station
         
-        print(closest_station.model.getPos())
+        
         return closest_station
                 
     def update(self, dt):
+        #print(self.holding.model.getPos(render))
         
         self.model.node().resetAllPrevTransform()
 

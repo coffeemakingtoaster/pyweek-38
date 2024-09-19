@@ -1144,37 +1144,37 @@
     <Polygon> {
       <MRef> { Blue }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.004 }} 
     }
     <Polygon> {
       <MRef> { Blue }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.004 }} 
     }
     <Polygon> {
       <MRef> { Blue }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.004 }} 
     }
     <Polygon> {
       <MRef> { Blue }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.004 }} 
     }
     <Polygon> {
       <MRef> { Blue }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.004 }} 
     }
     <Polygon> {
       <MRef> { Blue }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.004 }} 
     }
   }
@@ -1363,37 +1363,37 @@
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.005 }} 
     }
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.005 }} 
     }
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.005 }} 
     }
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.005 }} 
     }
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.005 }} 
     }
     <Polygon> {
       <MRef> { Blue.193 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.005 }} 
     }
   }
@@ -1582,37 +1582,37 @@
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.006 }} 
     }
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.006 }} 
     }
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.006 }} 
     }
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.006 }} 
     }
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.006 }} 
     }
     <Polygon> {
       <MRef> { Blue.194 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.006 }} 
     }
   }
@@ -1801,37 +1801,37 @@
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.007 }} 
     }
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.007 }} 
     }
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.007 }} 
     }
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.007 }} 
     }
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.007 }} 
     }
     <Polygon> {
       <MRef> { Blue.195 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.007 }} 
     }
   }
@@ -2020,37 +2020,37 @@
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.008 }} 
     }
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.008 }} 
     }
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.008 }} 
     }
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.008 }} 
     }
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.008 }} 
     }
     <Polygon> {
       <MRef> { Blue.196 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.008 }} 
     }
   }
@@ -2239,37 +2239,37 @@
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.009 }} 
     }
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.009 }} 
     }
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.009 }} 
     }
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.009 }} 
     }
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.009 }} 
     }
     <Polygon> {
       <MRef> { Blue.197 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.009 }} 
     }
   }
@@ -2458,37 +2458,37 @@
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.010 }} 
     }
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.010 }} 
     }
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.010 }} 
     }
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.010 }} 
     }
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.010 }} 
     }
     <Polygon> {
       <MRef> { Blue.198 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.010 }} 
     }
   }
@@ -2677,37 +2677,37 @@
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.011 }} 
     }
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.011 }} 
     }
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.011 }} 
     }
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.011 }} 
     }
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.011 }} 
     }
     <Polygon> {
       <MRef> { Blue.199 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.011 }} 
     }
   }
@@ -2896,37 +2896,37 @@
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.012 }} 
     }
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.012 }} 
     }
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.012 }} 
     }
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.012 }} 
     }
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.012 }} 
     }
     <Polygon> {
       <MRef> { Blue.200 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.012 }} 
     }
   }
@@ -3115,37 +3115,37 @@
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.013 }} 
     }
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.013 }} 
     }
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.013 }} 
     }
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.013 }} 
     }
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.013 }} 
     }
     <Polygon> {
       <MRef> { Blue.201 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.013 }} 
     }
   }
@@ -3334,37 +3334,37 @@
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.014 }} 
     }
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.014 }} 
     }
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.014 }} 
     }
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.014 }} 
     }
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.014 }} 
     }
     <Polygon> {
       <MRef> { Blue.202 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.014 }} 
     }
   }
@@ -3553,37 +3553,37 @@
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.015 }} 
     }
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.015 }} 
     }
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.015 }} 
     }
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.015 }} 
     }
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.015 }} 
     }
     <Polygon> {
       <MRef> { Blue.203 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.015 }} 
     }
   }
@@ -3772,37 +3772,37 @@
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.016 }} 
     }
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.016 }} 
     }
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.016 }} 
     }
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.016 }} 
     }
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.016 }} 
     }
     <Polygon> {
       <MRef> { Blue.204 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.016 }} 
     }
   }
@@ -3991,37 +3991,37 @@
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.017 }} 
     }
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.017 }} 
     }
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.017 }} 
     }
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.017 }} 
     }
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.017 }} 
     }
     <Polygon> {
       <MRef> { Blue.205 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.017 }} 
     }
   }
@@ -4210,37 +4210,37 @@
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.018 }} 
     }
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.018 }} 
     }
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.018 }} 
     }
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.018 }} 
     }
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.018 }} 
     }
     <Polygon> {
       <MRef> { Blue.206 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.018 }} 
     }
   }
@@ -4429,37 +4429,37 @@
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.019 }} 
     }
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.019 }} 
     }
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.019 }} 
     }
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.019 }} 
     }
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.019 }} 
     }
     <Polygon> {
       <MRef> { Blue.207 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.019 }} 
     }
   }
@@ -4648,37 +4648,37 @@
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.020 }} 
     }
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.020 }} 
     }
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.020 }} 
     }
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.020 }} 
     }
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.020 }} 
     }
     <Polygon> {
       <MRef> { Blue.208 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.020 }} 
     }
   }
@@ -4867,37 +4867,37 @@
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.021 }} 
     }
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.021 }} 
     }
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.021 }} 
     }
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.021 }} 
     }
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.021 }} 
     }
     <Polygon> {
       <MRef> { Blue.209 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.021 }} 
     }
   }
@@ -5086,37 +5086,37 @@
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.022 }} 
     }
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.022 }} 
     }
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.022 }} 
     }
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.022 }} 
     }
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.022 }} 
     }
     <Polygon> {
       <MRef> { Blue.210 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.022 }} 
     }
   }
@@ -5305,37 +5305,37 @@
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.023 }} 
     }
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.023 }} 
     }
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.023 }} 
     }
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.023 }} 
     }
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.023 }} 
     }
     <Polygon> {
       <MRef> { Blue.211 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.023 }} 
     }
   }
@@ -5524,37 +5524,37 @@
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.024 }} 
     }
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.024 }} 
     }
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.024 }} 
     }
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.024 }} 
     }
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.024 }} 
     }
     <Polygon> {
       <MRef> { Blue.212 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.024 }} 
     }
   }
@@ -5743,37 +5743,37 @@
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.025 }} 
     }
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.025 }} 
     }
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.025 }} 
     }
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.025 }} 
     }
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.025 }} 
     }
     <Polygon> {
       <MRef> { Blue.213 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.025 }} 
     }
   }
@@ -5962,37 +5962,37 @@
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.026 }} 
     }
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.026 }} 
     }
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.026 }} 
     }
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.026 }} 
     }
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.026 }} 
     }
     <Polygon> {
       <MRef> { Blue.214 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.026 }} 
     }
   }
@@ -6181,37 +6181,37 @@
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.027 }} 
     }
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.027 }} 
     }
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.027 }} 
     }
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.027 }} 
     }
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.027 }} 
     }
     <Polygon> {
       <MRef> { Blue.215 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.027 }} 
     }
   }
@@ -6400,37 +6400,37 @@
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.028 }} 
     }
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.028 }} 
     }
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.028 }} 
     }
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.028 }} 
     }
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.028 }} 
     }
     <Polygon> {
       <MRef> { Blue.216 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.028 }} 
     }
   }
@@ -6619,37 +6619,37 @@
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.029 }} 
     }
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.029 }} 
     }
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.029 }} 
     }
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.029 }} 
     }
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.029 }} 
     }
     <Polygon> {
       <MRef> { Blue.217 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.029 }} 
     }
   }
@@ -6838,37 +6838,37 @@
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.030 }} 
     }
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.030 }} 
     }
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.030 }} 
     }
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.030 }} 
     }
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.030 }} 
     }
     <Polygon> {
       <MRef> { Blue.218 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.030 }} 
     }
   }
@@ -7057,37 +7057,37 @@
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.031 }} 
     }
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.031 }} 
     }
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.031 }} 
     }
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.031 }} 
     }
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.031 }} 
     }
     <Polygon> {
       <MRef> { Blue.219 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.031 }} 
     }
   }
@@ -7276,37 +7276,37 @@
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.032 }} 
     }
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.032 }} 
     }
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.032 }} 
     }
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.032 }} 
     }
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.032 }} 
     }
     <Polygon> {
       <MRef> { Blue.220 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.032 }} 
     }
   }
@@ -7495,37 +7495,37 @@
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.033 }} 
     }
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.033 }} 
     }
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.033 }} 
     }
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.033 }} 
     }
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.033 }} 
     }
     <Polygon> {
       <MRef> { Blue.221 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.033 }} 
     }
   }
@@ -7714,37 +7714,37 @@
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.034 }} 
     }
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.034 }} 
     }
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.034 }} 
     }
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.034 }} 
     }
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.034 }} 
     }
     <Polygon> {
       <MRef> { Blue.222 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.034 }} 
     }
   }
@@ -7933,37 +7933,37 @@
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.035 }} 
     }
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.035 }} 
     }
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.035 }} 
     }
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.035 }} 
     }
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.035 }} 
     }
     <Polygon> {
       <MRef> { Blue.223 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.035 }} 
     }
   }
@@ -8152,37 +8152,37 @@
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.036 }} 
     }
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.036 }} 
     }
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.036 }} 
     }
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.036 }} 
     }
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.036 }} 
     }
     <Polygon> {
       <MRef> { Blue.224 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.036 }} 
     }
   }
@@ -8371,37 +8371,37 @@
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.037 }} 
     }
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.037 }} 
     }
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.037 }} 
     }
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.037 }} 
     }
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.037 }} 
     }
     <Polygon> {
       <MRef> { Blue.225 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.037 }} 
     }
   }
@@ -8590,37 +8590,37 @@
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.038 }} 
     }
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.038 }} 
     }
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.038 }} 
     }
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.038 }} 
     }
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.038 }} 
     }
     <Polygon> {
       <MRef> { Blue.226 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.038 }} 
     }
   }
@@ -8809,37 +8809,37 @@
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.039 }} 
     }
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.039 }} 
     }
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.039 }} 
     }
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.039 }} 
     }
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.039 }} 
     }
     <Polygon> {
       <MRef> { Blue.227 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.039 }} 
     }
   }
@@ -9028,37 +9028,37 @@
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.040 }} 
     }
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.040 }} 
     }
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.040 }} 
     }
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.040 }} 
     }
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.040 }} 
     }
     <Polygon> {
       <MRef> { Blue.228 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.040 }} 
     }
   }
@@ -9247,37 +9247,37 @@
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.041 }} 
     }
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.041 }} 
     }
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.041 }} 
     }
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.041 }} 
     }
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.041 }} 
     }
     <Polygon> {
       <MRef> { Blue.229 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.041 }} 
     }
   }
@@ -9466,37 +9466,37 @@
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.042 }} 
     }
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.042 }} 
     }
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.042 }} 
     }
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.042 }} 
     }
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.042 }} 
     }
     <Polygon> {
       <MRef> { Blue.230 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.042 }} 
     }
   }
@@ -9685,37 +9685,37 @@
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {-1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Cube.043 }} 
     }
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {0.000000 1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Cube.043 }} 
     }
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {1.000000 0.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Cube.043 }} 
     }
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {0.000000 -1.000000 0.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Cube.043 }} 
     }
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Cube.043 }} 
     }
     <Polygon> {
       <MRef> { Blue.231 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Cube.043 }} 
     }
   }

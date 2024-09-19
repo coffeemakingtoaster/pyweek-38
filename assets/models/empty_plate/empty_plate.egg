@@ -432,85 +432,85 @@
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.805064 0.000000 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.805064 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.805064 0.000000 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.805064 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.799049 0.000000 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 24 25 26 27 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.799049 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 28 29 30 31 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.799049 0.000000 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.799049 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 36 37 38 39 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.827478 0.000000 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 40 41 42 43 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.827478 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 44 45 46 47 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.827478 0.000000 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 48 49 50 51 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.827478 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 52 53 54 55 <Ref> { Plane }} 
     }
   }

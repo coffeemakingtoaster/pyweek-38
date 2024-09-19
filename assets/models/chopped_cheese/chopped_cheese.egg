@@ -308,7 +308,7 @@
     <Polygon> {
       <MRef> { Yellow.024 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.041 }} 
     }
   }
@@ -357,7 +357,7 @@
     <Polygon> {
       <MRef> { Yellow.023 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.040 }} 
     }
   }
@@ -406,7 +406,7 @@
     <Polygon> {
       <MRef> { Yellow.022 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.039 }} 
     }
   }
@@ -455,7 +455,7 @@
     <Polygon> {
       <MRef> { Yellow.021 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.038 }} 
     }
   }
@@ -504,7 +504,7 @@
     <Polygon> {
       <MRef> { Yellow.020 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.037 }} 
     }
   }
@@ -553,7 +553,7 @@
     <Polygon> {
       <MRef> { Yellow.019 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.036 }} 
     }
   }
@@ -602,7 +602,7 @@
     <Polygon> {
       <MRef> { Yellow.018 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.035 }} 
     }
   }
@@ -651,7 +651,7 @@
     <Polygon> {
       <MRef> { Yellow.017 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.034 }} 
     }
   }
@@ -700,7 +700,7 @@
     <Polygon> {
       <MRef> { Yellow.016 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.033 }} 
     }
   }
@@ -749,7 +749,7 @@
     <Polygon> {
       <MRef> { Yellow.015 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.032 }} 
     }
   }
@@ -798,7 +798,7 @@
     <Polygon> {
       <MRef> { Yellow.014 }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane.031 }} 
     }
   }

@@ -19,7 +19,7 @@ class IceMaker(Station):
     
     def interact(self,item,player):
         
-        if item.id == "ice_cubes" or item.id == "chopped_chocolate":
+        if (item.id == "ice_cubes" or item.id == "chopped_chocolate")and self.inventory is not "unplated_ice_cream" and len(self.inventory) is not 2:
             if item.id not in self.inventory:
                 print("Yay" + item.id)
                 self.inventory.append(item.id)

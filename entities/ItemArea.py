@@ -10,7 +10,7 @@ from entities.ingredient import Ingredient
 
 class ItemArea(Station):
     def __init__(self,actor):
-        self.id = "CuttingBoard"
+        self.id = "ItemArea"
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         super().__init__(self.id,actor)

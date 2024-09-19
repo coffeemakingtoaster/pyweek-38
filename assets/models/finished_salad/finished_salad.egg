@@ -576,85 +576,85 @@
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.000000 1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.805064 0.000000 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 4 5 6 7 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.805064 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 8 9 10 11 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.805064 0.000000 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 12 13 14 15 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.805064 0.593188}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 16 17 18 19 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.000000 -1.000000}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 20 21 22 23 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.799049 0.000000 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 24 25 26 27 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.799049 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 28 29 30 31 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.799049 0.000000 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.799049 -0.601266}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 36 37 38 39 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {-0.827478 0.000000 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 40 41 42 43 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 -0.827478 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 44 45 46 47 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.827478 0.000000 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 48 49 50 51 <Ref> { Plane }} 
     }
     <Polygon> {
       <MRef> { White }
       <Normal> {0.000000 0.827478 0.561499}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 52 53 54 55 <Ref> { Plane }} 
     }
   }
@@ -2019,205 +2019,205 @@
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.000643 0.244187 0.969728}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.000643 -0.244187 -0.969728}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.269028 0.934019 -0.235017}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 64 65 66 67 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.758775 -0.631754 0.158579}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 68 69 70 71 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.451756 0.865206 -0.217568}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 72 73 74 75 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.871268 -0.476086 0.119306}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 76 77 78 79 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.617124 0.763143 -0.191758}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 80 81 82 83 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.950279 -0.302123 0.075447}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 84 85 86 87 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.758776 0.631753 -0.158579}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 88 89 90 91 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.992770 -0.116549 0.028690}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 92 93 94 95 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.871269 0.476085 -0.119305}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 96 97 98 99 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.997111 0.073504 -0.019170}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 100 101 102 103 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.950279 0.302122 -0.075447}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 104 105 106 107 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.963133 0.260732 -0.066294}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 108 109 110 111 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.992771 0.116548 -0.028690}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 112 113 114 115 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.892142 0.437940 -0.110869}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 116 117 118 119 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.490807 -0.844816 0.213059}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 120 121 122 123 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.997111 -0.073505 0.019171}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 124 125 126 127 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.786866 0.598319 -0.151185}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 128 129 130 131 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.311400 -0.921463 0.232240}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 132 133 134 135 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.963132 -0.260733 0.066294}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 136 137 138 139 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.651352 0.735704 -0.185690}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 140 141 142 143 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.120026 -0.962699 0.242497}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 144 145 146 147 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.892141 -0.437941 0.110870}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 148 149 150 151 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.490806 0.844817 -0.213059}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 152 153 154 155 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.075960 -0.966938 0.243435}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 156 157 158 159 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.786865 -0.598320 0.151185}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 160 161 162 163 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.311400 0.921463 -0.232240}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 164 165 166 167 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.269027 -0.934019 0.235017}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 168 169 170 171 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.651352 -0.735704 0.185690}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 172 173 174 175 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.120026 0.962699 -0.242497}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 176 177 178 179 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.451756 -0.865206 0.217568}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 180 181 182 183 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.075960 0.966938 -0.243435}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 184 185 186 187 <Ref> { Circle.013 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.617123 -0.763143 0.191758}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 188 189 190 191 <Ref> { Circle.013 }} 
     }
   }
@@ -3582,205 +3582,205 @@
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.474655 0.129510 0.870591}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.474655 -0.129510 -0.870591}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.008840 0.988364 -0.151850}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 64 65 66 67 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.496322 -0.777476 0.386258}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 68 69 70 71 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.180375 0.953810 -0.240232}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 72 73 74 75 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.628594 -0.642472 0.438291}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 76 77 78 79 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.344978 0.882602 -0.319382}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 80 81 82 83 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.736710 -0.482778 0.473480}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 84 85 86 87 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.496323 0.777476 -0.386258}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 88 89 90 91 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.816514 -0.304532 0.490474}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 92 93 94 95 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.628595 0.642471 -0.438291}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 96 97 98 99 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.864940 -0.114581 0.488620}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 100 101 102 103 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.736711 0.482777 -0.473480}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 104 105 106 107 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.880127 0.079771 0.467987}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 108 109 110 111 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.816515 0.304530 -0.490474}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 112 113 114 115 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.861491 0.271059 0.429371}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 116 117 118 119 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.616094 -0.755286 -0.223543}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 120 121 122 123 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.864941 0.114580 -0.488619}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 124 125 126 127 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.809749 0.451930 0.374254}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 128 129 130 131 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.481623 -0.866114 -0.133742}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 132 133 134 135 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.880127 -0.079773 -0.467987}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 136 137 138 139 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.726888 0.615434 0.304754}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 140 141 142 143 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.328644 -0.943657 -0.038801}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 144 145 146 147 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.861491 -0.271060 -0.429371}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 148 149 150 151 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.616093 0.755286 0.223543}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 152 153 154 155 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.163035 -0.984936 0.057632}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 156 157 158 159 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.809748 -0.451931 -0.374253}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 160 161 162 163 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.481623 0.866114 0.133742}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 164 165 166 167 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.008839 -0.988364 0.151849}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 168 169 170 171 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.726888 -0.615434 -0.304754}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 172 173 174 175 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.328643 0.943657 0.038800}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 176 177 178 179 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.180374 -0.953810 0.240231}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 180 181 182 183 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.163034 0.984936 -0.057632}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 184 185 186 187 <Ref> { Circle.012 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.344977 -0.882602 0.319381}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 188 189 190 191 <Ref> { Circle.012 }} 
     }
   }
@@ -5145,205 +5145,205 @@
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.023192 -0.046055 0.998670}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.023192 0.046055 -0.998670}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.532106 0.845120 0.051331}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 64 65 66 67 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.912642 -0.406802 -0.039954}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 68 69 70 71 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.686999 0.724979 0.049387}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 72 73 74 75 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.974723 -0.220994 -0.032827}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 76 77 78 79 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.815490 0.576976 0.045546}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 80 81 82 83 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.999345 -0.026693 -0.024439}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 84 85 86 87 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.912643 0.406801 0.039954}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 88 89 90 91 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.985563 0.168633 -0.015111}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 92 93 94 95 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.974723 0.220993 0.032827}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 96 97 98 99 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.933906 0.357480 -0.005202}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 100 101 102 103 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.999345 0.026692 0.024439}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 104 105 106 107 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.846360 0.532588 0.004906}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 108 109 110 111 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.985563 -0.168635 0.015111}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 112 113 114 115 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.726289 0.687230 0.014826}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 116 117 118 119 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.222212 -0.974187 -0.039765}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 120 121 122 123 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.933906 -0.357481 0.005202}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 124 125 126 127 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.578307 0.815461 0.024176}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 128 129 130 131 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.027783 -0.998582 -0.045406}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 132 133 134 135 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.846360 -0.532589 -0.004906}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 136 137 138 139 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.408101 0.912355 0.032597}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 140 141 142 143 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.167713 -0.984602 -0.049301}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 144 145 146 147 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.726288 -0.687230 -0.014826}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 148 149 150 151 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.222211 0.974187 0.039765}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 152 153 154 155 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.356765 -0.932785 -0.051302}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 156 157 158 159 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.578306 -0.815462 -0.024176}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 160 161 162 163 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.027782 0.998582 0.045406}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 164 165 166 167 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.532106 -0.845121 -0.051331}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 168 169 170 171 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.408100 -0.912355 -0.032597}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 172 173 174 175 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.167714 0.984602 0.049301}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 176 177 178 179 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.686998 -0.724979 -0.049387}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 180 181 182 183 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.356765 0.932785 0.051302}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 184 185 186 187 <Ref> { Circle.011 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.815489 -0.576977 -0.045546}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 188 189 190 191 <Ref> { Circle.011 }} 
     }
   }
@@ -6708,205 +6708,205 @@
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.196866 0.210173 0.957638}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.196865 -0.210173 -0.957638}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.563102 0.823823 -0.065046}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 64 65 66 67 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.914100 -0.392509 -0.101771}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 68 69 70 71 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.708861 0.705290 -0.009067}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 72 73 74 75 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.965694 -0.210280 -0.152371}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 76 77 78 79 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.827379 0.559652 0.047261}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 80 81 82 83 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.980177 -0.019971 -0.197116}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 84 85 86 87 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.914101 0.392508 0.101772}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 88 89 90 91 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.956992 0.171106 -0.234285}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 92 93 94 95 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.965694 0.210279 0.152372}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 96 97 98 99 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.897030 0.355607 -0.262451}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 100 101 102 103 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.980177 0.019970 0.197116}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 104 105 106 107 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.802596 0.526443 -0.280531}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 108 109 110 111 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.956992 -0.171107 0.234285}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 112 113 114 115 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.677319 0.677047 -0.287831}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 116 117 118 119 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.169348 -0.954782 0.244360}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 120 121 122 123 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.897029 -0.355608 0.262451}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 124 125 126 127 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.526012 0.801634 -0.284069}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 128 129 130 131 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.022304 -0.977460 0.209939}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 132 133 134 135 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.802595 -0.526444 0.280531}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 136 137 138 139 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.354491 0.895413 -0.269391}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 140 141 142 143 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.213098 -0.962575 0.167449}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 144 145 146 147 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.677318 -0.677048 0.287831}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 148 149 150 151 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.169348 0.954783 -0.244360}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 152 153 154 155 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.395703 -0.910698 0.118525}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 156 157 158 159 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.526011 -0.801634 0.284069}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 160 161 162 163 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.022304 0.977460 -0.209938}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 164 165 166 167 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.563102 -0.823824 0.065046}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 168 169 170 171 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.354491 -0.895413 0.269391}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 172 173 174 175 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.213098 0.962575 -0.167449}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 176 177 178 179 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.708861 -0.705290 0.009067}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 180 181 182 183 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {0.395704 0.910698 -0.118525}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 184 185 186 187 <Ref> { Circle.010 }} 
     }
     <Polygon> {
       <MRef> { Red.003 }
       <Normal> {-0.827378 -0.559653 -0.047260}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 188 189 190 191 <Ref> { Circle.010 }} 
     }
   }
@@ -8061,175 +8061,175 @@
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.201853 0.261035 -0.943989}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.201853 -0.261035 0.943990}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.911793 -0.301841 -0.278435}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 54 55 56 57 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.500562 0.855937 0.129651}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 58 59 60 61 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.684959 0.726544 0.054441}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 62 63 64 65 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.582973 0.806515 0.098363}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 66 67 68 69 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.645799 0.689151 0.328657}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 70 71 72 73 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.264225 0.942606 0.204153}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 74 75 76 77 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.052153 0.965326 0.255783}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 78 79 80 81 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.538696 0.834535 0.115579}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 82 83 84 85 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.294383 0.903091 0.312673}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 86 87 88 89 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.759689 0.566598 0.319122}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 90 91 92 93 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.867393 -0.495252 0.048526}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 94 95 96 97 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.753470 0.574386 0.319945}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 98 99 100 101 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.979307 -0.039408 0.198508}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 102 103 104 105 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.977908 -0.000256 0.209035}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 106 107 108 109 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.811992 0.494336 0.310324}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 110 111 112 113 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.959302 -0.247020 0.136821}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 114 115 116 117 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.642688 -0.762599 -0.073450}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 118 119 120 121 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {0.465812 -0.873429 -0.141919}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 122 123 124 125 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.225131 -0.925655 -0.304105}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 126 127 128 129 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.191175 -0.934789 -0.299370}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 130 131 132 133 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.571769 -0.751134 -0.329967}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 134 135 136 137 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.192987 -0.934332 -0.299631}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 138 139 140 141 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.861553 -0.411076 -0.297898}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 142 143 144 145 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.880014 -0.374739 -0.291797}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 146 147 148 149 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.239797 -0.921323 -0.306043}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 150 151 152 153 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.711621 -0.623145 -0.324480}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 154 155 156 157 <Ref> { Plane.019 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.021 }
       <Normal> {-0.845551 0.532846 -0.033460}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 158 159 160 161 <Ref> { Plane.019 }} 
     }
   }
@@ -9384,175 +9384,175 @@
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.082367 0.047156 0.995486}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.082367 -0.047156 -0.995486}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.230571 0.970878 -0.065068}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 54 55 56 57 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.994105 -0.074553 -0.078721}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 58 59 60 61 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.982696 0.162440 -0.089004}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 62 63 64 65 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.996145 0.026366 -0.083671}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 66 67 68 69 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.240347 -0.970337 0.026079}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 70 71 72 73 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.941501 -0.331218 -0.062211}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 74 75 76 77 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.847552 -0.528795 -0.045078}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 78 79 80 81 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.996294 -0.028727 -0.081073}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 82 83 84 85 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.609663 -0.792556 -0.012900}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 86 87 88 89 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.075467 -0.996307 0.040951}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 90 91 92 93 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.883711 -0.458326 0.094830}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 94 95 96 97 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.085401 -0.995540 0.040093}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 98 99 100 101 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.556392 -0.826542 0.085190}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 102 103 104 105 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.522400 -0.848610 0.083423}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 106 107 108 109 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.013823 -0.998730 0.048454}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 110 111 112 113 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.722003 -0.685717 0.092222}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 114 115 116 117 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.990740 -0.104310 0.086916}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 118 119 120 121 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.990403 0.115115 0.076494}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 122 123 124 125 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.665801 0.745868 0.019757}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 126 127 128 129 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.691689 0.721828 0.023038}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 130 131 132 133 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.332511 0.942944 -0.017155}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 134 135 136 137 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.690334 0.723130 0.022864}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 138 139 140 141 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.110987 0.992232 -0.056185}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 142 143 144 145 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.151701 0.986647 -0.059289}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 146 147 148 149 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.654291 0.756021 0.018324}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 150 151 152 153 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {0.149151 0.988213 -0.034471}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 154 155 156 157 <Ref> { Plane.017 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.019 }
       <Normal> {-0.903970 0.417012 -0.094549}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 158 159 160 161 <Ref> { Plane.017 }} 
     }
   }
@@ -10707,175 +10707,175 @@
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.429938 -0.327721 -0.841280}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.429938 0.327721 0.841280}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.291171 -0.932339 0.214390}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 54 55 56 57 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.796181 -0.301759 0.524441}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 58 59 60 61 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.673335 -0.504367 0.540586}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 62 63 64 65 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.749145 -0.390581 0.535003}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 66 67 68 69 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.651063 0.758101 0.037409}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 70 71 72 73 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.879542 -0.058363 0.472228}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 74 75 76 77 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.902830 0.148724 0.403458}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 78 79 80 81 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.775788 -0.342558 0.529912}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 82 83 84 85 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.847905 0.466681 0.251528}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 86 87 88 89 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.537470 0.841605 -0.053172}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 90 91 92 93 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.455154 0.726054 -0.515442}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 94 95 96 97 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.544698 0.837270 -0.047789}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 98 99 100 101 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.027516 0.926607 -0.375022}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 102 103 104 105 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.009107 0.933323 -0.358922}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 106 107 108 109 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.470349 0.876666 -0.101132}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 110 111 112 113 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.221985 0.864823 -0.450338}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 114 115 116 117 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.707479 0.456606 -0.539430}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 118 119 120 121 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.812881 0.264995 -0.518654}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 122 123 124 125 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.868357 -0.405223 -0.285921}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 126 127 128 129 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.876580 -0.374691 -0.302017}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 130 131 132 133 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.708358 -0.700188 -0.089250}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 134 135 136 137 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.876170 -0.376327 -0.301171}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 138 139 140 141 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.392910 -0.906849 0.152466}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 142 143 144 145 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.359083 -0.916998 0.173707}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 146 147 148 149 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.864443 -0.418330 -0.278816}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 150 151 152 153 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {0.589925 -0.807353 0.013022}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 154 155 156 157 <Ref> { Plane.016 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.018 }
       <Normal> {-0.490542 -0.697476 0.522395}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 158 159 160 161 <Ref> { Plane.016 }} 
     }
   }
@@ -12030,175 +12030,175 @@
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.217600 -0.608043 0.763501}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.217601 0.608043 -0.763501}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.220133 0.792664 0.568529}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 54 55 56 57 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.902686 0.172147 0.394365}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 58 59 60 61 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.789691 0.350049 0.503839}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 62 63 64 65 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.860608 0.249492 0.443968}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 66 67 68 69 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.632159 -0.683802 -0.364404}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 70 71 72 73 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.968192 -0.035482 0.247681}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 74 75 76 77 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.971820 -0.207622 0.111625}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 78 79 80 81 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.884685 0.207559 0.417436}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 82 83 84 85 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.878203 -0.463326 -0.118696}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 86 87 88 89 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.499104 -0.741556 -0.448320}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 90 91 92 93 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.574431 -0.552643 -0.603833}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 94 95 96 97 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.507467 -0.738683 -0.443649}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 98 99 100 101 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.127840 -0.757751 -0.639899}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 102 103 104 105 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.088489 -0.766734 -0.635837}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 106 107 108 109 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.421989 -0.763964 -0.488144}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 110 111 112 113 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.334031 -0.688617 -0.643607}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 114 115 116 117 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.821999 -0.307621 -0.479258}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 118 119 120 121 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.917075 -0.140396 -0.373179}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 122 123 124 125 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.907056 0.414833 0.071854}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 126 127 128 129 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.919271 0.390559 0.049041}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 130 131 132 133 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.700937 0.641710 0.311281}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 134 135 136 137 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.918650 0.391862 0.050256}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 138 139 140 141 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.334103 0.781391 0.527070}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 142 143 144 145 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.296033 0.786512 0.541999}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 146 147 148 149 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.901393 0.425217 0.081738}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 150 151 152 153 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {0.560092 0.718421 0.412514}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 154 155 156 157 <Ref> { Plane.015 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.017 }
       <Normal> {-0.610123 0.525838 0.592659}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 158 159 160 161 <Ref> { Plane.015 }} 
     }
   }
@@ -13353,175 +13353,175 @@
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.019227 -0.130105 -0.991314}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.019227 0.130105 0.991314}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.445022 -0.888978 0.108042}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 54 55 56 57 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.955566 0.289310 -0.056504}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 58 59 60 61 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.997982 0.057521 -0.026905}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 62 63 64 65 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.980375 0.192114 -0.044229}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 66 67 68 69 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.015746 0.991335 -0.130413}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 70 71 72 73 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.846087 0.526149 -0.085464}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 74 75 76 77 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.709522 0.696785 -0.105211}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 78 79 80 81 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.968067 0.245451 -0.050990}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 82 83 84 85 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.417195 0.900010 -0.126213}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 86 87 88 89 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.151409 0.980441 -0.125741}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 90 91 92 93 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.968045 0.250382 -0.014086}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 94 95 96 97 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.141518 0.981869 -0.126120}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 98 99 100 101 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.731106 0.678149 -0.074823}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 102 103 104 105 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.702844 0.706927 -0.079148}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 106 107 108 109 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.239298 0.963278 -0.121784}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 110 111 112 113 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.861269 0.505716 -0.049668}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 114 115 116 117 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.992709 -0.115521 0.034415}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 118 119 120 121 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.942775 -0.327747 0.061300}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 122 123 124 125 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.482664 -0.867102 0.123164}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 126 127 128 129 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.513421 -0.849499 0.121450}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 130 131 132 133 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.112092 -0.984966 0.131446}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 134 135 136 137 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.511802 -0.850462 0.121545}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 138 139 140 141 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.332874 -0.935765 0.116358}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 142 143 144 145 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.371437 -0.921466 0.113733}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 146 147 148 149 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {0.469110 -0.874411 0.123860}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 150 151 152 153 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.077502 -0.988708 0.128259}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 154 155 156 157 <Ref> { Plane.006 }} 
     }
     <Polygon> {
       <MRef> { Lettuce.016 }
       <Normal> {-0.978522 -0.205983 0.008055}
-      <BFace> { 1 }
+      <BFace> { 0 }
       <VertexRef> { 158 159 160 161 <Ref> { Plane.006 }} 
     }
   }

@@ -11,6 +11,7 @@ from entities.Trash_Station import Trash_Station
 from entities.CuttingBoard import CuttingBoard
 from entities.ItemArea import ItemArea
 from entities.freezer_door import FreezerDoor
+from entities.storage_door import StorageDoor
 from entities.Fry import Fry
 from entities.pan import Pan
 from entities.IceMaker import IceMaker
@@ -30,7 +31,7 @@ def load_map(json_data):
         position = obj["position"]
         rotation = obj["rotation"]
         
-        if name == "Dot":
+        if name == "Dddot":
             slight = Spotlight('slight')
             slight.setColor((2, 2, 1, 0))
             lens = PerspectiveLens()
@@ -139,7 +140,7 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(ItemArea(actor))  
+            stations.append(Pan(actor)) 
         
         
         elif name == "Freezerdoor":
@@ -153,8 +154,8 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(FreezerDoor(actor))
-            stations.append(Pan(actor))
+            stations.append(StorageDoor(actor))
+            
         elif name == "Pot":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam")
             actor.setPos(position["x"],position["y"],position["z"])
