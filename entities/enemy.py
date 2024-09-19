@@ -8,18 +8,19 @@ from constants.enemy_const import MOVEMENT
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 
-import random
 import uuid
 
 from helpers.pathfinding_helper import get_path_from_to_tile_type, global_pos_to_grid, grid_pos_to_global
 
-__POSSIBLE_TARGETS = ['A','B']
-
 class Enemy(EntityBase):
-    def __init__(self, spawn_x, spawn_y, target = "A"):
+    def __init__(self, spawn_x, spawn_y, target = "A", display_waypoint_info=False):
         super().__init__()
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
+
+        self.display_waypoint_info = display_waypoint_info
+        self.waypoint_displays = []
+        self.waypoint_hitboxes = []
 
         self.model = Actor("assets/models/MapObjects/Oven/Oven.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
@@ -31,8 +32,28 @@ class Enemy(EntityBase):
         self.walk_particles_active = False
         self.target = target 
         self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target, True) 
-        print(self.waypoints)
+        self.__show_waypoints()
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
+
+    def __show_waypoints(self):
+        if not self.display_waypoint_info:
+            return
+        # no cleanup for hitboxes because they are children anyway
+        for node in self.waypoint_displays:
+            node.removeNode()
+
+        self.waypoint_displays = []
+
+        for pos in self.waypoints:
+            node = render.attachNewNode(f"waypoint_marker{pos[0]}{pos[1]}")
+            node.setPos(grid_pos_to_global((pos[0],pos[1])))
+                # setup hitboxes
+            hitbox = node.attachNewNode(CollisionNode(f"wp{pos[0]}:{pos[1]}"))
+            hitbox.show()
+            hitbox.node().addSolid(CollisionBox(Point3(-0.1,-0.1,0), 0.2, 0.2, 0.5))
+            self.waypoint_displays.append(node)
+            self.waypoint_hitboxes.append(hitbox)
+
 
     def __spawn_viewcone(self):
         # setup hitboxes
@@ -74,6 +95,7 @@ class Enemy(EntityBase):
                 else:
                     self.target = "B"
                 self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.get_central_pos()),self.target, True) 
+            self.__show_waypoints()
             next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
             self.desired_pos = Point3(
                 next_pos.x - self.model.getScale().x/2,

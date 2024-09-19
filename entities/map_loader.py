@@ -12,6 +12,8 @@ from entities.CuttingBoard import CuttingBoard
 from entities.ItemArea import ItemArea
 from entities.Fry import Fry
 from entities.pan import Pan
+from entities.IceMaker import IceMaker
+from entities.Pot import Pot
 
 def load_map(json_data):
     
@@ -131,7 +133,19 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Pan(actor))  
+            stations.append(Pan(actor))
+        elif name == "Pot":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam")
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(Pot(actor))
+        elif name == "IceMaker":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam",{"Close": "assets/models/MapObjects/"+name+"/"+name+"-Close.bam","Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(IceMaker(actor))  
             
             
         

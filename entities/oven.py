@@ -23,16 +23,25 @@ class Oven(Station):
             print("Yay Pizza")
             self.inventory = Dish(item.id,load_model(item.id))
             self.play_anim("Open")
-            player.set_holding(Dish("empty_plate",load_model("empty_plate")))
-            self.play_anim("Close")
-        elif item.id == "empty_plate":
+            self.task = taskMgr.do_method_later(1,self.close_door,"task",extraArgs = [player])
+        elif item.id == "empty_plate" and self.inventory.id == "unplated_pizza":
             player.set_holding(Ingredient("unplated_pizza",load_model("plated_pizza")))
+            self.play_anim("Close")
+            self.clean()
         
         
         else:
             #Error Sound
             print("I only eat pizza :()")
             
-            
-
-
+    def finish_bake(self,name):
+        self.inventory = Ingredient("unplated_pizza",load_model("plated_pizza"))
+        self.play_anim("Open")
+    def close_door(self,player):
+        self.play_anim("Close")
+        player.set_holding(Dish("empty_plate",load_model("empty_plate")))
+        self.task = taskMgr.do_method_later(self.duration,self.finish_bake,"task")
+    def clean(self):
+        self.inventory.model.removeNode()
+        self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
+                

@@ -20,7 +20,6 @@ def __find_closest_target_dist(pos, target):
     return dist
 
 def __optimize_waypoints(waypoints):
-    return waypoints
     if len(waypoints) < 3:
         return waypoints
     optimized = []

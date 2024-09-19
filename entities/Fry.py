@@ -21,9 +21,10 @@ class Fry(Station):
         
         if item.id == "chopped_potatoes":
             print("potatoes!!!")
-            #TODO
-            self.inventory = Ingredient("fries",load_model("fries"))
-            self.play_anim("Fry")
+            
+            
+            self.model.loop("Fry")
+            self.task = taskMgr.do_method_later(self.duration,self.fry,"task")
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
         elif (item.id == "empty_hands" or type(item) == Dish) and  self.inventory.id == "fries":
             player.set_holding(Ingredient("fries",load_model("fries")))
@@ -32,3 +33,7 @@ class Fry(Station):
         else:
             #Error Sound
             print("I only eat fries :()")
+            
+    def fry(self,name):
+        self.inventory = Ingredient("fries",load_model("fries"))
+        self.model.stop()
