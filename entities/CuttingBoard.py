@@ -38,7 +38,6 @@ class CuttingBoard(Station):
         #Cutting Stuff
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
-            #TODO: Wait
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
@@ -74,3 +73,7 @@ class CuttingBoard(Station):
         self.render()
         self.task = None
     
+    def stop_cut(self):
+        if self.task is not None:
+            taskMgr.remove(self.task)
+            self.model.stop()

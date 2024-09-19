@@ -13,6 +13,7 @@ from entities.item_base import ItemBase
 from helpers.math_helper import get_first_intersection, get_limited_rotation_target
 from helpers.model_helpers import load_particles, load_model
 from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global
+from entities.CuttingBoard import CuttingBoard
 
 
 class Player(EntityBase):
@@ -24,6 +25,7 @@ class Player(EntityBase):
         self.move_speed = MOVEMENT.PLAYER_MOVEMENT_SPEED
         self.movement_status = {"up": 0, "down": 0, "left": 0, "right": 0}
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
+        self.interacting_station = None
         
 
         # Keybinds for movement
@@ -65,11 +67,15 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
-        self.find_station().interact(self.holding,self)
+        self.interacting_station = self.find_station()
+        self.interacting_station.interact(self.holding,self)
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
     def unset_interact(self):
+        if type(self.interacting_station) == CuttingBoard:
+            self.interacting_station.stop_cut()
+        self.interacting_station = None
         return
         #print("Disabling interact.")
 
