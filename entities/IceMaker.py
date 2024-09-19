@@ -38,4 +38,5 @@ class IceMaker(Station):
     def finish_ice(self,name):
         self.inventory = "unplated_ice_cream"
         self.play_anim("Open")
+        self.task = None
                 

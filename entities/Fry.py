@@ -37,3 +37,4 @@ class Fry(Station):
     def fry(self,name):
         self.inventory = Ingredient("fries",load_model("fries"))
         self.model.stop()
+        self.task = None

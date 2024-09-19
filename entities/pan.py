@@ -51,3 +51,4 @@ class Pan(Station):
         self.clean()
         self.inventory = Ingredient("steak",load_model("steak"))
         self.render()
+        self.task = None
