@@ -1,8 +1,6 @@
-from direct.stdpy.threading import current_thread
 from constants.map import TARGETS
 import copy
 
-from entities.station import Station
 from helpers.pathfinding_helper import get_path_from_to_tile, get_path_from_to_tile_type, global_pos_to_grid
 class Step:
     name = None 
