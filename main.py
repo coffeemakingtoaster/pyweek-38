@@ -79,9 +79,9 @@ class main_game(ShowBase):
         alnp = render.attachNewNode(self.ambientLight)
         render.setLight(alnp)
         # Create a spotlight
-        self.slight = Spotlight('slight')
-        self.slight.setColor((4, 4, 4, 1))  # Set light color
-        self.slight.setShadowCaster(True, 4096, 4096)  # Enable shadow casting
+        slight = Spotlight('slight')
+        slight.setColor((4, 4, 4, 1))  # Set light color
+        slight.setShadowCaster(True, 4096*4, 4096*4)  # Enable shadow casting
 
         # Create a lens for the spotlight and set its field of view
         lens = PerspectiveLens()

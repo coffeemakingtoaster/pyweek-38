@@ -47,7 +47,8 @@ class Player(EntityBase):
         self.accept("e-up", self.unset_interact)
 
         self.model = Actor("assets/models/MapObjects/Player/Player.bam",
-                           {"Walk": "assets/models/MapObjects/Player/Player-Walk.bam"})
+                           {"Turn": "assets/models/MapObjects/Player/Player-Turn.bam",
+                            "TurnBack": "assets/models/MapObjects/Player/Player-TurnBack.bam"})
         self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
         self.model.reparentTo(render)
 
@@ -72,7 +73,9 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
-        self.find_station().interact(self.holding,self)
+        self.interacting_station = self.find_station()
+        self.interacting_station.interact(self.holding,self)
+        
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
@@ -84,6 +87,10 @@ class Player(EntityBase):
         # print("Disabling interact.")
 
     def sneako_mode(self):
+        if self.sneaking:
+            self.model.play("TurnBack")
+        else:
+            self.model.play("Turn")
         self.sneaking = not self.sneaking
         messenger.send(EVENT_NAMES.SNEAKING, [self.sneaking])
         print(self.sneaking)
@@ -123,7 +130,7 @@ class Player(EntityBase):
 
         for station in self.stations:
             if Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length() < lowest_distance:
-                lowest_distance = (station.model.getPos() - point).length()
+                lowest_distance = Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length()
                 closest_station = station
         
         print(closest_station.model.getPos())

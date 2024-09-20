@@ -16,12 +16,15 @@ class main_menu(ui_base):
         #TEXT_BOX_COLOR = (0.921, 0.776, 0.317, 1) # RGB: 235, 198, 81
         TEXT_BOX_COLOR = (1, 1, 1, 1) # RGB: 235, 198, 81
         
-        buttonImages = (
-            loader.loadTexture("assets/textures/button_bg.png"),
-            loader.loadTexture("assets/textures/button_bg.png"),
-            loader.loadTexture("assets/textures/button_bg.png"),
-            loader.loadTexture("assets/textures/button_bg.png")
-        )
+        #buttonImages = (
+        #    loader.loadTexture("assets/textures/button_bg.png"),
+        #    loader.loadTexture("assets/textures/button_bg.png"),
+        #    loader.loadTexture("assets/textures/button_bg.png"),
+        #    loader.loadTexture("assets/textures/button_bg.png")
+        #)
+
+        buttonImages = loader.loadTexture("assets/textures/button_bg.png"),
+
         
         self.ui_elements = []
         self.menu_elements = []
@@ -67,7 +70,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.start_game, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_ALTERNATE_COLOR),
+                    text_fg=(TEXT_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,
@@ -84,7 +87,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.open_settings, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_ALTERNATE_COLOR),
+                    text_fg=(TEXT_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,
@@ -101,7 +104,7 @@ class main_menu(ui_base):
                     scale=0.12, 
                     command=self.quit_game, 
                     relief=DGG.FLAT, 
-                    text_fg=(TEXT_ALTERNATE_COLOR),
+                    text_fg=(TEXT_COLOR),
                     text_font = self.font, 
                     #text_align = TextNode.ACenter, 
                     frameTexture = buttonImages,

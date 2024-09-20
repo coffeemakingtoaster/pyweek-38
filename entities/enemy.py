@@ -25,7 +25,7 @@ class Enemy(EntityBase):
         self.waypoint_displays = []
         self.waypoint_hitboxes = []
 
-        self.model = Actor("assets/models/MapObjects/Oven/Oven.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
+        self.model = Actor("assets/models/MapObjects/Enemy1/Enemy1.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
 
         self.model.reparentTo(render)
