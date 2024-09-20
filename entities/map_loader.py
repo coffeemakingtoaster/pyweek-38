@@ -52,7 +52,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
-            __add_collision_box(element=actor, dimension=LVector3(0.61,0.5,1),offset=Point3(0.6,0.3,0))
+            __add_collision_box(element=actor, dimension=LVector3(0.62,0.5,1))
             actor.reparentTo(render)
             stations.append(Plate_Station(actor))
         elif name == "Cheese_Station":
@@ -132,7 +132,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam",{"Fry": "assets/models/MapObjects/"+name+"/"+name+"-Fry.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
-            __add_collision_box(element=actor, dimension=LVector3(0.25,0.4,2), offset=Point3(0.2,0.3,0))
+            __add_collision_box(element=actor, dimension=LVector3(0.25,0.4,2))
             actor.reparentTo(render)
             stations.append(Fry(actor))
         elif name == "Pan":
