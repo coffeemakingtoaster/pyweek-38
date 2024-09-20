@@ -119,7 +119,7 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,TARGETS.CHILI_STATION,"Chili_Station","Chili"))
+            stations.append(Food_Station(actor,TARGETS.CHILI_STATION,"Chili"))
             
         elif name == "Trash":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})

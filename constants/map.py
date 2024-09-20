@@ -29,6 +29,7 @@ class TARGETS:
     SALAD_STATION = "Salad Station"
     COUNTERTOP = "Countertop"
     STORAGE_DOOR = "Storage Door"
+    CHILI_STATION = "Chili Station"
 
 TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
     TARGETS.OVEN:  True,
@@ -43,7 +44,7 @@ TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
 PATHFINDING_MAP = [
 ["#"]*MAP_DIMENSIONS[1],
 ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', TARGETS.POTATO_STATION, TARGETS.POTATO_STATION, TARGETS.TOMATO_STATION, TARGETS.TOMATO_STATION, ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', TARGETS.FRY, ' ', TARGETS.FRY, TARGETS.POT, TARGETS.PAN, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.POT, TARGETS.PAN, ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.CHEESE_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', TARGETS.FRY, ' ', TARGETS.FRY, TARGETS.POT, TARGETS.PAN, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.POT, TARGETS.PAN, ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.CHILI_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.ONION_STATION, '#'],
 ['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', TARGETS.TRASH, '#', ' ', ' ', ' ', ' ', ' ', '#'],
