@@ -9,6 +9,7 @@ from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 
+
 class CuttingBoard(Station):
     def __init__(self,actor):
         self.id = TARGETS.CUTTING_BOARD
@@ -79,3 +80,12 @@ class CuttingBoard(Station):
             print("Hey")
             taskMgr.remove(self.task)
             self.model.stop()
+            
+    def swap(self,item,player):
+        c_item = copy.deepcopy(item)
+        c_inv = copy.deepcopy(self.inventory)
+        c_inv.apply_effects()
+        self.clean()
+        player.hardset(c_inv)
+        self.inventory = c_item
+        self.render()

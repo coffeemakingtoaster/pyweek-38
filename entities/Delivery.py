@@ -8,6 +8,7 @@ from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.salt import Salt
+import copy
 
 class Delivery(Station):
     def __init__(self,actor):
@@ -24,9 +25,10 @@ class Delivery(Station):
         
         
         if self.inventory.id == "empty_hands" and type(item) == Dish and item.finished:
+            c_item = copy.deepcopy(item)
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
             self.clean()
-            self.inventory = type(item)(item.id,load_model(item.id))
+            self.inventory = c_item
             self.render()
         elif type(self.inventory) == Dish and item.id =="Salt":
             

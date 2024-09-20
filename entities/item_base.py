@@ -10,3 +10,6 @@ class ItemBase(EntityBase):
 
         self.id = id
         self.model = model
+        
+    def apply_effects(self):
+        return

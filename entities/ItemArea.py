@@ -9,6 +9,9 @@ from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.salt import Salt
+from direct.particles.ParticleEffect import ParticleEffect
+import copy
+
 
 class ItemArea(Station):
     def __init__(self,actor):
@@ -25,27 +28,30 @@ class ItemArea(Station):
     def interact(self,item,player):
         
         
+        
         if type(self.inventory) == Dish and item.id =="Salt":
             
             
             if not player.sneaking and not self.inventory.badSalt:
                 self.inventory.goodSalt = True
+                
             elif not player.sneaking:
                 self.inventory.badSalt = True
+                
+            self.inventory.apply_effects()
                 
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:
             self.inventory.spice = True
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+            self.inventory.apply_effects()
             
         elif type(self.inventory) == Dish and type(item) == Ingredient:
             if self.inventory.add_ingredient(item.id):
                 self.inventory.model.reparentTo(self.model)
+                self.inventory.apply_effects()
                 player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
             else:
-                player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
-                self.clean()
-                self.inventory = type(item)(item.id,load_model(item.id))
-                self.render()
+                self.swap(item,player)
                 return True
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
@@ -53,17 +59,10 @@ class ItemArea(Station):
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()
             else:
-                player.hardset(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
-                self.clean()
-                self.inventory = type(item)(item.id,load_model(item.id))
-                self.render()
+                self.swap(item,player)
                 
         else:
-            
-            player.hardset(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
-            self.clean()
-            self.inventory = type(item)(item.id,load_model(item.id))
-            self.render()
+            self.swap(item,player)
             return True
     
     
@@ -78,3 +77,11 @@ class ItemArea(Station):
     def clean(self):
         self.inventory.model.removeNode()
     
+    def swap(self,item,player):
+        c_item = copy.deepcopy(item)
+        c_inv = copy.deepcopy(self.inventory)
+        c_inv.apply_effects()
+        self.clean()
+        player.hardset(c_inv)
+        self.inventory = c_item
+        self.render()

@@ -25,9 +25,7 @@ def add_ingredient(dish, ingredient):
                 case "unplated_soup":
                     transform("plated_soup", dish,True)
                     return True
-                case "unplated_pizza":
-                    transform("plated_pizza", dish,False)
-                    return True
+                
                 
 
 
@@ -73,6 +71,11 @@ def add_ingredient(dish, ingredient):
             match ingredient:
                 case "chopped_cheese":
                     transform("raw_pizza", dish,False)
+                    return True
+        case "raw_pizza":
+            match ingredient:
+                case "unplated_pizza":
+                    transform("plated_pizza", dish,True)
                     return True
     return False
 
