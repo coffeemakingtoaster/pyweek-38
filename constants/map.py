@@ -38,9 +38,9 @@ for i in range(len(PATHFINDING_MAP)):
 MODEL_COLLISION_DIMENSION_LOOKUP = {
     "Cabinet": LVector3(0.5,0.5,1),
     "Storage_Large_Metal": LVector3(1.2,0.3,1),
-    "Countertop": LVector3(0.35,0.35,1),
-    "Countertop_Medium": LVector3(0.9,0.3,1),
-    "Countertop_Large":  LVector3(1.75,0.3,1),
+    "Countertop": LVector3(0.35,0.36,1),
+    "Countertop_Medium": LVector3(0.9,0.36,1),
+    "Countertop_Large":  LVector3(1.75,0.36,1),
     "Stove": LVector3(0.51,0.35,1),
     "Storage_Medium": LVector3(0.4,1.1,1),
     "Storage_Large": LVector3(1.3,0.4,1),
