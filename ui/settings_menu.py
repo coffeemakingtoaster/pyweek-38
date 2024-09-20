@@ -27,7 +27,6 @@ class settings_menu(ui_base):
 
         self.font = loader.loadFont("assets/fonts/NewAmsterdam-Regular.ttf")
 
-        self.ui_elements = []
         self.menu_elements = []
 
         menu_box = DirectFrame(
