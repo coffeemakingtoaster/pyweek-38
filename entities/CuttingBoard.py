@@ -74,6 +74,8 @@ class CuttingBoard(Station):
         self.task = None
     
     def stop_cut(self):
+        print("Ho")
         if self.task is not None:
+            print("Hey")
             taskMgr.remove(self.task)
             self.model.stop()

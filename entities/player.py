@@ -72,7 +72,8 @@ class Player(EntityBase):
         self.movement_status[direction] = 0
 
     def set_interact(self):
-        self.find_station().interact(self.holding,self)
+        self.interacting_station = self.find_station()
+        self.interacting_station.interact(self.holding,self)
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
@@ -123,7 +124,7 @@ class Player(EntityBase):
 
         for station in self.stations:
             if Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length() < lowest_distance:
-                lowest_distance = (station.model.getPos() - point).length()
+                lowest_distance = Vec3(station.model.getX() - point.x,station.model.getY() - point.y,0).length()
                 closest_station = station
         
         print(closest_station.model.getPos())
