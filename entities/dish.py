@@ -13,6 +13,8 @@ class Dish(ItemBase):
         self.badSalt = False
         self.spiced = False
         self.burned = False
+        self.saltEffect = None
+        self.spiceEffect = None
         
         
             
@@ -21,8 +23,19 @@ class Dish(ItemBase):
         return add_ingredient(self, ingredient)
     
     def apply_effects(self):
+        print("Salt")
         if self.goodSalt:
-            saltEffect = ParticleEffect()
-            saltEffect.loadConfig("assets/particles/salt/salt.ptf")
-            saltEffect.start(self.model,self.model)
+           
+            self.saltEffect = ParticleEffect()
+            
+            self.saltEffect.loadConfig("assets/particles/salt/salt.ptf")
+            self.saltEffect.start(self.model, self.model)
+            print("Hush")
+
+        if self.badSalt:
+            print("bad salt")
+            
+            self.saltEffect = ParticleEffect()
+            self.saltEffect.loadConfig("assets/particles/salt/bad_salt.ptf")
+            self.saltEffect.start(self.model, self.model)
         

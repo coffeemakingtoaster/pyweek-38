@@ -35,7 +35,7 @@ class ItemArea(Station):
             if not player.sneaking and not self.inventory.badSalt:
                 self.inventory.goodSalt = True
                 
-            elif not player.sneaking:
+            elif player.sneaking:
                 self.inventory.badSalt = True
                 
             self.inventory.apply_effects()
