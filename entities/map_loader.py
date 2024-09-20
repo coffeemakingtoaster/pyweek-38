@@ -16,6 +16,9 @@ from entities.Fry import Fry
 from entities.pan import Pan
 from entities.IceMaker import IceMaker
 from entities.Pot import Pot
+from entities.Delivery import Delivery
+from entities.salt import Salt
+from helpers.model_helpers import load_model
 
 # dummy notifier. This is just needed as a param and doesnt actually do anythin :)
 __notifier = CollisionHandlerEvent()
@@ -25,13 +28,14 @@ def load_map(json_data):
     models = []
     lights = []
     stations = []
+    has_loaded_salt = False
 
     for obj in objects:
         name = obj["name"]
         position = obj["position"]
         rotation = obj["rotation"]
         
-        if name == "Dffot":
+        if name == "Dot":
             slight = Spotlight('slight')
             slight.setColor((2, 2, 1, 0))
             lens = PerspectiveLens()
@@ -109,6 +113,12 @@ def load_map(json_data):
             actor.setH(rotation)
             actor.reparentTo(render)
             stations.append(Food_Station(actor,"Tomato_Station","tomato"))
+        elif name == "Chili_Station":
+            actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(Food_Station(actor,"Chili_Station","Chili"))
         elif name == "Trash":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
@@ -127,7 +137,15 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(ItemArea(actor))  
+            if not has_loaded_salt:
+                station = ItemArea(actor)
+                
+                station.inventory = Salt("Salt",load_model("Salt"))
+                station.render()
+                stations.append(station)
+                has_loaded_salt = True
+            else: 
+                stations.append(ItemArea(actor))  
         elif name == "Fry":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam",{"Fry": "assets/models/MapObjects/"+name+"/"+name+"-Fry.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
@@ -167,7 +185,13 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(IceMaker(actor))  
+            stations.append(IceMaker(actor))
+        elif name == "DeliveryArea":
+            actor = Actor("assets/models/empty_hands/empty_hands.bam")
+            actor.setPos(position["x"],position["y"],position["z"])
+            actor.setH(rotation)
+            actor.reparentTo(render)
+            stations.append(Delivery(actor))  
             
         else:
         # Create a model instance for each object and add it to the list

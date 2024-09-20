@@ -7,9 +7,10 @@ class Dish(ItemBase):
         super().__init__(id, model)
 
         self.finished = False
-        self.salted = 0.0
-        self.spiced = 0.0
-        self.bad_dish = False
+        self.goodSalt = False
+        self.badSalt = False
+        self.spiced = False
+        self.burned = False
 
     def add_ingredient(self, ingredient):
         return add_ingredient(self, ingredient)

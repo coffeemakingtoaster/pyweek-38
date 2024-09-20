@@ -92,38 +92,40 @@ class Mapper(EntityBase):
         self.model.setH(self.model.getH() + 45)
         
     def next(self):
-        
+        modelPos = Vec3(self.model.getX(),self.model.getY(),self.model.getZ())
         self.model.removeNode()
         self.current_model_index += 1
         if self.current_model_index >= len(self.models):
             self.current_model_index = 0
         self.model = load_mapObj(self.models[self.current_model_index])
-        self.model.setPos(0, 0, 0)
+        self.model.setPos(modelPos)
         self.model.reparentTo(render)
     
     def back(self):
-        
+        modelPos = Vec3(self.model.getX(),self.model.getY(),self.model.getZ())
         self.model.removeNode()
         self.current_model_index += -1
         if self.current_model_index <= 0:
             self.current_model_index = len(self.models)-1
         self.model = load_mapObj(self.models[self.current_model_index])
-        self.model.setPos(0, 0, 0)
+        self.model.setPos(modelPos)
         self.model.reparentTo(render)
     
     def save_and_next(self):
+        modelPos = Vec3(self.model.getX(),self.model.getY(),self.model.getZ())
         self.save_model_data()
         self.current_model_index += 1
         if self.current_model_index >= len(self.models):
             self.current_model_index = 0
         self.model = load_mapObj(self.models[self.current_model_index])
-        self.model.setPos(0, 0, 0)
+        self.model.setPos(modelPos)
         self.model.reparentTo(render)
     
     def save_and_more(self):
+        modelPos = Vec3(self.model.getX(),self.model.getY(),self.model.getZ())
         self.save_model_data()
         self.model = load_mapObj(self.models[self.current_model_index])
-        self.model.setPos(0, 0, 0)
+        self.model.setPos(modelPos)
         self.model.reparentTo(render)
         
     #def save_and_more(self):

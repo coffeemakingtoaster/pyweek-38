@@ -202,7 +202,7 @@ class main_game(ShowBase):
     def change_light(self, sneak):
         if sneak:
             self.slight.setColor((25, 3, 3, 1))  # Set Red
-            self.ambientLight.setColor((1, 0.3, 0.3, 8))
+            self.ambientLight.setColor((0.7, 0, 0, 2))
 
         elif not sneak:
             self.slight.setColor((4, 4, 4, 1))  # Set Normal

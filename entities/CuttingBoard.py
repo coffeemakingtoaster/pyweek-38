@@ -15,8 +15,8 @@ class CuttingBoard(Station):
         self.duration = 2
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
-        self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion"]
-        self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion"]
+        self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion","Chili"]
+        self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion","chopped_chili"]
         super().__init__(self.id,actor)
     
     def interact(self,item,player):

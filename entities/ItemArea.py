@@ -7,17 +7,35 @@ from entities.dish import Dish
 from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
+from entities.salt import Salt
 
 class ItemArea(Station):
     def __init__(self,actor):
         self.id = "ItemArea"
+        super().__init__(self.id,actor)
+        
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
-        super().__init__(self.id,actor)
+        
+        self.render()
+        
     
     def interact(self,item,player):
         
-        if type(self.inventory) == Dish and type(item) == Ingredient:
+        
+        if type(self.inventory) == Dish and item.id =="Salt":
+            
+            
+            if not player.sneaking and not self.inventory.badSalt:
+                self.inventory.goodSalt = True
+            elif not player.sneaking:
+                self.inventory.badSalt = True
+                
+        elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:
+            self.inventory.spice = True
+            player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+            
+        elif type(self.inventory) == Dish and type(item) == Ingredient:
             if self.inventory.add_ingredient(item.id):
                 self.inventory.model.reparentTo(self.model)
                 player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
@@ -39,8 +57,8 @@ class ItemArea(Station):
                 self.render()
                 
         else:
-            print("Hello Edgecase")
-            player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
+            
+            player.hardset(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
             self.clean()
             self.inventory = type(item)(item.id,load_model(item.id))
             self.render()

@@ -88,6 +88,7 @@ class Player(EntityBase):
 
     def sneako_mode(self):
         if self.sneaking:
+            print(self.model)
             self.model.play("TurnBack")
         else:
             self.model.play("Turn")

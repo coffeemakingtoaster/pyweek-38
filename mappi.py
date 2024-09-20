@@ -35,7 +35,7 @@ class main_game(ShowBase):
         self.mapper = None
         
         # random coords
-        base.cam.setPos(0, -13, 13)
+        base.cam.setPos(3, -15, 15)
         # Assumption: Player is spawned at 0,0,0
         # Simplest way to ensure we look at the player is by using quaterions
         # This allows us to move the camera without having to recalculate the hpr ourselves :)
