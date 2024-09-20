@@ -27,6 +27,7 @@ class Oven(Station):
             self.task = taskMgr.do_method_later(1,self.close_door,"task",extraArgs = [player])
         elif item.id == "empty_hands" and self.inventory.id == "plated_pizza":
             player.set_holding(copy.deepCopy(self.inventory))
+            player.holding.apply_effects()
             self.play_anim("Close")
             self.clean()
         

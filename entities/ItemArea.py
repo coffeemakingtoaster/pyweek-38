@@ -55,6 +55,7 @@ class ItemArea(Station):
                 return True
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
+                player.holding.apply_effects()
                 self.clean()
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()

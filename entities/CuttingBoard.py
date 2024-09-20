@@ -42,15 +42,13 @@ class CuttingBoard(Station):
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
+                player.holding.apply_effects()
                 self.clean()
                 self.inventory=(ItemBase("empty_hands", load_model("empty_hands")))
                 self.render()
         
         elif item.id in self.cuttables:
-            player.set_holding(type(self.inventory)(self.inventory.id,load_model(self.inventory.id)))
-            self.clean()
-            self.inventory = type(item)(item.id,load_model(item.id))
-            self.render()
+            self.swap(item,player)
             return True    
             
         return False
