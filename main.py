@@ -40,7 +40,8 @@ class main_game(ShowBase):
         self.enemy = None
         self.player = None
         self.enemies = []
-
+        self.slight = None
+        self.ambientLight = None
         self.map_models = []
         self.map_lights = []
         self.map_stations = []
@@ -61,7 +62,7 @@ class main_game(ShowBase):
 
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
-
+        self.accept(EVENT_NAMES.SNEAKING, self.change_light)
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
         self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9, 0.9), scale=0.07, fg=(255, 0, 0, 1))
@@ -73,26 +74,26 @@ class main_game(ShowBase):
 
         self.goto_main_menu()
 
-        ambientLight = AmbientLight("ambientLight")
-        ambientLight.setColor((.5, .5, .5, 1))
-        alnp = render.attachNewNode(ambientLight)
+        self.ambientLight = AmbientLight("ambientLight")
+        self.ambientLight.setColor((.5, .5, .5, 1))
+        alnp = render.attachNewNode(self.ambientLight)
         render.setLight(alnp)
         # Create a spotlight
-        slight = Spotlight('slight')
-        slight.setColor((4, 4, 4, 1))  # Set light color
-        slight.setShadowCaster(True, 4096*4, 4096*4)  # Enable shadow casting
+        self.slight = Spotlight('slight')
+        self.slight.setColor((4, 4, 4, 1))  # Set light color
+        self.slight.setShadowCaster(True, 4096*4, 4096*4)  # Enable shadow casting
 
         # Create a lens for the spotlight and set its field of view
         lens = PerspectiveLens()
         lens.setFov(120)  # Field of view angle (degree)
-        slight.setLens(lens)
-       
+        self.slight.setLens(lens)
+
         # Attach the spotlight to a NodePath
-        slnp = self.render.attachNewNode(slight)
+        slnp = self.render.attachNewNode(self.slight)
 
         # Position and rotate the spotlight
         slnp.setPos(0, 17, 17)  # Position the spotlight
-        slnp.setHpr(0,-135,0)   # Make the spotlight point at the model
+        slnp.setHpr(0, -135, 0)  # Make the spotlight point at the model
 
         # Attach the spotlight to the scene
         self.render.setLight(slnp)
@@ -133,7 +134,7 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
-        self.enemies = [Enemy(3, 3,"B")]
+        self.enemies = [Enemy(3, 3, "B")]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 
@@ -197,6 +198,15 @@ class main_game(ShowBase):
             self.active_ui.destroy()
             lock_mouse_in_window()
             self.set_game_status(GAME_STATUS.RUNNING)
+
+    def change_light(self, sneak):
+        if sneak:
+            self.slight.setColor((25, 3, 3, 1))  # Set Red
+            self.ambientLight.setColor((1, 0.3, 0.3, 8))
+
+        elif not sneak:
+            self.slight.setColor((4, 4, 4, 1))  # Set Normal
+            self.ambientLight.setColor((.5, .5, .5, 1))
 
 
 def start_game():

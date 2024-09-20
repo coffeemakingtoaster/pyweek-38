@@ -14,8 +14,9 @@ import uuid
 
 from helpers.pathfinding_helper import get_path_from_to_tile_type, global_pos_to_grid, grid_pos_to_global
 
+
 class Enemy(EntityBase):
-    def __init__(self, spawn_x, spawn_y, target = "A", display_waypoint_info=False):
+    def __init__(self, spawn_x, spawn_y, target="A", display_waypoint_info=False):
         super().__init__()
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
@@ -31,12 +32,14 @@ class Enemy(EntityBase):
         self.__spawn_viewcone()
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
-        self.target = target 
-        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.target) 
+        self.target = target
+        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()), self.target)
         self.__show_waypoints()
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
         self.accept(EVENT_NAMES.SNEAKING, self.__hide_viewcone)
 
+    # TODO: Revisit the viewcone/hitbox;
+    #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
     def __hide_viewcone(self, sneak):
         if sneak:
             self.viewcone.unstash()
@@ -54,14 +57,13 @@ class Enemy(EntityBase):
 
         for pos in self.waypoints:
             node = render.attachNewNode(f"waypoint_marker{pos[0]}{pos[1]}")
-            node.setPos(grid_pos_to_global((pos[0],pos[1])))
-                # setup hitboxes
+            node.setPos(grid_pos_to_global((pos[0], pos[1])))
+            # setup hitboxes
             hitbox = node.attachNewNode(CollisionNode(f"wp{pos[0]}:{pos[1]}"))
             hitbox.show()
-            hitbox.node().addSolid(CollisionBox(Point3(-0.1,-0.1,0), 0.2, 0.2, 0.5))
+            hitbox.node().addSolid(CollisionBox(Point3(-0.1, -0.1, 0), 0.2, 0.2, 0.5))
             self.waypoint_displays.append(node)
             self.waypoint_hitboxes.append(hitbox)
-
 
     def __spawn_viewcone(self):
         # setup hitboxes
@@ -90,7 +92,8 @@ class Enemy(EntityBase):
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
         current_pos = self.model.getPos()
-        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y, current_pos.z - self.desired_pos.z)
+        delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y,
+                            current_pos.z - self.desired_pos.z)
         normalized = Point2(delta_to_end.x, delta_to_end.y).normalized()
 
         x_direction = normalized.x * self.move_speed * dt
@@ -104,17 +107,17 @@ class Enemy(EntityBase):
                     self.target = "A"
                 else:
                     self.target = "B"
-                self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.get_central_pos()),self.target) 
+                self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.get_central_pos()), self.target)
             self.__show_waypoints()
-            next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
+            next_pos = grid_pos_to_global(self.waypoints.pop(0))
             self.desired_pos = Point3(
-                next_pos.x - self.model.getScale().x/2,
-                next_pos.y - self.model.getScale().y/2,
+                next_pos.x - self.model.getScale().x / 2,
+                next_pos.y - self.model.getScale().y / 2,
                 next_pos.z
             )
 
         if delta_to_end.length() > 3:
-            target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y)) 
+            target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y))
 
             self.model.setH(
                 get_limited_rotation_target(
@@ -129,8 +132,8 @@ class Enemy(EntityBase):
 
     def get_central_pos(self):
         return Point3(
-            self.model.getPos().x + self.model.getScale().x/2,
-            self.model.getPos().y + self.model.getScale().y/2,
+            self.model.getPos().x + self.model.getScale().x / 2,
+            self.model.getPos().y + self.model.getScale().y / 2,
             self.model.getPos().z
         )
 
