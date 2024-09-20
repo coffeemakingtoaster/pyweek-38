@@ -23,14 +23,15 @@ class PathfinderVisualizer(DirectObject):
             for j in range(len(PATHFINDING_MAP[0])):
 
                 height = 1
-                if PATHFINDING_MAP[i][j] == "#":
+                if PATHFINDING_MAP[i][j] == "#" or PATHFINDING_MAP[i][j] == " ":
                     continue
 
                 node = self.parent.attachNewNode(f"{i};{j}")
                 node.setPos(grid_pos_to_global((i,j)))
-                # setup hitboxes
+                                # setup hitboxes
                 hitbox = node.attachNewNode(CollisionNode(f"hb{i}:{j}"))
                 hitbox.show()
+                hitbox.setCollideMask(0)
                 hitbox.node().addSolid(CollisionBox(Point3(0,0,0), TILE_SIZE_X, TILE_SIZE_Y, height))
                 self.nodes.append(node)
                 self.hitboxes.append(hitbox)

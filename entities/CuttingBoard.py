@@ -2,6 +2,7 @@ from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
 import math
+from constants.map import TARGETS
 from entities.station import Station
 from entities.dish import Dish
 from helpers.model_helpers import load_model
@@ -10,7 +11,7 @@ from entities.ingredient import Ingredient
 
 class CuttingBoard(Station):
     def __init__(self,actor):
-        self.id = "CuttingBoard"
+        self.id = TARGETS.CUTTING_BOARD
         
         self.duration = 2
         
@@ -21,7 +22,6 @@ class CuttingBoard(Station):
     
     def interact(self,item,player):
         print(item.id)
-        
         
         #Picking Up Stuff from board
         if item.id == "empty_hands" and self.inventory.id in self.cuts:

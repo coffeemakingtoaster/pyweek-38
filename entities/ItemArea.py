@@ -2,6 +2,7 @@ from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
 import math
+from constants.map import TARGETS
 from entities.station import Station
 from entities.dish import Dish
 from helpers.model_helpers import load_model
@@ -11,8 +12,9 @@ from entities.salt import Salt
 
 class ItemArea(Station):
     def __init__(self,actor):
-        self.id = "ItemArea"
+        self.id = TARGETS.COUNTERTOP
         super().__init__(self.id,actor)
+        
         
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))

@@ -1,13 +1,18 @@
 from panda3d.core import *
 
+from collections import defaultdict
+
 from direct.showbase.ShowBase import ShowBase
 
 from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
 
+from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
+from handler.station_handler import StationHandler
+from handler.usage_handler import UsageHandler
 from helpers.config import load_config
 from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
@@ -25,7 +30,6 @@ import json
 from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
-
 
 class main_game(ShowBase):
     def __init__(self):
@@ -45,6 +49,7 @@ class main_game(ShowBase):
         self.map_models = []
         self.map_lights = []
         self.map_stations = []
+        self.stations_handler = None
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -101,7 +106,11 @@ class main_game(ShowBase):
         # Enable shader generation to receive shadows
         self.render.setShaderAuto()
 
+        base.usage_handler = UsageHandler()
+
         load_config('./user_settings.json')
+
+        display_pathfinding_test()
 
     def game_loop(self, task):
         # Runtime check. DO NOT PUT ANY GAMELOGIC BEFORE THIS
@@ -113,7 +122,7 @@ class main_game(ShowBase):
         if self.game_status != GAME_STATUS.RUNNING:
             return Task.cont
 
-            # use dt for update functions
+        # use dt for update functions
         dt = self.clock.dt
 
         for enemy in self.enemies:
@@ -129,23 +138,23 @@ class main_game(ShowBase):
 
         self.load_game()
 
-        # print(self.map_stations)
-
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
-        self.enemies = [Enemy(3, 3, "B")]
+        self.enemies = [Enemy(3, 3, station_handler=self.stations_handler, display_waypoint_info=True)]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
-        # self.visualizer = PathfinderVisualizer()
+        #self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
             data = json.load(file)
 
         self.map_models, self.map_lights, self.map_stations = load_map(data)
+        self.stations_handler = StationHandler(self.map_stations)
+        base.usage_handler.set_station_handler(self.stations_handler)
 
     def set_game_status(self, status):
         self.status_display["text"] = status
@@ -214,11 +223,8 @@ def start_game():
     game = main_game()
     game.run()
 
-
 def display_pathfinding_test():
-    print(get_path_from_to_tile_type((4, 5), 'A', True))
-
+    print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, debug_print=True))
 
 if __name__ == "__main__":
-    display_pathfinding_test()
     start_game()
