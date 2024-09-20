@@ -1,9 +1,10 @@
+from constants.map import TARGETS
 from entities.station import Station
 
 
 class StorageDoor(Station):
     def __init__(self, actor):
-        self.name = "storage_door"
+        self.name = TARGETS.STORAGE_DOOR
         super().__init__(self.name, actor)
 
         self.open = False

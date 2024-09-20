@@ -9,21 +9,52 @@ MAP_DIMENSIONS = (16,28)
 MAP_COORD_BOUNDS_X = (-5.5,6)
 MAP_COORD_BOUNDS_Y = (1.5,-5.2)
 
+class TARGETS:
+    OVEN = "Oven"
+    FRY = "Fry"
+    POT = "Pot"
+    PAN = "Pan"
+    CUTTING_BOARD = "Cutting Board"
+    TRASH = "Trash"
+    WASHER = "Washer"
+    ICEMAKER = "Icemaker"
+    POTATO_STATION = "Potato Station"
+    TOMATO_STATION = "Tomato Station"
+    CHEESE_STATION = "Cheese Station"
+    ONION_STATION = "Onion Station"
+    ICE_STATION = "Ice Station"
+    STEAK_STATION = "Steak Station"
+    DOUGH_STATION = "Dough Station"
+    CHOCOLATE_STATION = "Chocolate Station"
+    SALAD_STATION = "Salad Station"
+    COUNTERTOP = "Countertop"
+    STORAGE_DOOR = "Storage Door"
+
+TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
+    TARGETS.OVEN:  True,
+    TARGETS.FRY: True,
+    TARGETS.POT: True,
+    TARGETS.CUTTING_BOARD: True,
+    TARGETS.COUNTERTOP: True,
+    TARGETS.ICEMAKER: True,
+    TARGETS.PAN: True,
+})
+
 PATHFINDING_MAP = [
 ["#"]*MAP_DIMENSIONS[1],
+['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', TARGETS.POTATO_STATION, TARGETS.POTATO_STATION, TARGETS.TOMATO_STATION, TARGETS.TOMATO_STATION, ' ', '#'],
+['#', ' ', ' ', ' ', ' ', ' ', TARGETS.FRY, ' ', TARGETS.FRY, TARGETS.POT, TARGETS.PAN, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.POT, TARGETS.PAN, ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.CHEESE_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', '#', 'B', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', '#', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
+['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.ONION_STATION, '#'],
+['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', TARGETS.TRASH, '#', ' ', ' ', ' ', ' ', ' ', '#'],
+['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', 'A', '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.ICE_STATION, ' ', TARGETS.STEAK_STATION, ' ', '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.DOUGH_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.CUTTING_BOARD, TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.WASHER, ' ', ' ', TARGETS.WASHER, ' ', ' ', TARGETS.ICEMAKER, ' ', ' ', ' ', '#', TARGETS.CHOCOLATE_STATION, ' ', TARGETS.CHEESE_STATION, ' ', '#'],
 ["#"]*MAP_DIMENSIONS[1],
 ]
 
@@ -32,8 +63,12 @@ PATHFINDING_MAP = [
 TARGET_MAP = defaultdict(lambda: [])
 for i in range(len(PATHFINDING_MAP)):
     for j in range(len(PATHFINDING_MAP[i])):
-        if PATHFINDING_MAP[i][j] in ['A', 'B']:
+        if PATHFINDING_MAP[i][j] in [" ","#"]:
+            continue
+        try:
             TARGET_MAP[PATHFINDING_MAP[i][j]].append((i,j))
+        except:
+            pass
 
 MODEL_COLLISION_DIMENSION_LOOKUP = {
     "Cabinet": LVector3(0.5,0.5,1),

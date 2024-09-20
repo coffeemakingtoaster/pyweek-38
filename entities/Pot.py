@@ -1,7 +1,6 @@
 from direct.actor.Actor import Actor
-from panda3d.core import Vec3
 
-import math
+from constants.map import TARGETS
 from entities.station import Station
 from entities.item_base import ItemBase
 from entities.dish import Dish
@@ -9,8 +8,8 @@ from entities.ingredient import Ingredient
 from helpers.model_helpers import load_model
 
 class Pot(Station):
-    def __init__(self,actor):
-        self.id = "IceMaker"
+    def __init__(self,actor: Actor):
+        self.id = TARGETS.POT 
         self.duration = 10
         
         self.inventory = []

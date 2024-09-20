@@ -6,3 +6,4 @@ class EVENT_NAMES:
     GOTO_SETTINGS_MENU = "goto_settings_menu"
     DISPLAY_REVIEW = "display_review"
     SNEAKING = "sneaking"
+    RECALCULATE_WAYPOINTS = "update_waypoints"

@@ -1,3 +1,4 @@
+from constants.map import TARGETS
 from entities.station import Station
 from entities.item_base import ItemBase
 from entities.dish import Dish
@@ -6,7 +7,7 @@ from helpers.model_helpers import load_model
 
 class Pan(Station):
     def __init__(self,actor):
-        self.id = "Pan"
+        self.id = TARGETS.PAN 
         self.duration = 5
         
         
