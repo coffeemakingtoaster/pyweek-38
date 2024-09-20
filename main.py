@@ -80,13 +80,13 @@ class main_game(ShowBase):
         # Create a spotlight
         slight = Spotlight('slight')
         slight.setColor((4, 4, 4, 1))  # Set light color
-        slight.setShadowCaster(True, 4096, 4096)  # Enable shadow casting
+        slight.setShadowCaster(True, 4096*4, 4096*4)  # Enable shadow casting
 
         # Create a lens for the spotlight and set its field of view
         lens = PerspectiveLens()
         lens.setFov(120)  # Field of view angle (degree)
         slight.setLens(lens)
-
+       
         # Attach the spotlight to a NodePath
         slnp = self.render.attachNewNode(slight)
 

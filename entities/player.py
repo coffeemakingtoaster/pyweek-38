@@ -47,7 +47,8 @@ class Player(EntityBase):
         self.accept("e-up", self.unset_interact)
 
         self.model = Actor("assets/models/MapObjects/Player/Player.bam",
-                           {"Walk": "assets/models/MapObjects/Player/Player-Walk.bam"})
+                           {"Turn": "assets/models/MapObjects/Player/Player-Turn.bam",
+                            "TurnBack": "assets/models/MapObjects/Player/Player-TurnBack.bam"})
         self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
         self.model.reparentTo(render)
 
@@ -74,6 +75,7 @@ class Player(EntityBase):
     def set_interact(self):
         self.interacting_station = self.find_station()
         self.interacting_station.interact(self.holding,self)
+        
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
@@ -85,6 +87,10 @@ class Player(EntityBase):
         # print("Disabling interact.")
 
     def sneako_mode(self):
+        if self.sneaking:
+            self.model.play("TurnBack")
+        else:
+            self.model.play("Turn")
         self.sneaking = not self.sneaking
         messenger.send(EVENT_NAMES.SNEAKING, [self.sneaking])
         print(self.sneaking)
