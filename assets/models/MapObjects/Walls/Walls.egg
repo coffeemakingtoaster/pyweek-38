@@ -23,7 +23,7 @@
   <Scalar> local { 1 }
 }
 
-<Material> "White Wood" {
+<Material> Metal {
   <Scalar> baser { 0.800000011920929 }
   <Scalar> baseg { 0.800000011920929 }
   <Scalar> baseb { 0.800000011920929 }
@@ -42,7 +42,7 @@
   <Scalar> speca { 1.0 }
   <Scalar> shininess { 0.5 }
   <Scalar> roughness { 0.5 }
-  <Scalar> metallic { 0.0 }
+  <Scalar> metallic { 0.9896373152732849 }
   <Scalar> ior { 1.4500000476837158 }
   <Scalar> local { 1 }
 }
@@ -95,7 +95,7 @@
   <Scalar> local { 1 }
 }
 
-<Material> Metal {
+<Material> "White Wood" {
   <Scalar> baser { 0.800000011920929 }
   <Scalar> baseg { 0.800000011920929 }
   <Scalar> baseb { 0.800000011920929 }
@@ -114,7 +114,7 @@
   <Scalar> speca { 1.0 }
   <Scalar> shininess { 0.5 }
   <Scalar> roughness { 0.5 }
-  <Scalar> metallic { 0.9896373152732849 }
+  <Scalar> metallic { 0.0 }
   <Scalar> ior { 1.4500000476837158 }
   <Scalar> local { 1 }
 }
