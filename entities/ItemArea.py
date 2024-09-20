@@ -2,6 +2,7 @@ from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
 import math
+from constants.map import TARGETS
 from entities.station import Station
 from entities.dish import Dish
 from helpers.model_helpers import load_model
@@ -10,7 +11,7 @@ from entities.ingredient import Ingredient
 
 class ItemArea(Station):
     def __init__(self,actor):
-        self.id = "ItemArea"
+        self.id = TARGETS.COUNTERTOP
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         super().__init__(self.id,actor)

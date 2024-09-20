@@ -28,6 +28,7 @@ class TARGETS:
     CHOCOLATE_STATION = "Chocolate Station"
     SALAD_STATION = "Salad Station"
     COUNTERTOP = "Countertop"
+    STORAGE_DOOR = "Storage Door"
 
 
 

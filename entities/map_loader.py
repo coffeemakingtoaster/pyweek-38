@@ -1,6 +1,6 @@
 
 from constants.layers import MAP_COLLISION_BITMASK
-from constants.map import MODEL_COLLISION_DIMENSION_LOOKUP, MODEL_COLLISION_OFFSET_LOOKUP 
+from constants.map import MODEL_COLLISION_DIMENSION_LOOKUP, MODEL_COLLISION_OFFSET_LOOKUP, TARGETS 
 from helpers.model_helpers import load_mapObj
 from panda3d.core import *
 from entities.oven import Oven
@@ -60,55 +60,55 @@ def load_map(json_data):
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Cheese_Station","cheese"))
+            stations.append(Food_Station(actor,TARGETS.CHEESE_STATION,"cheese"))
         elif name == "Chocolate_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Chocolate_Station","chocolate"))
+            stations.append(Food_Station(actor, TARGETS.CHOCOLATE_STATION,"chocolate"))
         elif name == "Dough_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Dough_Station","pizza_dough"))
+            stations.append(Food_Station(actor,TARGETS.DOUGH_STATION,"pizza_dough"))
         elif name == "Ice_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Ice_Station","ice_cubes"))
+            stations.append(Food_Station(actor,TARGETS.ICE_STATION,"ice_cubes"))
         elif name == "Onion_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Onion_Station","onion"))
+            stations.append(Food_Station(actor,TARGETS.ONION_STATION,"onion"))
         elif name == "Potato_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Potato_Station","potato"))
+            stations.append(Food_Station(actor,TARGETS.POTATO_STATION,"potato"))
         elif name == "Salad_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Salad_Station","salad"))
+            stations.append(Food_Station(actor,TARGETS.SALAD_STATION,"salad"))
         elif name == "Steak_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Steak_Station","raw_steak"))
+            stations.append(Food_Station(actor,TARGETS.STEAK_STATION,"raw_steak"))
         elif name == "Tomato_Station":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
             actor.reparentTo(render)
-            stations.append(Food_Station(actor,"Tomato_Station","tomato"))
+            stations.append(Food_Station(actor,TARGETS.TOMATO_STATION,"tomato"))
         elif name == "Trash":
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Wash": "assets/models/MapObjects/"+name+"/"+name+"-Wash.bam"})
             actor.setPos(position["x"],position["y"],position["z"])

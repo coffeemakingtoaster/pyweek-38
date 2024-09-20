@@ -7,14 +7,12 @@ import math
 from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
 from constants.player_const import MOVEMENT
-from entities import station
 from entities.dish import Dish
 from entities.entity_base import EntityBase
 from constants import player_const
 from entities.item_base import ItemBase
 from helpers.math_helper import get_first_intersection, get_limited_rotation_target
 from helpers.model_helpers import load_particles, load_model
-from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global
 from entities.CuttingBoard import CuttingBoard
 
 
@@ -29,7 +27,6 @@ class Player(EntityBase):
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
         self.interacting_station = None
         self.sneaking = False
-        
 
         # Keybinds for movement
         self.accept("a", self.set_movement_status, ["left"])
@@ -57,7 +54,6 @@ class Player(EntityBase):
         self.__add_player_collider()
         self.holding.model.setPos(0, -0.4, 0.76)
         self.holding.model.reparentTo(self.model)
-        # self.model.loop("Walk")
 
     def __add_player_collider(self):
         self.hitbox = self.model.attachNewNode(CollisionNode("player_hitbox"))
@@ -104,8 +100,6 @@ class Player(EntityBase):
                 return True
             else:
                 return False
-
-
         else:
             self.hardset(new_item)
 

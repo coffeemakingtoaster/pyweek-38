@@ -7,7 +7,7 @@ from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
-from helpers import recipe_helper
+from handler.station_handler import StationHandler
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 
@@ -19,7 +19,7 @@ from helpers.recipe_helper import RECIPES, Step, build_overwrite_routine, get_ro
 
 
 class Enemy(EntityBase):
-    def __init__(self, spawn_x, spawn_y, display_waypoint_info=False):
+    def __init__(self, spawn_x, spawn_y, station_handler: StationHandler | None, display_waypoint_info=False):
         super().__init__()
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
@@ -42,6 +42,11 @@ class Enemy(EntityBase):
         self.__show_waypoints()
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
         self.accept(EVENT_NAMES.SNEAKING, self.__hide_viewcone)
+
+        if station_handler is None:
+            print("Warning: Initialize station handler before creating enemies")
+
+        self.station_handler = station_handler
 
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
@@ -161,7 +166,12 @@ class Enemy(EntityBase):
         self.model.setY(self.model.getY() - y_direction)
 
     def __interact_with_item_and_get_success(self, target):
-        return True 
+        station = self.station_handler.get_closest_station_by_type(self.get_central_pos(), target)
+        if station is None: 
+            print("Could not find station")
+            return False
+        station.ai_interact(None, self)
+        return True
 
     def get_central_pos(self):
         return Point3(

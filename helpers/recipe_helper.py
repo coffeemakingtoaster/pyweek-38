@@ -2,8 +2,7 @@ from constants.map import TARGETS
 import copy
 
 class Step:
-    name = None 
-    overwrite_step = None
+    name = None overwrite_step = None
     next = None
     target = None
     def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0) -> None:

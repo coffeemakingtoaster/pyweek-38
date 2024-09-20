@@ -9,6 +9,7 @@ from direct.task.Task import Task
 from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
+from handler.station_handler import StationHandler
 from helpers.config import load_config
 from helpers.pathfinding_helper import get_path_from_to_tile_type
 from ui.hud import hud
@@ -45,6 +46,7 @@ class main_game(ShowBase):
         self.map_models = []
         self.map_lights = []
         self.map_stations = []
+        self.stations_handler = None
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -134,7 +136,7 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
-        self.enemies = [Enemy(3, 3, True)]
+        self.enemies = [Enemy(3, 3, station_handler=self.stations_handler, display_waypoint_info=True)]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 
@@ -146,6 +148,7 @@ class main_game(ShowBase):
             data = json.load(file)
 
         self.map_models, self.map_lights, self.map_stations = load_map(data)
+        self.stations_handler = StationHandler(self.map_stations)
 
     def set_game_status(self, status):
         self.status_display["text"] = status

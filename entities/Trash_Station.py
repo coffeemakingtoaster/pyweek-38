@@ -2,6 +2,7 @@ from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
 import math
+from constants.map import TARGETS
 from entities.station import Station
 from entities.dish import Dish
 from entities.ingredient import Ingredient
@@ -10,7 +11,7 @@ from helpers.model_helpers import load_model
 
 class Trash_Station(Station):
     def __init__(self,actor):
-        self.id = "Trash_Station"
+        self.id = TARGETS.TRASH
         
         self.inventory = [Dish("empty_plate",load_model("empty_plate")),Dish("empty_plate",load_model("empty_plate"))]
         
