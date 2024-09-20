@@ -19,7 +19,6 @@ def __find_closest_target_dist(pos, target, enemy_id):
         # is currently used?
         cord_status = base.usage_handler.get_cord_status(target_pos)
         if cord_status.status and cord_status.owner != enemy_id:
-            print("Oh! Someone is using that one! Gotta go to a different one")
             continue
         dist = min((pos[0] - target_pos[0])**2 + (pos[1] - target_pos[1])**2, dist)
     return dist

@@ -73,7 +73,7 @@ class Player(EntityBase):
     def set_interact(self):
         self.interacting_station = self.find_station()
         self.interacting_station.interact(self.holding,self)
-        if TARGET_BLOCKING_MAP[station.name]:
+        if TARGET_BLOCKING_MAP[self.interacting_station.name]:
             base.usage_handler.set_status_by_uuid(self.interacting_station.uuid, True, "player")
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")

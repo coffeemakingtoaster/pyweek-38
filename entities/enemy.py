@@ -176,7 +176,6 @@ class Enemy(EntityBase):
                 self.target_grid_var = self.waypoints[-1]
                 # Is the target a station that only one can use?
                 if TARGET_BLOCKING_MAP[self.routine.current_step.target]:
-                    print(self.target_grid_var)
                     base.usage_handler.set_cord_status(self.target_grid_var, True, self.id)
             self.__show_waypoints()
             next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
@@ -202,10 +201,8 @@ class Enemy(EntityBase):
         station = None
         # are we going to a specific target?
         if (uuid := self.routine.get_step_target_uuid()) is not None:
-            print(f"I am at {self.routine.current_step.name} better go to target with uuid {uuid}")
             station = self.station_handler.get_station_by_uuid(uuid[0])
         else:
-            print(f"Get handle for {self.routine.current_step.target}")
             station = self.station_handler.get_closest_station_by_type(self.get_central_pos(), self.routine.current_step.target)
         if station is None: 
             print("Could not find station")
