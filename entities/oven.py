@@ -8,12 +8,13 @@ from entities.dish import Dish
 from entities.ingredient import Ingredient
 from helpers.model_helpers import load_model
 import copy
+from entities.progress_bar import ProgressBar
 
 class Oven(Station):
     def __init__(self,actor):
         self.id = "Oven"
         self.duration = 10
-        
+        self.progressBar = None
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         
         super().__init__(self.id,actor)
@@ -24,6 +25,7 @@ class Oven(Station):
             print("Yay Pizza")
             self.inventory = copy.deepcopy(item)
             self.play_anim("Open")
+            self.progressBar = ProgressBar(self.model,self.duration,0)
             self.task = taskMgr.do_method_later(1,self.close_door,"task",extraArgs = [player])
         elif item.id == "empty_hands" and self.inventory.id == "plated_pizza":
             player.set_holding(copy.deepCopy(self.inventory))
@@ -40,6 +42,8 @@ class Oven(Station):
         self.inventory.add_ingredient(Ingredient("unplated_pizza",load_model("plated_pizza")))
         self.play_anim("Open")
         self.task = None
+        self.progressBar.destroy()
+        self.progressBar = None
     def close_door(self,player):
         self.play_anim("Close")
         player.set_holding(Dish("empty_hands",load_model("empty_hands")))

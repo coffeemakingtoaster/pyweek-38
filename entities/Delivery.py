@@ -31,17 +31,19 @@ class Delivery(Station):
             self.inventory = c_item
             self.render()
         elif type(self.inventory) == Dish and item.id =="Salt":
-            
+            print("Salz?")
             
             if not player.sneaking and not self.inventory.badSalt:
                 self.inventory.goodSalt = True
-            elif not player.sneaking:
+            elif player.sneaking:
                 self.inventory.badSalt = True
+            
+            self.inventory.apply_effects()
                 
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:
             self.inventory.spice = True
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
-                
+            self.inventory.apply_effects()
             
             
         

@@ -8,12 +8,13 @@ from entities.dish import Dish
 from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
+from entities.progress_bar import ProgressBar
 
 
 class CuttingBoard(Station):
     def __init__(self,actor):
         self.id = TARGETS.CUTTING_BOARD
-        
+        self.progressBar = None
         self.duration = 2
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
@@ -39,6 +40,7 @@ class CuttingBoard(Station):
         #Cutting Stuff
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
+            self.progressBar = ProgressBar(self.model,self.duration)
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
@@ -70,6 +72,8 @@ class CuttingBoard(Station):
         self.clean()
         self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
         self.render()
+        self.progressBar.destroy()
+        self.progressBar = None
         self.task = None
     
     def stop_cut(self):
@@ -77,6 +81,8 @@ class CuttingBoard(Station):
         if self.task is not None:
             print("Hey")
             taskMgr.remove(self.task)
+            self.progressBar.destroy()
+            self.progressBar = None
             self.model.stop()
             
     def swap(self,item,player):
