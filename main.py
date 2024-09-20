@@ -11,6 +11,8 @@ from direct.task.Task import Task
 from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
+from handler import order_handler
+from handler.order_handler import OrderHandler
 from handler.station_handler import StationHandler
 from handler.usage_handler import UsageHandler
 from helpers.config import load_config
@@ -50,6 +52,7 @@ class main_game(ShowBase):
         self.map_lights = []
         self.map_stations = []
         self.stations_handler = None
+        self.order_handler = None
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -143,6 +146,7 @@ class main_game(ShowBase):
 
         self.enemies = [Enemy(3, 3, station_handler=self.stations_handler, display_waypoint_info=True)]
         self.active_hud = hud()
+        self.order_handler = OrderHandler()
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
@@ -166,6 +170,9 @@ class main_game(ShowBase):
         if self.active_hud is not None:
             self.active_hud.destroy()
             self.active_hud = None
+
+        if self.order_handler is not None:
+            self.order_handler.destroy()
 
         if base.cTrav is not None:
             base.cTrav.clearColliders()

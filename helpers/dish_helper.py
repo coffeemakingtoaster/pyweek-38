@@ -1,5 +1,13 @@
 from helpers.model_helpers import load_model
 
+class VIABLE_FINISHED_ORDER_DISHES:
+    SALAD = "finished_salad"
+    STEAK = "finished_steak"
+    SOUP = "plated_soup"
+    # TODO: update me
+    PIZZA = "pizza"
+    ICE_CREAM = "plated_ice_cream"
+
 def add_ingredient(dish, ingredient):
     match dish.id:
         case "empty_plate":
@@ -25,9 +33,6 @@ def add_ingredient(dish, ingredient):
                 case "unplated_soup":
                     transform("plated_soup", dish,True)
                     return True
-                
-                
-
 
         # Steak dish
         case "plated_fries":

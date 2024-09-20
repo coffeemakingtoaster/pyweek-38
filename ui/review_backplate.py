@@ -28,7 +28,9 @@ font = load_font('Rubik-Light')
 class ReviewDisplay:
     def __init__(self, review: Review) -> None: 
 
-        self.font = load_font('Rubik-Light')
+        print(f"review for {review.team}")
+
+        self.font = loader.loadFont("assets/fonts/Rubik-Light.ttf")
 
         review_text=f"{review.review_text}"
 
@@ -47,7 +49,7 @@ class ReviewDisplay:
                     HEIGHT_MAP[self.__get_size(review_text)]
                 ),
                 pos=(-1.35, 0, 0.95),
-                image=join("assets", "images", "hud", f"review_backplate_{self.__get_size(review_text)}.png")
+                image=join("assets", "images", "hud", f"review_backplate_{self.__get_size(review_text)}_{review.team}.png")
             )
 
         self.review_label = DirectLabel(
@@ -105,7 +107,6 @@ class ReviewDisplay:
             i+=1
         
         if self.review.star_count%1 != 0:
-            print("img")
             self.star_images.append(
                 OnscreenImage(
                     scale=( 
@@ -134,23 +135,23 @@ class ReviewDisplay:
     def gracefully_destroy_review(self, prematurely=False):
         if prematurely:
             taskMgr.remove(self.task)
-        self.image.destroy()
-        self.review_label.destroy()
-        self.username_label.destroy()
-        self.rating_frame.remove()
+        self.image.remove_node()
+        self.review_label.remove_node()
+        self.username_label.remove_node()
+        self.rating_frame.remove_node()
         for img in self.star_images:
-            img.remove()
+            img.remove_node()
         self.is_dead = True
         return Task.done
 
     def destroy(self):
         taskMgr.remove(self.task)
-        self.image.remove()
-        self.review_label.remove()
-        self.username_label.remove()
-        self.rating_frame.remove()
+        self.image.remove_node()
+        self.review_label.remove_node()
+        self.username_label.remove_node()
+        self.rating_frame.remove_node()
         for img in self.star_images:
-            img.remove()
+            img.remove_node()
         self.is_dead = True
 
     def set_pos(self, pos):

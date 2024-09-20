@@ -194,7 +194,6 @@ def load_map(json_data):
             actor.setH(rotation)
             actor.reparentTo(render)
             stations.append(Delivery(actor))  
-            
         else:
         # Create a model instance for each object and add it to the list
             model = load_mapObj(name)

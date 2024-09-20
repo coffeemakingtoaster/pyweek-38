@@ -1,16 +1,36 @@
 import random
 
+from entities.dish import Dish
+
+class TEAM:
+    PLAYER = "player"
+    ENEMY = "enemy"
+
+
 class Review:
     review_text = "" 
     user_name = "" 
 
-    def __init__(self, text, name, star_count) -> None:
+    def __init__(self, text, name, star_count, team) -> None:
         self.review_text = text
         self.user_name = name
         self.star_count = star_count
+        self.team = team
 
     def print(self):
         print(f'By \033[92m{self.user_name}\033[00m:\n\t\033[94m{self.review_text}\033[00m')
+    
+    @staticmethod
+    def fromDish(dish: Dish, is_from_player: bool):
+        return get_review_for_food(
+            dish.id,
+            dish.badSalt,
+            dish.spiced,
+            dish.burned,
+            dish.is_late,
+            False,
+            is_from_player
+        )
 
 NEUTRAL_USERNAMES = list(set([
     "WillyWacker",
@@ -232,9 +252,14 @@ def get_review_for_food(
     
     food_shittiness_score = sum([too_much_salt, too_spicy, burned, delayed, something_else])
 
+    team = TEAM.ENEMY
+
+    if is_player_food:
+        team = TEAM.PLAYER
+
     # positive?
     if (is_player_food and food_shittiness_score < 3) or food_shittiness_score == 0:
-        return __get_positive_review(food_name)
+        return __get_positive_review(food_name, team)
 
     # negative?
     review = []
@@ -260,9 +285,9 @@ def get_review_for_food(
     if __chance(2) or len(review) == 0:
         review.append(random.choice(NEGATIVE_REVIEWS_POSTTEXT).format(food_name))
 
-    return Review(' '.join(review), get_user_name(True),random.randrange(1,5)/2)
+    return Review(' '.join(review), get_user_name(True),random.randrange(1,5)/2, team)
 
-def __get_positive_review(food_name):
+def __get_positive_review(food_name, team):
     review = [] 
     # 1 in 2 chance of getting a pretext
     if __chance(2):
@@ -271,7 +296,7 @@ def __get_positive_review(food_name):
     # 1 in 2 chance of getting a posttext
     if __chance(2):
         review.append(random.choice(POSITIVE_REVIEWS_POSTTEXT).format(food_name))
-    return Review(' '.join(review),get_user_name(False),random.randrange(7,9)/2)
+    return Review(' '.join(review),get_user_name(False),random.randrange(7,9)/2, team)
 
 # This may be flawed...however I do not care tyvm
 def __chance(a):

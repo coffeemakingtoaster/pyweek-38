@@ -30,6 +30,7 @@ class TARGETS:
     COUNTERTOP = "Countertop"
     STORAGE_DOOR = "Storage Door"
     CHILI_STATION = "Chili Station"
+    DROPOFF = "Dropoff"
 
 TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
     TARGETS.OVEN:  True,
@@ -50,10 +51,10 @@ PATHFINDING_MAP = [
 ['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', TARGETS.TRASH, '#', ' ', ' ', ' ', ' ', ' ', '#'],
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
 ['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.ICE_STATION, ' ', TARGETS.STEAK_STATION, ' ', '#'],
+['#', '#', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', '#', TARGETS.DROPOFF, ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
+['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
+['#', '#', TARGETS.DROPOFF, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.ICE_STATION, ' ', TARGETS.STEAK_STATION, ' ', '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.DOUGH_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.CUTTING_BOARD, TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.WASHER, ' ', ' ', TARGETS.WASHER, ' ', ' ', TARGETS.ICEMAKER, ' ', ' ', ' ', '#', TARGETS.CHOCOLATE_STATION, ' ', TARGETS.CHEESE_STATION, ' ', '#'],
 ["#"]*MAP_DIMENSIONS[1],
@@ -80,6 +81,7 @@ MODEL_COLLISION_DIMENSION_LOOKUP = {
     "Stove": LVector3(0.51,0.35,1),
     "Storage_Medium": LVector3(0.4,1.1,1),
     "Storage_Large": LVector3(1.3,0.4,1),
+    "Delivery": LVector3(0.9,0.36,1),
 }
 
 MODEL_COLLISION_OFFSET_LOOKUP = {
@@ -91,4 +93,5 @@ MODEL_COLLISION_OFFSET_LOOKUP = {
     "Stove": Point3(0.42,0.35,1),
     "Storage_Medium": LVector3(0.3,1.1,1),
     "Storage_Large": LVector3(1.3,0.3,1),
+    "Delivery": Point3(0.9,0.35,1),
 }

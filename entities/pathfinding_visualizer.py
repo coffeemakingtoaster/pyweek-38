@@ -23,7 +23,7 @@ class PathfinderVisualizer(DirectObject):
             for j in range(len(PATHFINDING_MAP[0])):
 
                 height = 1
-                if PATHFINDING_MAP[i][j] == "#" or PATHFINDING_MAP[i][j] == " ":
+                if PATHFINDING_MAP[i][j] != "#": #or PATHFINDING_MAP[i][j] == " ":
                     continue
 
                 node = self.parent.attachNewNode(f"{i};{j}")
