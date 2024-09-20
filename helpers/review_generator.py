@@ -1,6 +1,7 @@
 import random
 
 from entities.dish import Dish
+from helpers.dish_helper import DISHES_PRETTY_NAMES_UWU
 
 class TEAM:
     PLAYER = "player"
@@ -23,7 +24,7 @@ class Review:
     @staticmethod
     def fromDish(dish: Dish, is_from_player: bool):
         return get_review_for_food(
-            dish.id,
+            DISHES_PRETTY_NAMES_UWU[dish.id],
             dish.badSalt,
             dish.spiced,
             dish.burned,

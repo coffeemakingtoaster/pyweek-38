@@ -134,7 +134,7 @@ class Enemy(EntityBase):
 
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
-        current_pos = self.model.getPos()
+        current_pos = self.get_central_pos()
         delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y,
                             current_pos.z - self.desired_pos.z)
         normalized = Point2(delta_to_end.x, delta_to_end.y).normalized()
@@ -180,8 +180,8 @@ class Enemy(EntityBase):
             self.__show_waypoints()
             next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
             self.desired_pos = Point3(
-                next_pos.x - self.model.getScale().x/2,
-                next_pos.y - self.model.getScale().y/2,
+                next_pos.x,
+                next_pos.y,
                 next_pos.z
             )
         if delta_to_end.length() > 0:
@@ -215,8 +215,8 @@ class Enemy(EntityBase):
 
     def get_central_pos(self):
         return Point3(
-            self.model.getPos().x + self.model.getScale().x / 2,
-            self.model.getPos().y + self.model.getScale().y / 2,
+            self.model.getPos().x,
+            self.model.getPos().y,
             self.model.getPos().z
         )
 

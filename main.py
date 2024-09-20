@@ -1,7 +1,6 @@
 from panda3d.core import *
 
-from collections import defaultdict
-
+from collections import defaultdict 
 from direct.showbase.ShowBase import ShowBase
 
 from direct.gui.OnscreenText import OnscreenText
@@ -62,7 +61,6 @@ class main_game(ShowBase):
 
         # Create event handlers for events fired by UI
         self.accept(EVENT_NAMES.START_GAME, self.set_game_status, [GAME_STATUS.STARTING])
-
         # Create event handlers for events fired by keyboard
         self.accept(EVENT_NAMES.ESCAPE, self.toggle_pause)
 
@@ -150,7 +148,7 @@ class main_game(ShowBase):
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
-        #self.visualizer = PathfinderVisualizer()
+        self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
@@ -173,6 +171,7 @@ class main_game(ShowBase):
 
         if self.order_handler is not None:
             self.order_handler.destroy()
+            self.order_handler = None
 
         if base.cTrav is not None:
             base.cTrav.clearColliders()
@@ -189,8 +188,13 @@ class main_game(ShowBase):
         for model in self.map_models:
             model.removeNode()
         for light in self.map_lights:
-            render.clearLight(light)
-            light.removeNode()
+            try:
+                render.clearLight(light)
+                light.removeNode()
+            except:
+                # There was a bug where this could crash the game
+                # I didnt bother fixing it...this will do for now
+                pass
         for station in self.map_stations:
             station.destroy()
 

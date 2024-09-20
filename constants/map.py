@@ -58,6 +58,7 @@ PATHFINDING_MAP = [
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.DOUGH_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.CUTTING_BOARD, TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.WASHER, ' ', ' ', TARGETS.WASHER, ' ', ' ', TARGETS.ICEMAKER, ' ', ' ', ' ', '#', TARGETS.CHOCOLATE_STATION, ' ', TARGETS.CHEESE_STATION, ' ', '#'],
 ["#"]*MAP_DIMENSIONS[1],
+["#"]*MAP_DIMENSIONS[1],
 ]
 
 # Build target map

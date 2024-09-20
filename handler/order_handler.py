@@ -35,8 +35,7 @@ class OrderHandler(DirectObject):
         self.player_orders = []
 
         self.enemy_orders = [
-            Order("Pizza"),
-            Order("Pizza"),
+            Order("Pizza"), Order("Pizza"),
             Order("Pizza"),
         ]
 
@@ -49,15 +48,21 @@ class OrderHandler(DirectObject):
         self.bg_task = taskMgr.doMethodLater(50, self.__generate_player_order, "scheduled_player_order_generator")
 
     def destroy(self):
+        self.player_orders = []
+        self.enemy_orders = []
         taskMgr.remove(self.bg_task)
+        self.ignoreAll()
 
     def __generate_player_order(self, _=None):
         if len(self.player_orders) > 1:
             return Task.again
 
         order =Order(
-                random.choice(
-                    [a for a in dir(VIABLE_FINISHED_ORDER_DISHES) if not a.startswith('__') and not callable(getattr(VIABLE_FINISHED_ORDER_DISHES, a))]
+                getattr(
+                    VIABLE_FINISHED_ORDER_DISHES,
+                    random.choice(
+                        [a for a in dir(VIABLE_FINISHED_ORDER_DISHES) if not a.startswith('__') and not callable(getattr(VIABLE_FINISHED_ORDER_DISHES, a))]
+                    )
                 )
             )
         self.player_orders.append(order)
@@ -73,8 +78,10 @@ class OrderHandler(DirectObject):
         )
 
     def __get_order(self, dish, is_from_player):
+        print(f"{is_from_player} player??")
         if is_from_player:
             for i in range(len(self.player_orders)):
+                print(f"{dish.id} {self.player_orders[i].wanted_dish}")
                 if self.player_orders[i].wanted_dish == dish.id:
                     return self.player_orders.pop(i)
         else:

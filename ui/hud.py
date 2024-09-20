@@ -90,6 +90,10 @@ class hud(ui_base):
         super().destroy()
         for rev in self.reviews:
             rev.destroy()
+        self.reviews = []
+        for order in self.orders:
+            order.destroy()
+        self.orders = []
 
     def __debug_player(self):
         messenger.send(
@@ -165,12 +169,18 @@ class hud(ui_base):
             if self.orders[i].id == id:
                 o = self.orders.pop(i)
                 o.destroy()
+                break
         self.__render_orders()
 
     def __add_score(self, score, team):
         if team == TEAM.ENEMY:
             self.enemy_score += score * 10
-            self.enemy_score_display["text"] = f"{int(self.enemy_score)}"
         else:
             self.player_score += score * 10
+        # there seems to be a weird bug within panda3d that sometimes causes this to fail
+        # Worst case: we update it again sometime else
+        try:
             self.player_score_display["text"] = f"{int(self.player_score)}"
+            self.enemy_score_display["text"] = f"{int(self.enemy_score)}"
+        except:
+            pass

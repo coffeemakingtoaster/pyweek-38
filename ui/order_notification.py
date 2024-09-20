@@ -3,6 +3,8 @@ from direct.gui.DirectGui import DirectLabel, OnscreenImage
 
 from os.path import join
 
+from helpers.dish_helper import DISHES_PRETTY_NAMES_UWU
+
 
 
 class OrderNotifcation:
@@ -23,7 +25,7 @@ class OrderNotifcation:
         self.image.setTransparency(TransparencyAttrib.MAlpha)
 
         self.review_label = DirectLabel(
-                text=order.wanted_dish,
+                text=DISHES_PRETTY_NAMES_UWU[order.wanted_dish],
                 scale=0.05,
                 pos=(0,0,0),
                 text_fg=(0,0,0,1),

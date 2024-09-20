@@ -82,7 +82,7 @@ class ReviewDisplay:
 
         self.rating_frame = self.__build_rating_frame()
 
-        self.task = taskMgr.doMethodLater(5, self.gracefully_destroy_review, "destroy")
+        self.task = taskMgr.doMethodLater(15, self.gracefully_destroy_review, "destroy")
         self.is_dead = False
 
     def __build_rating_frame(self):

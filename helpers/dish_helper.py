@@ -8,6 +8,15 @@ class VIABLE_FINISHED_ORDER_DISHES:
     PIZZA = "pizza"
     ICE_CREAM = "plated_ice_cream"
 
+# Used as a lookup map for what name should be displayed to the user
+DISHES_PRETTY_NAMES_UWU = {
+    VIABLE_FINISHED_ORDER_DISHES.SALAD: "salad",
+    VIABLE_FINISHED_ORDER_DISHES.STEAK: "steak",
+    VIABLE_FINISHED_ORDER_DISHES.SOUP: "soup",
+    VIABLE_FINISHED_ORDER_DISHES.PIZZA: "pizza",
+    VIABLE_FINISHED_ORDER_DISHES.ICE_CREAM: "ice cream"
+}
+
 def add_ingredient(dish, ingredient):
     match dish.id:
         case "empty_plate":
