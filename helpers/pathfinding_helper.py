@@ -57,10 +57,104 @@ def __get_adjacent(pos):
     return res
 
 def __is_wall(pos):
+    # this should never happen
+    if 0<pos[0]>len(PATHFINDING_MAP) or 0<pos[0]>len(PATHFINDING_MAP[0]):
+        return True
     return PATHFINDING_MAP[pos[0]][pos[1]] == "#"
 
 def __pos_to_string(pos):
     return f"{pos[0]}{pos[1]}"
+
+def __backtrack(target_pos, start_pos, visited, debug_print):
+    backtrack_pos = target_pos
+    waypoints = []
+
+    count = 0
+
+    while True:
+        # This should in theory never happen...however better be safe than sorry
+        if count > 100:
+            return __optimize_waypoints(waypoints + [target_pos])
+        waypoints.insert(0,backtrack_pos)
+        if backtrack_pos == start_pos:
+            break
+        min_val = visited[__pos_to_string(backtrack_pos)].score
+        for pos in __get_adjacent(backtrack_pos):
+            if __pos_to_string(pos) not in visited:
+                continue
+            node = visited[__pos_to_string(pos)]
+            if node is None:
+                continue
+            if min_val > node.score:
+                backtrack_pos = pos
+                min_val = node.score
+        count += 1
+
+    if not debug_print:
+        return __optimize_waypoints(waypoints)
+
+    # Backtrack
+    map_overlay = []
+    for i in range(len(PATHFINDING_MAP)):
+        map_overlay.append([None] * len(PATHFINDING_MAP[0]))
+
+    for wp in waypoints:
+        map_overlay[wp[0]][wp[1]] = "\033[96m.\033[00m"
+
+    map_overlay[target_pos[0]][target_pos[1]] = "\033[95mT\033[00m"
+
+    map_overlay[backtrack_pos[0]][backtrack_pos[1]] = "\033[93mS\033[00m"
+
+    for i in range(len(PATHFINDING_MAP)):
+        for j in range(len(PATHFINDING_MAP[i])):
+            if map_overlay[i][j] is not None:
+                print(map_overlay[i][j],end="")
+                continue
+            print(PATHFINDING_MAP[i][j][0],end="")
+        print()
+    return __optimize_waypoints(waypoints)
+
+def get_path_from_to_tile(start_pos, target_pos, debug_print=False):
+   
+    # if out of bounds -> try and correct rounding errors/try to walk back into bounds
+    if not (0 <= start_pos[0] < len(PATHFINDING_MAP)) or not (0 <= start_pos[1] < len(PATHFINDING_MAP[0])):
+        start_pos = (
+            max(min(start_pos[0],len(PATHFINDING_MAP) - 1),0),
+            max(min(start_pos[1],len(PATHFINDING_MAP[0]) - 1),0)
+        )
+
+    if PATHFINDING_MAP[start_pos[0]][start_pos[1]] == "#":
+        print("\033[91m start in wall?\033[00m")
+        
+    start_time = datetime.datetime.now()
+    todo_queue = PriorityQueue()
+    todo_queue.put((1,start_pos))
+    visited = dict()
+    visited[__pos_to_string(start_pos)] = VisitedNode(0,0)
+
+    # build value grid
+    while not todo_queue.empty():
+        current = todo_queue.get()[1]
+
+        current_node = visited.get(__pos_to_string(current))
+
+        if (current[0],current[1]) == target_pos:
+            break
+        
+        for adj in __get_adjacent(current):
+            if __pos_to_string(adj) in visited:
+                continue
+            adj_visited = VisitedNode(
+                current_node.score + 1,
+                (adj[0] - target_pos[0])**2 + (adj[1] - target_pos[1])**2,
+            )
+            visited[__pos_to_string(adj)] = adj_visited
+            todo_queue.put((adj_visited.rating, adj))
+     
+    res = __backtrack(target_pos, start_pos, visited, debug_print)
+    diff = (datetime.datetime.now() - start_time)
+    print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
+    return res
 
 def get_path_from_to_tile_type(start_pos, target, debug_print=False):
    
@@ -106,58 +200,11 @@ def get_path_from_to_tile_type(start_pos, target, debug_print=False):
 
         print("Could not find target....")
         return []
-
-    backtrack_pos = target_pos
-
-    waypoints = []
-
-    count = 0
-
-    while True:
-        # This should in theory never happen...however better be safe than sorry
-        if count > 100:
-            return __optimize_waypoints(waypoints + [target_pos])
-        waypoints.insert(0,backtrack_pos)
-        if backtrack_pos == start_pos:
-            break
-        min_val = visited[__pos_to_string(backtrack_pos)].score
-        for pos in __get_adjacent(backtrack_pos):
-            if __pos_to_string(pos) not in visited:
-                continue
-            node = visited[__pos_to_string(pos)]
-            if node is None:
-                continue
-            if min_val > node.score:
-                backtrack_pos = pos
-                min_val = node.score
-        count += 1
-
+    
+    res = __backtrack(target_pos, start_pos, visited, debug_print)
     diff = (datetime.datetime.now() - start_time)
     print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
-
-    if not debug_print:
-        return __optimize_waypoints(waypoints)
-
-    # Backtrack
-    map_overlay = []
-    for i in range(len(PATHFINDING_MAP)):
-        map_overlay.append([None] * len(PATHFINDING_MAP[0]))
-
-    for wp in waypoints:
-        map_overlay[wp[0]][wp[1]] = "\033[96m.\033[00m"
-
-    map_overlay[target_pos[0]][target_pos[1]] = "\033[95mT\033[00m"
-
-    map_overlay[backtrack_pos[0]][backtrack_pos[1]] = "\033[93mS\033[00m"
-
-    for i in range(len(PATHFINDING_MAP)):
-        for j in range(len(PATHFINDING_MAP[i])):
-            if map_overlay[i][j] is not None:
-                print(map_overlay[i][j],end="")
-                continue
-            print(PATHFINDING_MAP[i][j][0],end="")
-        print()
-    return __optimize_waypoints(waypoints)
+    return res
 
 def grid_pos_to_global(gridpos):
     return Point3(

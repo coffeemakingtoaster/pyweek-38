@@ -14,8 +14,8 @@ from helpers.model_helpers import load_particles
 import uuid
 import random
 
-from helpers.pathfinding_helper import get_path_from_to_tile_type, global_pos_to_grid, grid_pos_to_global
-from helpers.recipe_helper import RECIPES, Routine, Step, build_overwrite_routine, get_routine_at_step
+from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global
+from helpers.recipe_helper import RECIPES, Routine, Step, get_routine_at_step
 
 
 class Enemy(EntityBase):
@@ -37,7 +37,9 @@ class Enemy(EntityBase):
         self.walk_particles_active = False
         self.recipe: str = random.choice(list(RECIPES.keys()))
         self.routine = Routine(key=self.recipe)
-        self.waypoints = get_path_from_to_tile_type(global_pos_to_grid(self.model.getPos()),self.routine.current_step.target) 
+        self.waypoints = self.routine.get_waypoints(
+            self.model.getPos(), 
+        ) 
         self.__show_waypoints()
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
         self.accept(EVENT_NAMES.SNEAKING, self.__hide_viewcone)
@@ -155,10 +157,8 @@ class Enemy(EntityBase):
                 next_pos.y - self.model.getScale().y/2,
                 next_pos.z
             )
-
-        if delta_to_end.length() > 3:
-            target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y))
-
+        if delta_to_end.length() > 0:
+            target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y)) 
             self.model.setH(
                 get_limited_rotation_target(
                     self.model.getH(),
@@ -175,14 +175,14 @@ class Enemy(EntityBase):
         # are we going to a specific target?
         if (uuid := self.routine.get_step_target_uuid()) is not None:
             print(f"I am at {self.routine.current_step.name} better go to target with uuid {uuid}")
-            station = self.station_handler.get_station_by_uuid(uuid)
+            station = self.station_handler.get_station_by_uuid(uuid[0])
         else:
             station = self.station_handler.get_closest_station_by_type(self.get_central_pos(), self.routine.current_step.target)
         if station is None: 
             print("Could not find station")
             return False
         station.ai_interact(None, self)
-        self.routine.update_memory(station.uuid)
+        self.routine.update_memory(station.uuid, global_pos_to_grid(self.model.getPos()))
         return True
 
     def get_central_pos(self):

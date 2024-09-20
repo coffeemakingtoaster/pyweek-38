@@ -1,5 +1,9 @@
+from direct.stdpy.threading import current_thread
 from constants.map import TARGETS
 import copy
+
+from entities.station import Station
+from helpers.pathfinding_helper import get_path_from_to_tile, get_path_from_to_tile_type, global_pos_to_grid
 class Step:
     name = None 
     overwrite_step = None
@@ -35,13 +39,35 @@ class Routine:
             return self.state[self.current_step.target_from_step]
         return None
 
-    def update_memory(self, uuid):
+    def update_memory(self, uuid, pos):
         if self.current_step.remember_target:
             print(f"Oh i better remember this {self.current_step.target}")
-            self.state[self.current_step.name] = uuid
+            self.state[self.current_step.name] = (uuid,pos)
 
     def advance(self):
         self.current_step = self.current_step.next
+
+    def get_waypoints(self, start_pos):
+        # goto any station
+        if self.current_step.target_from_step is not None:
+            print(self.get_step_target_uuid()[1])
+
+            return get_path_from_to_tile(
+                global_pos_to_grid(start_pos),
+                self.get_step_target_uuid()[1]
+            )
+        else:
+            return get_path_from_to_tile_type(global_pos_to_grid(start_pos),self.current_step.target) 
+
+    def insert_immediate_overwrite(self, key):
+        routine = copy.deepcopy(FALLBACK_ROUTINE[key])
+        start_step = routine 
+        c = start_step
+        while c.next is not None:
+            print(c.name)
+            c = c.next
+        c.next = self.current_step 
+        self.current_step = start_step
 
 # untested
 def get_routine_at_step(key, step):
@@ -61,17 +87,6 @@ FALLBACK_ROUTINE = {
             next=None
     ))
 }
-
-def build_overwrite_routine(current: Step,key="example"):
-    print("\033[91m interrupt!\033[00m")
-    routine = copy.deepcopy(FALLBACK_ROUTINE[key])
-    start_step = routine 
-    c = start_step
-    while c.next is not None:
-        print(c.name)
-        c = c.next
-    c.next = current
-    return start_step
 
 RECIPES = {
     "salad": Step(
@@ -149,6 +164,7 @@ RECIPES = {
                             target_from="Put chocolate into icemachine",
                             next=Step(
                                 "Dropoff icecream",
+                                #TODO: change this to dropoff zone
                                 target=TARGETS.COUNTERTOP,
                                 next=None
                             )
