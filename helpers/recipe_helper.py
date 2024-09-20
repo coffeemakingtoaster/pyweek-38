@@ -1,16 +1,47 @@
 from constants.map import TARGETS
 import copy
-
 class Step:
-    name = None overwrite_step = None
+    name = None 
+    overwrite_step = None
     next = None
     target = None
-    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0) -> None:
+    remember_target = None
+    target_from_step = None
+    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0, remember_target=False, target_from=None) -> None:
         self.name = name
         self.next = next
         self.target = target
         self.overwrite_step = overwrite_step
         self.onfail_goto_step = onfail_goto_step
+        self.remember_target = remember_target
+        self.target_from_step = target_from 
+
+class Routine:
+    def __init__(self, start_step=None, key=None) -> None:
+        if start_step is not None:
+            self.current_step = start_step
+        else:
+            self.get_new_recipe(key)
+        self.state = dict()
+    
+    def get_new_recipe(self, key):
+        self.current_step = copy.deepcopy(RECIPES[key])
+
+    def get_step_target_uuid(self):
+        if self.current_step.target_from_step is not None:
+            if self.current_step.target_from_step not in self.state:
+                print("Warning! Callback to unknown step")
+                return None
+            return self.state[self.current_step.target_from_step]
+        return None
+
+    def update_memory(self, uuid):
+        if self.current_step.remember_target:
+            print(f"Oh i better remember this {self.current_step.target}")
+            self.state[self.current_step.name] = uuid
+
+    def advance(self):
+        self.current_step = self.current_step.next
 
 # untested
 def get_routine_at_step(key, step):
@@ -49,33 +80,38 @@ RECIPES = {
             next=Step(
                 "Cut salad",
                 target=TARGETS.CUTTING_BOARD,
+                remember_target=True,
                 next=Step(
                     "Get plate",
                     target=TARGETS.WASHER,
                     onfail_goto_step=2,
                     next=Step(
                         "Get the chopped salad",
-                        # TODO: add the ability for the behaviour to set ids and try to reach them
                         target=TARGETS.CUTTING_BOARD,
+                        target_from="Cut salad",
                         next=Step(
                             "Drop off plate with salad",
                             target=TARGETS.COUNTERTOP,
+                            remember_target=True,
                             next=Step(
                                 "Get tomato",
                                 target=TARGETS.TOMATO_STATION,
                                 next=Step(
                                     "Cut tomato",
                                     target=TARGETS.CUTTING_BOARD,
+                                    remember_target=True,
                                     next=Step(
                                         "Get plate with salad",
-                                        #TODO: do with id
                                         target=TARGETS.COUNTERTOP,
+                                        target_from="Drop off plate with Salad",
                                         next=Step(
                                             "Retrieve the chopped tomato",
                                             onfail_goto_step=5,
                                             target=TARGETS.CUTTING_BOARD,
+                                            target_from="Cut tomato",
                                             next=Step(
                                                 "Dropoff",
+                                                # TODO: change this to dropoff zone
                                                 target=TARGETS.COUNTERTOP,
                                                 next=None
                                         )
@@ -94,7 +130,7 @@ RECIPES = {
         next=Step(
             "Put chocolate into icemachine",
             target=TARGETS.ICEMAKER,
-            #TODO: implement that a failstep of -1 means: goto trash and get a new recipe
+            remember_target=True,
             onfail_goto_step=-1,
             next=Step(
                 "Get ice",
@@ -102,6 +138,7 @@ RECIPES = {
                 next=Step(
                     "Add ice to icecreammachine",
                     target=TARGETS.ICEMAKER,
+                    target_from="Put chocolate into icemachine",
                     next=Step(
                         "Get Plate",
                         target=TARGETS.WASHER,
@@ -109,6 +146,7 @@ RECIPES = {
                         next=Step(
                             "Get icecream",
                             target=TARGETS.ICEMAKER,
+                            target_from="Put chocolate into icemachine",
                             next=Step(
                                 "Dropoff icecream",
                                 target=TARGETS.COUNTERTOP,
