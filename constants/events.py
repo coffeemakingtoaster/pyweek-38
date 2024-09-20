@@ -7,3 +7,8 @@ class EVENT_NAMES:
     DISPLAY_REVIEW = "display_review"
     SNEAKING = "sneaking"
     RECALCULATE_WAYPOINTS = "update_waypoints"
+    FINISH_ORDER = "finish_order"
+    ADD_ORDER = "add_order"
+    ADD_SCORE = "add_score"
+    SHOW_PLAYER_ORDER = "show_player_order"
+    HIDE_PLAYER_ORDER = "hide_player_order"

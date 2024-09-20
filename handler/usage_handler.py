@@ -16,7 +16,6 @@ class Field:
         self.corresponding_station_uuid = corresponding_station_uuid
 
     def _determine_uuid(self, station_handler):
-        print("trying to autodetect closest item uuid. Result: ",end="")
         station = station_handler.get_closest_station_by_type(
             grid_pos_to_global(self.cords),
             PATHFINDING_MAP[self.cords[0]][self.cords[1]]
@@ -29,7 +28,6 @@ class Field:
         self.status = status
         self.owner = owner
         if corresponding_station_uuid is not None:
-            print(f"Set uuid for {self.cords}")
             self.corresponding_station_uuid = corresponding_station_uuid
 
 class UsageHandler:
@@ -59,7 +57,6 @@ class UsageHandler:
             element = self.state[key]
             if element.corresponding_station_uuid == uuid:
                 element.update(status, owner_id)
-                # Notify npcs
                 self.__notify_of_takeover(element.cords)
                 return True
         print("Could not find station by uuid")
