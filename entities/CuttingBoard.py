@@ -40,7 +40,7 @@ class CuttingBoard(Station):
         #Cutting Stuff
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
-            self.progressBar = ProgressBar(self.model,self.duration)
+            self.progressBar = ProgressBar(self.model,self.duration,0)
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
         elif type(self.inventory) == Ingredient and type(item) == Dish:
             if player.set_holding(self.inventory):
