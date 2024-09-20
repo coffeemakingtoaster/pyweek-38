@@ -34,6 +34,9 @@ class Routine:
     def get_step_target_uuid(self):
         if self.current_step.target_from_step is not None:
             if self.current_step.target_from_step not in self.state:
+                print(self.state)
+                print(self.current_step.target_from_step)
+                print(self.state[self.current_step.target_from_step])
                 print("Warning! Callback to unknown step")
                 return None
             return self.state[self.current_step.target_from_step]
@@ -51,7 +54,6 @@ class Routine:
         # goto any station
         if self.current_step.target_from_step is not None:
             print(self.get_step_target_uuid()[1])
-
             return get_path_from_to_tile(
                 global_pos_to_grid(start_pos),
                 self.get_step_target_uuid()[1]
@@ -118,7 +120,7 @@ RECIPES = {
                                     next=Step(
                                         "Get plate with salad",
                                         target=TARGETS.COUNTERTOP,
-                                        target_from="Drop off plate with Salad",
+                                        target_from="Drop off plate with salad",
                                         next=Step(
                                             "Retrieve the chopped tomato",
                                             onfail_goto_step=5,

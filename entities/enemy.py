@@ -182,7 +182,7 @@ class Enemy(EntityBase):
             print("Could not find station")
             return False
         station.ai_interact(None, self)
-        self.routine.update_memory(station.uuid, global_pos_to_grid(self.model.getPos()))
+        self.routine.update_memory(station.uuid, global_pos_to_grid(self.get_central_pos()))
         return True
 
     def get_central_pos(self):
