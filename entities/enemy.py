@@ -5,6 +5,7 @@ from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, Coll
 
 from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
+from constants.map import TARGET_BLOCKING_MAP
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
 from handler.station_handler import StationHandler
@@ -14,7 +15,7 @@ from helpers.model_helpers import load_particles
 import uuid
 import random
 
-from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global
+from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global, pos_to_string
 from helpers.recipe_helper import RECIPES, Routine, Step, get_routine_at_step
 
 
@@ -39,8 +40,10 @@ class Enemy(EntityBase):
         self.routine = Routine(key=self.recipe)
         self.waypoints = self.routine.get_waypoints(
             self.model.getPos(), 
+            self.id
         ) 
         self.__show_waypoints()
+        self.target_grid_var = self.waypoints[-1]
         self.desired_pos = grid_pos_to_global(self.waypoints.pop(0))
         self.accept(EVENT_NAMES.SNEAKING, self.__hide_viewcone)
 
@@ -49,13 +52,38 @@ class Enemy(EntityBase):
 
         self.station_handler = station_handler
 
+        self.accept(EVENT_NAMES.RECALCULATE_WAYPOINTS, self.__double_check_waypoints)
+
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
+       
     def __hide_viewcone(self, sneak):
         if sneak:
             self.viewcone.unstash()
         elif not sneak:
             self.viewcone.stash()
+
+    def __double_check_waypoints(self, cords):
+        print("Recalculating!")
+        if cords != self.target_grid_var:
+            print("Nice! Doesnt affect me")
+        # Recalculate route
+        self.waypoints = self.routine.get_waypoints(
+            self.get_central_pos(),
+            self.id
+        ) 
+        # does this have to go below the grid update again?
+        self.target_grid_var = self.waypoints[-1]
+        # Is the target a station that only one can use?
+        if TARGET_BLOCKING_MAP[self.routine.current_step.target]:
+            base.usage_handler.set_cord_status(self.target_grid_var, True, self.id)
+        self.__show_waypoints()
+        next_pos = grid_pos_to_global(self.waypoints.pop(0)) 
+        self.desired_pos = Point3(
+            next_pos.x - self.model.getScale().x/2,
+            next_pos.y - self.model.getScale().y/2,
+            next_pos.z
+        )
 
     def __show_waypoints(self):
         if not self.display_waypoint_info:
@@ -177,11 +205,14 @@ class Enemy(EntityBase):
             print(f"I am at {self.routine.current_step.name} better go to target with uuid {uuid}")
             station = self.station_handler.get_station_by_uuid(uuid[0])
         else:
+            print(f"Get handle for {self.routine.current_step.target}")
             station = self.station_handler.get_closest_station_by_type(self.get_central_pos(), self.routine.current_step.target)
         if station is None: 
             print("Could not find station")
             return False
         station.ai_interact(None, self)
+        if self.routine.current_step.release_target_after:
+            base.usage_handler.set_cord_status(self.target_grid_var, False, None, station.uuid)
         self.routine.update_memory(station.uuid, global_pos_to_grid(self.get_central_pos()))
         return True
 

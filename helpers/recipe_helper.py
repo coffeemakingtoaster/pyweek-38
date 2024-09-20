@@ -1,7 +1,7 @@
 from constants.map import TARGETS
 import copy
 
-from helpers.pathfinding_helper import get_path_from_to_tile, get_path_from_to_tile_type, global_pos_to_grid
+from helpers.pathfinding_helper import get_path_from_to_tile, get_path_from_to_tile_type, global_pos_to_grid, pos_to_string
 class Step:
     name = None 
     overwrite_step = None
@@ -9,7 +9,8 @@ class Step:
     target = None
     remember_target = None
     target_from_step = None
-    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0, remember_target=False, target_from=None) -> None:
+    release_target_after = None
+    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0, remember_target=False, target_from=None, release_target_after=None) -> None:
         self.name = name
         self.next = next
         self.target = target
@@ -17,17 +18,30 @@ class Step:
         self.onfail_goto_step = onfail_goto_step
         self.remember_target = remember_target
         self.target_from_step = target_from 
+        if target_from is not None:
+            # Assume that after this use the station is not needed by this npc anymore
+            if release_target_after is None:
+
+                self.release_target_after = True
+            else:
+                self.release_target_after = False
 
 class Routine:
     def __init__(self, start_step=None, key=None) -> None:
+
+        self.state = dict()
         if start_step is not None:
             self.current_step = start_step
         else:
             self.get_new_recipe(key)
-        self.state = dict()
     
     def get_new_recipe(self, key):
+        for state_key in self.state:
+            cord_status = base.usage_handler.get_cord_status(self.state[state_key][1])
+            if cord_status.status:
+                base.usage_handler.set_cord_status(self.state[state_key][1], False, None)
         self.current_step = copy.deepcopy(RECIPES[key])
+        self.state = {}
 
     def get_step_target_uuid(self):
         if self.current_step.target_from_step is not None:
@@ -48,7 +62,7 @@ class Routine:
     def advance(self):
         self.current_step = self.current_step.next
 
-    def get_waypoints(self, start_pos):
+    def get_waypoints(self, start_pos, enemy_id):
         # goto any station
         if self.current_step.target_from_step is not None:
             print(self.get_step_target_uuid()[1])
@@ -57,7 +71,7 @@ class Routine:
                 self.get_step_target_uuid()[1]
             )
         else:
-            return get_path_from_to_tile_type(global_pos_to_grid(start_pos),self.current_step.target) 
+            return get_path_from_to_tile_type(global_pos_to_grid(start_pos),self.current_step.target, enemy_id) 
 
     def insert_immediate_overwrite(self, key):
         routine = copy.deepcopy(FALLBACK_ROUTINE[key])
@@ -154,6 +168,7 @@ RECIPES = {
                     "Add ice to icecreammachine",
                     target=TARGETS.ICEMAKER,
                     target_from="Put chocolate into icemachine",
+                    release_target_after=False,
                     next=Step(
                         "Get Plate",
                         target=TARGETS.WASHER,

@@ -6,7 +6,9 @@ import math
 
 from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
+from constants.map import TARGET_BLOCKING_MAP
 from constants.player_const import MOVEMENT
+from entities import station
 from entities.dish import Dish
 from entities.entity_base import EntityBase
 from constants import player_const
@@ -71,11 +73,14 @@ class Player(EntityBase):
     def set_interact(self):
         self.interacting_station = self.find_station()
         self.interacting_station.interact(self.holding,self)
-        
+        if TARGET_BLOCKING_MAP[station.name]:
+            base.usage_handler.set_status_by_uuid(self.interacting_station.uuid, True, "player")
         #self.set_holding(Dish("empty_plate", load_model("empty_plate")))
         #print("Interacting.")
 
     def unset_interact(self):
+        if TARGET_BLOCKING_MAP[self.interacting_station.name]:
+            base.usage_handler.set_status_by_uuid(station.uuid, True, "player")
         if type(self.interacting_station) == CuttingBoard:
             self.interacting_station.stop_cut()
         self.interacting_station = None

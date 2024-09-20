@@ -32,7 +32,6 @@ class StationHandler:
             return None
         return heappop(viable_choices)[1]
 
-
     def get_station_by_uuid(self, uuid: str) -> Station | None:
         for station in self.stations:
             if station.uuid == uuid:

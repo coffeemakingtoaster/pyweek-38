@@ -30,7 +30,15 @@ class TARGETS:
     COUNTERTOP = "Countertop"
     STORAGE_DOOR = "Storage Door"
 
-
+TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
+    TARGETS.OVEN:  True,
+    TARGETS.FRY: True,
+    TARGETS.POT: True,
+    TARGETS.CUTTING_BOARD: True,
+    TARGETS.COUNTERTOP: True,
+    TARGETS.ICEMAKER: True,
+    TARGETS.PAN: True,
+})
 
 PATHFINDING_MAP = [
 ["#"]*MAP_DIMENSIONS[1],
@@ -40,8 +48,8 @@ PATHFINDING_MAP = [
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.ONION_STATION, '#'],
 ['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', TARGETS.TRASH, '#', ' ', ' ', ' ', ' ', ' ', '#'],
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
-['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.SALAD_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.ICE_STATION, ' ', TARGETS.STEAK_STATION, ' ', '#'],
