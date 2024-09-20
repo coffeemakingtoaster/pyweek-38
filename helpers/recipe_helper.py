@@ -140,8 +140,7 @@ RECIPES = {
                                             target_from="Cut tomato",
                                             next=Step(
                                                 "Dropoff",
-                                                # TODO: change this to dropoff zone
-                                                target=TARGETS.COUNTERTOP,
+                                                target=TARGETS.DROPOFF,
                                                 next=None
                                         )
                                     )
@@ -179,8 +178,7 @@ RECIPES = {
                             target_from="Put chocolate into icemachine",
                             next=Step(
                                 "Dropoff icecream",
-                                #TODO: change this to dropoff zone
-                                target=TARGETS.COUNTERTOP,
+                                target=TARGETS.DROPOFF,
                                 next=None
                             )
                         )
