@@ -68,15 +68,15 @@ jobs:
         with:
           path: builds
 
-      - run: zip -r linux_{{ $GITHUB_REF_NAME }}.zip builds/manylinux2014_x86_64
-      - run: zip -r windows_{{ $GITHUB_REF_NAME }}.zip builds/win_amd64
-      - run: zip -r macos_{{ $GITHUB_REF_NAME }}.zip builds/macosx_10_9_x86_64
+      - run: zip -r linux.zip builds/manylinux2014_x86_64
+      - run: zip -r windows.zip builds/win_amd64
+      - run: zip -r macos.zip builds/macosx_10_9_x86_64
 
       - name: Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            linux_{{ $GITHUB_REF_NAME }}.zip
-            windows_{{ $GITHUB_REF_NAME }}.zip
-            macos_{{ $GITHUB_REF_NAME }}.zip
+            linux.zip
+            windows.zip
+            macos.zip
