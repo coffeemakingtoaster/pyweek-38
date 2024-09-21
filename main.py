@@ -3,6 +3,9 @@ from panda3d.core import *
 from collections import defaultdict 
 from direct.showbase.ShowBase import ShowBase
 
+from direct.gui.DirectGui import DirectWaitBar
+from panda3d.core import TextNode
+
 from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
@@ -53,6 +56,19 @@ class main_game(ShowBase):
         self.map_stations = []
         self.stations_handler = None
         self.order_handler = None
+        self.player_in_sight = False
+        
+        self.suspicion_level = 0.0
+        self.suspicion_max = 100.0
+        
+        self.suspicion_bar = DirectWaitBar(text="Suspicion", value=self.suspicion_level, 
+                                           pos=(0, 0, 0.85), scale=0.4,
+                                           range=self.suspicion_max,
+                                           barColor=(1, 0, 0, 1),  
+                                           text_scale=0.08,
+                                           text_fg=(1, 1, 1, 1),  
+                                           text_align=TextNode.ACenter,
+                                           frameColor=(0, 0, 0, 0))
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -66,6 +82,9 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.ESCAPE, self.toggle_pause)
 
         self.accept(EVENT_NAMES.PAUSE_GAME, self.toggle_pause)
+        
+        self.accept(f"player_entered_viewcone", self.increase_sus)
+        self.accept(f"player_left_viewcone", self.decrease_sus)
 
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
@@ -134,6 +153,7 @@ class main_game(ShowBase):
             enemy.update(dt)
         self.player.update(dt)
         self.camera_movement.update(dt)
+        self.update_suspicion(dt)
 
         return Task.cont
 
@@ -231,8 +251,22 @@ class main_game(ShowBase):
         elif not sneak:
             self.slight.setColor((4, 4, 4, 1))  # Set Normal
             self.ambientLight.setColor((.5, .5, .5, 1))
+            
+    def increase_sus(self):
+        self.player_in_sight = True
+        
 
-
+    def decrease_sus(self):
+        self.player_in_sight = False
+    
+    def update_suspicion(self,dt):
+        if self.player_in_sight and self.player.is_evil:
+            self.suspicion_level = min(self.suspicion_level + 40 *dt,self.suspicion_max)
+        else:
+            self.suspicion_level = max(self.suspicion_level - 1 *dt,0)
+            
+        self.suspicion_bar['value'] = self.suspicion_level
+        
 def start_game():
     print("Starting game..")
     game = main_game()
@@ -240,6 +274,8 @@ def start_game():
 
 def display_pathfinding_test():
     print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, debug_print=True))
+    
+
 
 if __name__ == "__main__":
     start_game()

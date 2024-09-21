@@ -38,11 +38,11 @@ class IceMaker(Station):
                 
             elif player.sneaking:
                 
-                self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+                self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
                 self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.salt, "task")
                    
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spice:
-            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
             self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.pice, "task")
                 
                 
@@ -57,7 +57,7 @@ class IceMaker(Station):
                 self.play_anim("Close")
                 self.inventory = Dish("unplated_ice_cream",load_model("plated_ice_cream"))
                 self.render()
-                self.progressBar = ProgressBar(self.model,self.duration,0)
+                self.progressBar = ProgressBar(self.model,self.duration,0,player)
                 self.task = taskMgr.do_method_later(self.duration,self.finish_ice,"task")
         elif item.id == "empty_plate" and self.inventory.id == "plated_ice_cream":
             player.hardset(copy.deepcopy(self.inventory))
@@ -73,8 +73,9 @@ class IceMaker(Station):
         self.inventory.finished = True
         self.play_anim("Open")
         self.task = None
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
                 
     def render(self):
         

@@ -99,24 +99,7 @@
             },
             "rotation": 270.0
         },
-        {
-            "name": "Storagedoor",
-            "position": {
-                "x": 3.409578323364258,
-                "y": -1.3850815296173096,
-                "z": 0
-            },
-            "rotation": 471.3841552734375
-        },
-        {
-            "name": "Freezerdoor",
-            "position": {
-                "x": 3.373833656311035,
-                "y": -4.236415386199951,
-                "z": 0
-            },
-            "rotation": 0.0
-        },
+        
         {
             "name": "Storage_Large_Metal",
             "position": {

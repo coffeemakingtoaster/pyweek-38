@@ -29,6 +29,7 @@ class Player(EntityBase):
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
         self.interacting_station = None
         self.sneaking = False
+        self.is_evil = False
 
         # Keybinds for movement
         self.accept("a", self.set_movement_status, ["left"])

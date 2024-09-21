@@ -2,10 +2,13 @@ from panda3d.core import *
 from helpers.model_helpers import load_model
 
 class ProgressBar():
-    def __init__(self, model, duration,evil):
+    def __init__(self, model, duration,evil,player):
         self.model = model
         self.duration = duration
-        self.evil = 0
+        self.evil = evil
+        self.player = player
+        if evil == 1:
+            player.is_evil = True
         
         #self.progress_bar_background = load_model("timer_bg")
         #self.progress_bar_background.reparentTo(self.model)
@@ -41,6 +44,9 @@ class ProgressBar():
         return task.cont
 
     def destroy(self):
+        
+        if self.evil:
+            self.player.is_evil = False
         
         #if self.progress_bar_background:
         #    self.progress_bar_background.removeNode()

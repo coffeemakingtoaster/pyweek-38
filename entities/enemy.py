@@ -1,5 +1,5 @@
 import math
-
+from panda3d.core import TransparencyAttrib
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
 
@@ -31,6 +31,7 @@ class Enemy(EntityBase):
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
 
         self.sneaking = False
+        self.viewconeModel = None
 
         self.display_waypoint_info = display_waypoint_info
         self.waypoint_displays = []
@@ -76,9 +77,15 @@ class Enemy(EntityBase):
     def __hide_viewcone(self, sneak):
         if sneak:
             self.viewcone.unstash()
+            self.viewconeModel = load_model("viewcone")
+            self.viewconeModel.reparentTo(self.model)
+            self.viewconeModel.setPos(0,-1,1)
+            self.viewconeModel.setTransparency(TransparencyAttrib.MAlpha)
+            self.model.setColor(1, 1, 1, 0.5)
             self.accept(f"{self.id}-into-player_hitbox", self.__handle_player_enter_viewcone)
             self.accept(f"{self.id}-out-player_hitbox", self.__handle_player_leave_viewcone)
         elif not sneak:
+            self.viewconeModel.removeNode()
             self.viewcone.stash()
             self.ignore(f"{self.id}-into-player_hitbox")
             self.ignore(f"{self.id}-out-player_hitbox")
@@ -131,7 +138,10 @@ class Enemy(EntityBase):
         self.viewcone = self.model.attachNewNode(CollisionNode("enemy_viewcone"))
         self.viewcone.setCollideMask(VIEW_COLLISION_BITMASK)
 
-        self.viewcone.show()
+        #self.viewcone.show()
+        self.viewconeModel = load_model("viewcone")
+        self.viewconeModel.reparentTo(self.model)
+        self.viewconeModel.setPos(0,-1,1)
         self.viewcone.setPos(0, 0, 0)
         self.viewcone.node().addSolid(CollisionBox(Point3(0, -0.6, 0.5), 0.25, -0.75, 0.25))
         # setup notifier
@@ -146,9 +156,11 @@ class Enemy(EntityBase):
 
     def __handle_player_enter_viewcone(self, _: CollisionEntry):
         print(f"I ({self.id}) see the player")
+        messenger.send(f"player_entered_viewcone")
 
     def __handle_player_leave_viewcone(self, _: CollisionEntry):
         print(f"I ({self.id}) lost him")
+        messenger.send(f"player_left_viewcone")
 
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
@@ -296,3 +308,5 @@ class Enemy(EntityBase):
 
         ep.setPos(0, -0.5, 0.76)
         self.holding = item
+
+    

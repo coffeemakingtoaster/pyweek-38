@@ -46,11 +46,11 @@ class ItemArea(Station):
                 
             elif player.sneaking:
                 
-                self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+                self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
                 self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.salt, "task")
                    
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spice:
-            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
             self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.pice, "task")
             
         elif type(self.inventory) == Dish and type(item) == Ingredient:

@@ -25,7 +25,7 @@ class Pan(Station):
 
     def interact(self, item, player):
         if player.sneaking and self.inventory.id == "raw_steak":
-            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
             self.evil_p = ParticleEffect()
             self.evil_p.load_config("assets/particles/flame/bad_flame.ptf")
             self.evil_p.start(self.model, self.model)
@@ -41,7 +41,7 @@ class Pan(Station):
             self.p.start(self.model, self.model)
 
             # Initialize the 3D progress bar
-            self.progressBar = ProgressBar(self.model,self.duration,0)
+            self.progressBar = ProgressBar(self.model,self.duration,0,player)
 
             # Start the frying process and setup task to finish after the duration
             self.task = taskMgr.doMethodLater(self.duration, self.finish_pan_fry, "task")
@@ -71,8 +71,9 @@ class Pan(Station):
         self.render()
 
         # Remove the 3D progress bar when cooking is done
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
 
         self.task = None
         if self.evil_task:

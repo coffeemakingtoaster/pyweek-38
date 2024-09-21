@@ -42,7 +42,7 @@ class CuttingBoard(Station):
         elif item.id == "empty_hands" and self.inventory.id in self.cuttables:
             self.model.play("Cut")
             self.is_cutting = True 
-            self.progressBar = ProgressBar(self.model,self.duration,0)
+            self.progressBar = ProgressBar(self.model,self.duration,0,player)
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
             # should block
         elif type(self.inventory) == Ingredient and type(item) == Dish:
@@ -71,8 +71,9 @@ class CuttingBoard(Station):
         self.clean()
         self.inventory = Ingredient(cuttable_id,load_model(cuttable_id))
         self.render()
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
         self.task = None
     
     def unset_interact(self,palyer):
@@ -80,8 +81,10 @@ class CuttingBoard(Station):
         if self.task is not None:
             
             taskMgr.remove(self.task)
-            self.progressBar.destroy()
-            self.progressBar = None
+            
+            if self.progressBar:
+                self.progressBar.destroy()
+                self.progressBar = None
             self.model.stop()
             
     def swap(self,item,player):

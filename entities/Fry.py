@@ -27,7 +27,7 @@ class Fry(Station):
     def interact(self,item,player):
         
         if player.sneaking and self.inventory.id == "chopped_potatoes" and item.id == "ice_cubes":
-            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1)
+            self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
             self.evil_p = ParticleEffect()
             self.evil_p.load_config("assets/particles/flame/bad_flame.ptf")
             self.evil_p.start(self.model, self.model)
@@ -40,7 +40,7 @@ class Fry(Station):
             
             self.model.loop("Fry")
             self.inventory = Ingredient(item.id, load_model(item.id))
-            self.progressBar = ProgressBar(self.model,self.duration,0)
+            self.progressBar = ProgressBar(self.model,self.duration,0,player)
             self.task = taskMgr.do_method_later(self.duration,self.fry,"task")
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
         elif (item.id == "empty_hands" or type(item) == Dish) and  self.inventory.id == "fries":
@@ -56,8 +56,9 @@ class Fry(Station):
         self.inventory = Ingredient("fries",load_model("fries"))
         self.model.stop()
         self.task = None
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
         
         if self.evil_task:
             self.evil_task = None
@@ -74,8 +75,9 @@ class Fry(Station):
         self.render()
 
         # Remove the 3D progress bar when cooking is done
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
         self.evil_progressBar.destroy()
         self.evil_progressBar = None
         player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))

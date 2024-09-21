@@ -25,7 +25,7 @@ class Oven(Station):
             print("Yay Pizza")
             self.inventory = copy.deepcopy(item)
             self.play_anim("Open")
-            self.progressBar = ProgressBar(self.model,self.duration,0)
+            self.progressBar = ProgressBar(self.model,self.duration,0,player)
             self.task = taskMgr.do_method_later(1,self.close_door,"task",extraArgs = [player])
         elif item.id == "empty_hands" and self.inventory.id == "plated_pizza":
             player.hardset(copy.deepcopy(self.inventory))
@@ -44,8 +44,9 @@ class Oven(Station):
         self.inventory.finished = True
         self.play_anim("Open")
         self.task = None
-        self.progressBar.destroy()
-        self.progressBar = None
+        if self.progressBar:
+            self.progressBar.destroy()
+            self.progressBar = None
     def close_door(self,player):
         self.play_anim("Close")
         player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
