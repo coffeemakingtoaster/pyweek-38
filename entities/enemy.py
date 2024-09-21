@@ -84,10 +84,8 @@ class Enemy(EntityBase):
         self.accept(EVENT_NAMES.DISPLAY_REVIEW, self.__angry)
 
     def __angry(self, review: Review):
-        print("angry!")
         if len(self.sounds) == 0:
             return
-        print("sound ready")
         if review.star_count > 2.5 or review.team != TEAM.ENEMY:
             return
         random.choice(self.sounds).play()
@@ -357,7 +355,6 @@ class Enemy(EntityBase):
 
        
     def its_ok(self,_=None):
-        print("okay again")
         if self.angermodel:
             self.angermodel.removeNode()
         self.angermodel = None
