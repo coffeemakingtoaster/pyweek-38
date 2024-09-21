@@ -31,6 +31,7 @@ class Fry(Station):
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
         elif (item.id == "empty_hands" or type(item) == Dish) and  self.inventory.id == "fries":
             player.set_holding(Ingredient("fries",load_model("fries")))
+            
         
         
         else:

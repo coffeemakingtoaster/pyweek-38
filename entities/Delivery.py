@@ -57,4 +57,5 @@ class Delivery(Station):
             self.item_was_dropped_off_by_player = False
             if not self.inventory.model is None:
                 self.inventory.model.removeNode()
+            self.inventory= (ItemBase("empty_hands", load_model("empty_hands")))
     

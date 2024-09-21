@@ -9,6 +9,7 @@ from helpers.model_helpers import load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.progress_bar import ProgressBar
+import copy
 
 
 class CuttingBoard(Station):
@@ -76,10 +77,10 @@ class CuttingBoard(Station):
         self.progressBar = None
         self.task = None
     
-    def stop_cut(self):
-        print("Ho")
+    def unset_interact(self,palyer):
+        
         if self.task is not None:
-            print("Hey")
+            
             taskMgr.remove(self.task)
             self.progressBar.destroy()
             self.progressBar = None

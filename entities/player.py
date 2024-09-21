@@ -81,8 +81,7 @@ class Player(EntityBase):
     def unset_interact(self):
         if TARGET_BLOCKING_MAP[self.interacting_station.name]:
             base.usage_handler.set_status_by_uuid(station.uuid, True, "player")
-        if type(self.interacting_station) == CuttingBoard:
-            self.interacting_station.stop_cut()
+        self.interacting_station.unset_interact(self) 
         self.interacting_station = None
         return
         # print("Disabling interact.")

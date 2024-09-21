@@ -28,3 +28,8 @@ class Station(EntityBase):
 
     def ai_interact(self,item,enemy):
         print(f"Enemy interacted with {self.name} ({self.uuid})")
+        
+    def unset_interact(self,player):
+        return
+
+    
