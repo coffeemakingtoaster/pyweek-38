@@ -139,7 +139,7 @@ class hud(ui_base):
                 0.8 - offset - self.reviews[i].get_bottom_offset()
             ))
             offset += (self.reviews[i].get_bottom_offset() * 2) + 0.05
-        self.__add_score(review.star_count, review.team)
+        self.__add_score(review.star_count, review.team,review.shittiness_score)
 
     def __display_order(self, order):
         if len(self.orders) == 2:
@@ -170,11 +170,11 @@ class hud(ui_base):
                 break
         self.__render_orders()
 
-    def __add_score(self, score, team):
+    def __add_score(self, score, team,shitty):
         if team == TEAM.ENEMY:
-            self.enemy_score += score * 10
+            self.enemy_score += (score * 10) -shitty
         else:
-            self.player_score += score * 10
+            self.player_score += (score * 10) -shitty
         # there seems to be a weird bug within panda3d that sometimes causes this to fail
         # Worst case: we update it again sometime else
         try:
