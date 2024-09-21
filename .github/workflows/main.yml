@@ -20,7 +20,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: Tube_Win_${{ GITHUB_REF_NAME }}
+          name: Tube_Win
           path: ./build/win_amd64/
 
   build-macos:
@@ -40,7 +40,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: Tube_OSX_${{ GITHUB_REF_NAME }}
+          name: Tube_OSX
           path: ./build/macosx_10_9_x86_64/
 
   build-linux:
@@ -57,7 +57,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: Tube_Linux_$GITHUB_REF_NAME
+          name: Tube_Linux
           path: ./build/manylinux2010_x86_64/ 
 
   release:
