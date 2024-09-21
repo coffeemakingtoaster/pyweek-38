@@ -11,7 +11,7 @@ class CameraMovement(EntityBase, ABC):
         self.player_model = player_model
         self.camera = camera
         self.s = None
-
+        self.camera.setPos(0,-5,0)
         self.camera.setHpr(0, -45, 0)
 
     def setup(self):

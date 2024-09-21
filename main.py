@@ -229,6 +229,7 @@ class main_game(ShowBase):
         # disable and replace
         base.audio3d.disable()
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.cam)
+        base.setBackgroundColor(0,0,0)
 
         if self.suspicion_bar is not None:
             self.suspicion_bar.removeNode()
