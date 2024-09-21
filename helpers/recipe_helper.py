@@ -32,12 +32,12 @@ class Step:
 
 class Routine:
     def __init__(self, start_step=None, key=None) -> None:
-
         self.state = dict()
         if start_step is not None:
             self.current_step = start_step
         else:
             self.get_new_recipe(key)
+        self.previous = None
     
     def get_new_recipe(self, key):
         for state_key in self.state:
@@ -65,6 +65,7 @@ class Routine:
             self.state[self.current_step.name] = (uuid,pos)
 
     def advance(self):
+        self.previous = self.current_step
         self.current_step = self.current_step.next
 
     def get_waypoints(self, start_pos, enemy_id):
@@ -202,5 +203,193 @@ RECIPES = {
                     )
                 )
             )
+        ),
+    VIABLE_FINISHED_ORDER_DISHES.SOUP: Step(
+            "Get potato",
+            target=TARGETS.POTATO_STATION,
+            next=Step(
+                "Cut potato",
+                target=TARGETS.CUTTING_BOARD,
+                remember_target=True,
+                next=Step(
+                    "Pickup potato",
+                    target_from="Cut potato",
+                    target=TARGETS.CUTTING_BOARD,
+                    next=Step(
+                        "Add potato to pot",
+                        target=TARGETS.POT,
+                        remember_target=True,
+                        next=Step(
+                        "Get onion",
+                        target=TARGETS.CUTTING_BOARD,
+                        remember_target=True,
+                        next=Step(
+                            "Pickup onion",
+                            target=TARGETS.CUTTING_BOARD,
+                            target_from="Get onion",
+                            next=Step(
+                                "Add onion to pot",
+                                target=TARGETS.POT,
+                                target_from="Add potato to pot",
+                                release_target_after=False,
+                                next=Step(
+                                    "Get plate",
+                                    target=TARGETS.WASHER,
+                                    onfail_goto_step=-1,
+                                    next=Step(
+                                        "Pickup soup",
+                                        target=TARGETS.POT,
+                                        target_from="Add potato to pot",
+                                        repeats=30,
+                                        next=Step(
+                                            "Dropoff",
+                                            target=TARGETS.DROPOFF,
+                                            next=None
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
         )
+    ),
+    VIABLE_FINISHED_ORDER_DISHES.STEAK: Step(
+        "Get steak",
+        target=TARGETS.STEAK_STATION,
+        next=Step(
+            "Add steak to pan",
+            target=TARGETS.PAN,
+            remember_target=True,
+            next=Step(
+                "Get plate",
+                target=TARGETS.WASHER,
+                onfail_goto_step=-1,
+                next=Step(
+                    "Get steak from pan",
+                    target=TARGETS.PAN,
+                    target_from="Add steak to pan",
+                    repeats=30,
+                    next=Step(
+                        "Put plate on countertop",
+                        target=TARGETS.COUNTERTOP,
+                        remember_target=True,
+                        next=Step(
+                            "Get potato",
+                            target=TARGETS.POTATO_STATION,
+                            next=Step(
+                                "Cut potato",
+                                target=TARGETS.CUTTING_BOARD,
+                                remember_target=True,
+                                next=Step(
+                                    "Pickup potato",
+                                    target=TARGETS.CUTTING_BOARD,
+                                    target_from="Cut potato",
+                                    next=Step(
+                                        "Add to fry",
+                                        target=TARGETS.FRY,
+                                        remember_target=True,
+                                        next=Step(
+                                            "Get plate",
+                                            target_from="Put plate on countertop",
+                                            target=TARGETS.COUNTERTOP,
+                                            next=Step(
+                                                "Get fries",
+                                                target=TARGETS.FRY,
+                                                target_from="Add to fry",
+                                                repeats=30,
+                                                next=Step(
+                                                    "Dropoff",
+                                                    target=TARGETS.DROPOFF,
+                                                    next=None
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    ),
+    VIABLE_FINISHED_ORDER_DISHES.PIZZA: Step(
+            "Get plate",
+            target=TARGETS.WASHER,
+            next=Step(
+                "Put plate on countertop",
+                target=TARGETS.COUNTERTOP,
+                remember_target=True,
+                next=Step("Get dough",
+                    target=TARGETS.DOUGH_STATION,
+                    next=Step(
+                        "Put dough on plate",
+                        target=TARGETS.COUNTERTOP,
+                        target_from="Put plate on countertop",
+                        release_target_after=False,
+                        next=Step(
+                            "Get tomato",
+                            target=TARGETS.TOMATO_STATION,
+                            next=Step(
+                                "Cut tomato",
+                                target=TARGETS.CUTTING_BOARD,
+                                remember_target=True,
+                                next=Step(
+                                    "Get my plate",
+                                    target=TARGETS.COUNTERTOP,
+                                    target_from="Put plate on countertop",
+                                    next=Step(
+                                        "Get tomato",
+                                        target=TARGETS.CUTTING_BOARD,
+                                        target_from="Cut tomato",
+                                        next=Step(
+                                            "Put plate on countertop",
+                                            target=TARGETS.COUNTERTOP,
+                                            remember_target=True,
+                                            next=Step(
+                                                "Get cheese",
+                                                target=TARGETS.CHEESE_STATION,
+                                                next=Step(
+                                                    "Cut cheese",
+                                                    target=TARGETS.CUTTING_BOARD,
+                                                    remember_target=True,
+                                                    next=Step(
+                                                        "Get my plate",
+                                                        target=TARGETS.COUNTERTOP,
+                                                        target_from="Put plate on countertop",
+                                                        next=Step(
+                                                            "Get cheese",
+                                                            target=TARGETS.CUTTING_BOARD,
+                                                            target_from="Cut cheese",
+                                                            next=Step(
+                                                                "Put in oven",
+                                                                target=TARGETS.OVEN,
+                                                                remember_target=True,
+                                                                next=Step(
+                                                                    "Get from oven",
+                                                                    target_from="Put in oven",
+                                                                    target=TARGETS.OVEN,
+                                                                    repeats=30,
+                                                                    next=Step(
+                                                                        "Dropoff",
+                                                                        target=TARGETS.DROPOFF,
+                                                                        next=None,
+                                                                )
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
 }

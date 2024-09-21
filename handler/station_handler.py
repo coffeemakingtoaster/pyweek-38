@@ -10,13 +10,15 @@ class StationHandler:
 
     def get_closest_station_by_type(self, position: Point3, target: TARGETS) -> Station | None:
         viable_choices = [] 
+        counter = 0.1
         for station in self.stations:
             if station.name != target:
                 continue
             heappush(
                 viable_choices, 
-                (Vec3(position.x - station.model.getPos().x,position.y - station.model.getPos().y,0).length(), station)
+                (Vec3(position.x - station.model.getPos().x,position.y - station.model.getPos().y,0).length() + counter, station)
             )
+            counter += 0.05
         if len(viable_choices) == 0:
             return None
         return heappop(viable_choices)[1]

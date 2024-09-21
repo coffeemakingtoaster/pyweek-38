@@ -39,7 +39,6 @@ def __optimize_waypoints(waypoints):
 
 def __get_adjacent(pos):
     res = []
-
     #x
     if pos[0] > 0:
         if not __is_wall((pos[0]-1, pos[1])):
@@ -47,7 +46,6 @@ def __get_adjacent(pos):
     if pos[0] < MAP_DIMENSIONS[0] - 1:
         if not __is_wall((pos[0]+1, pos[1])):
             res.append((pos[0]+1, pos[1]))
-
     #y
     if pos[1] > 0:
         if not __is_wall((pos[0], pos[1]-1)):
@@ -202,7 +200,8 @@ def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=Fal
     if target_pos is None:
 
         print("Could not find target....")
-        return []
+        # this is a recovery strategy! ideally this should never occur
+        return [(0,0)]
     
     res = __backtrack(target_pos, start_pos, visited, debug_print)
     diff = (datetime.datetime.now() - start_time)
