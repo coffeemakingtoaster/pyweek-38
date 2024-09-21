@@ -11,6 +11,11 @@ from constants.enemy_const import MOVEMENT
 from handler.station_handler import StationHandler
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
+from entities.item_base import ItemBase
+from helpers.model_helpers import load_model
+from entities.dish import Dish
+from entities.ingredient import Ingredient
+from entities.CuttingBoard import CuttingBoard
 
 import uuid
 import random
@@ -28,6 +33,9 @@ class Enemy(EntityBase):
         self.display_waypoint_info = display_waypoint_info
         self.waypoint_displays = []
         self.waypoint_hitboxes = []
+        self.cuttingTask = None
+        
+        
 
         self.model = Actor("assets/models/MapObjects/Enemy1/Enemy1.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
@@ -55,7 +63,11 @@ class Enemy(EntityBase):
         self.station_handler = station_handler
 
         self.accept(EVENT_NAMES.RECALCULATE_WAYPOINTS, self.__double_check_waypoints)
-
+        
+        self.holding = ItemBase("empty_hands", load_model("empty_hands"))
+        self.holding.model.setPos(0, -0.4, 0.76)
+        self.holding.model.reparentTo(self.model)
+        
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
     def __hide_viewcone(self, sneak):
@@ -211,7 +223,12 @@ class Enemy(EntityBase):
         if station is None: 
             print("Could not find station")
             return False
-        station.ai_interact(None, self)
+        
+        if type(station) == CuttingBoard:
+            station.ai_interact(self.holding,self)
+            self.cuttingTask = taskMgr.do_method_later(station.duration,station.unset_interact,"cutting_task")
+        else:
+            station.ai_interact(self.holding, self)
         if self.routine.current_step.release_target_after:
             base.usage_handler.set_cord_status(self.target_grid_var, False, None, station.uuid)
         self.routine.update_memory(station.uuid, global_pos_to_grid(self.get_central_pos()))
@@ -229,3 +246,23 @@ class Enemy(EntityBase):
         if self.model is not None:
             self.model.cleanup()
             self.model.removeNode()
+    def set_holding(self, new_item):
+
+        if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
+
+            if self.holding.add_ingredient(new_item.id):
+                self.holding.model.reparentTo(self.model)
+                return True
+            else:
+                return False
+        else:
+            self.hardset(new_item)
+    def hardset(self, item):
+        self.holding.model.removeNode()
+
+        ep = item.model
+        print(item.model)
+        ep.reparentTo(self.model)
+
+        ep.setPos(0, -0.5, 0.76)
+        self.holding = item

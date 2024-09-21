@@ -10,10 +10,11 @@ from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.salt import Salt
 import copy
+from constants.map import TARGETS
 
 class Delivery(Station):
     def __init__(self,actor):
-        self.id = "Delivery"
+        self.id = TARGETS.DROPOFF
         super().__init__(self.id,actor)
         
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
@@ -23,6 +24,9 @@ class Delivery(Station):
         self.render()
 
     def interact(self,item,player):
+        
+        print("HELLLO ITS ME")
+        
         if self.inventory.id == "empty_hands" and type(item) == Dish and item.finished:
             c_item = copy.deepcopy(item)
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
