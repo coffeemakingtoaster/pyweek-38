@@ -1,6 +1,6 @@
 from panda3d.core import *
 
-from collections import defaultdict 
+from collections import defaultdict
 from direct.showbase.ShowBase import ShowBase
 
 from direct.gui.DirectGui import DirectWaitBar
@@ -9,7 +9,8 @@ from panda3d.core import TextNode
 from direct.gui.OnscreenText import OnscreenText
 
 from direct.task.Task import Task
-
+from direct.gui.OnscreenImage import OnscreenImage
+from panda3d.core import TransparencyAttrib
 from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
@@ -36,6 +37,7 @@ from entities.enemy import Enemy
 
 loadPrcFile("./settings.prc")
 
+
 class main_game(ShowBase):
     def __init__(self):
 
@@ -56,19 +58,12 @@ class main_game(ShowBase):
         self.map_stations = []
         self.stations_handler = None
         self.order_handler = None
-        self.player_in_sight = True
-        
+        self.player_in_sight = False
+
         self.suspicion_level = 0.0
         self.suspicion_max = 100.0
-        
-        self.suspicion_bar = DirectWaitBar(text="Suspicion", value=self.suspicion_level, 
-                                           pos=(0, 0, 0.85), scale=0.4,
-                                           range=self.suspicion_max,
-                                           barColor=(1, 0, 0, 1),  
-                                           text_scale=0.08,
-                                           text_fg=(1, 1, 1, 1),  
-                                           text_align=TextNode.ACenter,
-                                           frameColor=(0, 0, 0, 0))
+        self.suspicion_bar = None
+        self.sustash = None
 
         properties = WindowProperties()
         properties.setSize(1280, 720)
@@ -82,7 +77,7 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.ESCAPE, self.toggle_pause)
 
         self.accept(EVENT_NAMES.PAUSE_GAME, self.toggle_pause)
-        
+
         self.accept(f"player_entered_viewcone", self.increase_sus)
         self.accept(f"player_left_viewcone", self.decrease_sus)
 
@@ -107,7 +102,7 @@ class main_game(ShowBase):
         # Create a spotlight
         self.slight = Spotlight('slight')
         self.slight.setColor((4, 4, 4, 1))  # Set light color
-        self.slight.setShadowCaster(True, 4096*4, 4096*4)  # Enable shadow casting
+        self.slight.setShadowCaster(True, 4096 * 4, 4096 * 4)  # Enable shadow casting
 
         # Create a lens for the spotlight and set its field of view
         lens = PerspectiveLens()
@@ -130,7 +125,7 @@ class main_game(ShowBase):
         base.usage_handler = UsageHandler()
 
         load_config('./user_settings.json')
-        
+
         # This still reacts to setting changes
         self.music_handler = MusicHandler()
 
@@ -168,14 +163,29 @@ class main_game(ShowBase):
 
         self.order_handler = OrderHandler()
         self.enemies = [
-            #Enemy(3, 3, station_handler=self.stations_handler),
+            # Enemy(3, 3, station_handler=self.stations_handler),
             Enemy(1, 1, station_handler=self.stations_handler),
         ]
         self.active_hud = hud()
 
+        self.suspicion_bar = DirectWaitBar(
+            value=self.suspicion_level,
+            pos=(0, 0, 0.86), scale=(0.12, 1, 0.50),
+            range=self.suspicion_max,
+            barColor=(1, 0, 0, 1),
+            text_align=TextNode.ACenter,
+            frameColor=(0, 0, 0, 0),
+            sortOrder=0
+        )
+
+        self.sustash = OnscreenImage(image='mustache_hole.png', pos=(0, 0, 0.85))
+        self.sustash.setTransparency(TransparencyAttrib.MAlpha)
+        self.sustash.setScale(0.3, 0.6, 0.2)
+        self.sustash.setBin('gui-popup', 0)
+
         # DO NOT DELETE please uwu 
         # show pathfinding grid
-        #self.visualizer = PathfinderVisualizer()
+        # self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
@@ -203,6 +213,13 @@ class main_game(ShowBase):
         if base.cTrav is not None:
             base.cTrav.clearColliders()
 
+        if self.suspicion_bar is not None:
+            self.suspicion_bar.removeNode()
+            
+        if self.sustash is not None:
+            self.sustash.destroy()
+        
+        
         if self.player is not None:
             self.player.destroy()
 
@@ -254,30 +271,30 @@ class main_game(ShowBase):
         elif not sneak:
             self.slight.setColor((4, 4, 4, 1))  # Set Normal
             self.ambientLight.setColor((.5, .5, .5, 1))
-            
+
     def increase_sus(self):
         self.player_in_sight = True
-        
 
     def decrease_sus(self):
         self.player_in_sight = False
-    
-    def update_suspicion(self,dt):
+
+    def update_suspicion(self, dt):
         if self.player_in_sight and self.player.is_evil:
-            self.suspicion_level = min(self.suspicion_level + 40 *dt,self.suspicion_max)
+            self.suspicion_level = min(self.suspicion_level + 40 * dt, self.suspicion_max)
         else:
-            self.suspicion_level = max(self.suspicion_level - 1 *dt,0)
-            
+            self.suspicion_level = max(self.suspicion_level - 1 * dt, 0)
+
         self.suspicion_bar['value'] = self.suspicion_level
-        
+
+
 def start_game():
     print("Starting game..")
     game = main_game()
     game.run()
 
+
 def display_pathfinding_test():
     print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, debug_print=True))
-    
 
 
 if __name__ == "__main__":
