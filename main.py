@@ -93,7 +93,7 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.GAME_OVER, self.gameOverBad)
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
-        self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9, 0.9), scale=0.07, fg=(255, 0, 0, 1))
+        #self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9, 0.9), scale=0.07, fg=(255, 0, 0, 1))
 
         base.disableMouse()
 
@@ -214,7 +214,7 @@ class main_game(ShowBase):
         base.usage_handler.set_station_handler(self.stations_handler)
 
     def set_game_status(self, status):
-        self.status_display["text"] = status
+        #self.status_display["text"] = status
         self.game_status = status
 
     def goto_main_menu(self):
