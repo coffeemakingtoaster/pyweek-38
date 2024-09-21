@@ -76,6 +76,7 @@ class OrderHandler(DirectObject):
                 dishId
             )
         )
+        print(f"Added a {dishId} order for enemies")
 
     def __get_order(self, dish, is_from_player):
         print(f"{is_from_player} player??")

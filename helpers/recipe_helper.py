@@ -1,6 +1,8 @@
+from constants.events import EVENT_NAMES
 from constants.map import TARGETS
 import copy
 
+from helpers.dish_helper import VIABLE_FINISHED_ORDER_DISHES
 from helpers.pathfinding_helper import get_path_from_to_tile, get_path_from_to_tile_type, global_pos_to_grid, pos_to_string
 class Step:
     name = None 
@@ -41,6 +43,7 @@ class Routine:
             if cord_status.status:
                 base.usage_handler.set_cord_status(self.state[state_key][1], False, None)
         self.current_step = copy.deepcopy(RECIPES[key])
+        messenger.send(EVENT_NAMES.ADD_ORDER, [key])
         self.state = {}
 
     def get_step_target_uuid(self):
@@ -103,7 +106,7 @@ FALLBACK_ROUTINE = {
 }
 
 RECIPES = {
-    "salad": Step(
+    VIABLE_FINISHED_ORDER_DISHES.SALAD: Step(
             "Get salad",
             target=TARGETS.SALAD_STATION,
             next=Step(
@@ -152,7 +155,7 @@ RECIPES = {
             )
         )
     ),
-    "chocolate_icecream": Step(
+    VIABLE_FINISHED_ORDER_DISHES.ICE_CREAM: Step(
         "Get chocolate",
         target=TARGETS.CHOCOLATE_STATION,
         next=Step(
