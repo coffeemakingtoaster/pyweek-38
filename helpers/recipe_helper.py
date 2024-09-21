@@ -68,6 +68,19 @@ class Routine:
         self.previous = self.current_step
         self.current_step = self.current_step.next
 
+    def recover(self):
+        if self.previous is not None:
+            # This in addition to is_recovering on the enemy will walk to 0,0 without trying to interact with anything
+            self.current_step = self.previous
+        else:
+            next = self.current_step
+            self.current_step = Step(
+                "tmp",
+                target=None,
+                next=next
+            )
+
+
     def get_waypoints(self, start_pos, enemy_id):
         # goto any station
         if self.current_step.target_from_step is not None:
@@ -220,31 +233,36 @@ RECIPES = {
                         target=TARGETS.POT,
                         remember_target=True,
                         next=Step(
-                        "Get onion",
-                        target=TARGETS.CUTTING_BOARD,
-                        remember_target=True,
-                        next=Step(
-                            "Pickup onion",
-                            target=TARGETS.CUTTING_BOARD,
-                            target_from="Get onion",
+                            "Get onion",
+                            target=TARGETS.ONION_STATION,
+                            remember_target=True,
                             next=Step(
-                                "Add onion to pot",
-                                target=TARGETS.POT,
-                                target_from="Add potato to pot",
-                                release_target_after=False,
+                                "Cut onion",
+                                remember_target=True,
+                                target=TARGETS.CUTTING_BOARD,
                                 next=Step(
-                                    "Get plate",
-                                    target=TARGETS.WASHER,
-                                    onfail_goto_step=-1,
+                                    "Pickup onion",
+                                    target=TARGETS.CUTTING_BOARD,
+                                    target_from="Cut onion",
                                     next=Step(
-                                        "Pickup soup",
+                                        "Add onion to pot",
                                         target=TARGETS.POT,
                                         target_from="Add potato to pot",
-                                        repeats=30,
+                                        release_target_after=False,
                                         next=Step(
-                                            "Dropoff",
-                                            target=TARGETS.DROPOFF,
-                                            next=None
+                                            "Get plate",
+                                            target=TARGETS.WASHER,
+                                            onfail_goto_step=-1,
+                                            next=Step(
+                                                "Pickup soup",
+                                                target=TARGETS.POT,
+                                                target_from="Add potato to pot",
+                                                repeats=30,
+                                                next=Step(
+                                                    "Dropoff",
+                                                    target=TARGETS.DROPOFF,
+                                                    next=None
+                                            )
                                         )
                                     )
                                 )

@@ -45,7 +45,7 @@ TARGET_BLOCKING_MAP = defaultdict(lambda: False,{
 PATHFINDING_MAP = [
 ["#"]*MAP_DIMENSIONS[1],
 ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', TARGETS.POTATO_STATION, TARGETS.POTATO_STATION, TARGETS.TOMATO_STATION, TARGETS.TOMATO_STATION, ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', TARGETS.FRY, ' ', TARGETS.FRY, TARGETS.POT, TARGETS.PAN, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.POT, TARGETS.PAN, ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.CHILI_STATION, '#'],
+['#', TARGETS.COUNTERTOP, ' ', TARGETS.COUNTERTOP, ' ', ' ', TARGETS.FRY, ' ', TARGETS.FRY, TARGETS.POT, TARGETS.PAN, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.POT, TARGETS.PAN, ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.CHILI_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', ' ', '#'],
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', '#', ' ', ' ', ' ', ' ', TARGETS.ONION_STATION, '#'],
 ['#', '#', TARGETS.OVEN, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', TARGETS.TRASH, '#', ' ', ' ', ' ', ' ', ' ', '#'],
@@ -55,7 +55,7 @@ PATHFINDING_MAP = [
 ['#', '#', TARGETS.DROPOFF, ' ', ' ', ' ', ' ', '#', TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
 ['#', '#', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#'],
 ['#', '#', TARGETS.DROPOFF, ' ', ' ', ' ', ' ', '#', '#', '#', '#', '#', '#', '#', '#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '#', TARGETS.ICE_STATION, ' ', TARGETS.STEAK_STATION, ' ', '#'],
-['#', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.DOUGH_STATION, '#'],
+['#', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.COUNTERTOP, TARGETS.COUNTERTOP, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.DOUGH_STATION, '#'],
 ['#', ' ', ' ', ' ', ' ', ' ', ' ', TARGETS.CUTTING_BOARD, TARGETS.CUTTING_BOARD, ' ', TARGETS.CUTTING_BOARD, ' ', TARGETS.WASHER, ' ', ' ', TARGETS.WASHER, ' ', ' ', TARGETS.ICEMAKER, ' ', ' ', ' ', '#', TARGETS.CHOCOLATE_STATION, ' ', TARGETS.CHEESE_STATION, ' ', '#'],
 ["#"]*MAP_DIMENSIONS[1],
 ["#"]*MAP_DIMENSIONS[1],
