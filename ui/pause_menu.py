@@ -28,7 +28,7 @@ class pause_menu(ui_base):
         self.menu_elements = []
 
         self.controls_tutorial = DirectDialog(frameSize = (-1.2, 1.2, -0.7, 0.7),
-                                   fadeScreen = 0.4,
+                                   #fadeScreen = 0.4,
                                    relief = DGG.FLAT,
                                    frameColor = (1,1,1,1),
                                    frameTexture = "assets/textures/controls_tutorial.png")
@@ -37,7 +37,7 @@ class pause_menu(ui_base):
         self.controls_tutorial.hide()
 
         self.dishes_tutorial = DirectDialog(frameSize = (-1.2, 1.2, -0.7, 0.7),
-                                   fadeScreen = 0.4,
+                                   #fadeScreen = 0.4,
                                    relief = DGG.FLAT,
                                    frameColor = (1,1,1,1),
                                    frameTexture = "assets/textures/dishes_tutorial.png")

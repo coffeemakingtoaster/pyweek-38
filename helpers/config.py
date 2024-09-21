@@ -18,10 +18,14 @@ def load_config(path):
     
     if "sfx_volume" in config:
        set_sfx_volume(config["sfx_volume"]) 
-       
+    else:
+        set_sfx_volume(1.0) 
+
        
     if "music_volume" in config:
        set_music_volume(config["music_volume"]) 
+    else:
+        set_music_volume(1.0)
     
     if "fullscreen" in config:
         if config["fullscreen"]:
