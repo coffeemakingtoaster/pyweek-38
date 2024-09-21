@@ -10,7 +10,8 @@ from direct.task.Task import Task
 from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
 from entities.pathfinding_visualizer import PathfinderVisualizer
-from handler import order_handler
+from os.path import join
+from handler.music_handler import MusicHandler
 from handler.order_handler import OrderHandler
 from handler.station_handler import StationHandler
 from handler.usage_handler import UsageHandler
@@ -110,6 +111,9 @@ class main_game(ShowBase):
         base.usage_handler = UsageHandler()
 
         load_config('./user_settings.json')
+        
+        # This still reacts to setting changes
+        self.music_handler = MusicHandler()
 
         display_pathfinding_test()
 
@@ -148,7 +152,7 @@ class main_game(ShowBase):
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
-        self.visualizer = PathfinderVisualizer()
+        #self.visualizer = PathfinderVisualizer()
 
     def load_game(self):
         with open('./map.json', 'r') as file:
