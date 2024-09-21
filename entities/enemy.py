@@ -189,7 +189,7 @@ class Enemy(EntityBase):
             self.model.setH(
                 get_limited_rotation_target(
                     self.model.getH(),
-                    target_rotation,
+                    target_rotation + 180,
                     MOVEMENT.ENEMY_MAX_TURN_SPEED_DEGREES * dt,
                 )
             )
