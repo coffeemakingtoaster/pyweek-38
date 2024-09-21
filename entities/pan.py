@@ -81,6 +81,7 @@ class Pan(Station):
             self.evil_p.disable()
             self.evil_progressBar.destroy()
             self.evil_progressBar = None
+            
     def burn(self,name):
         self.p.disable()
         self.evil_p.disable()

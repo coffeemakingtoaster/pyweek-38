@@ -31,6 +31,7 @@ class Fry(Station):
             self.evil_p = ParticleEffect()
             self.evil_p.load_config("assets/particles/flame/bad_flame.ptf")
             self.evil_p.start(self.model, self.model)
+            self.evil_p.setPos(0,0,1)
             self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.burn, "task")
         
         elif item.id == "chopped_potatoes":
@@ -77,6 +78,7 @@ class Fry(Station):
         self.progressBar = None
         self.evil_progressBar.destroy()
         self.evil_progressBar = None
+        player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
 
         taskMgr.remove(self.task)
         self.task = None
