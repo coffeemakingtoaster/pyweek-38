@@ -25,7 +25,9 @@ setup(
                 'p3ffmpeg',
                 'p3assimp'
             ],
-            
+            'icons': {
+                    'Dish Deception': ['assets/icon.png']
+                },
             'prefer_discrete_gpu': True
         }
     }

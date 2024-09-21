@@ -324,7 +324,6 @@ class main_game(ShowBase):
         self.active_ui = game_over(score_based)
 
     def gameOverGood(self,own_score, enemy_score):
-        print("good")
         if self.active_ui is not None:
             self.active_ui.destroy()
         if self.active_hud is not None:
