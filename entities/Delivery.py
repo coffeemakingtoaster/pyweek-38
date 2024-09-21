@@ -54,7 +54,7 @@ class Delivery(Station):
                    
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spiced:
             self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
-            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.pice, "task")
+            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.spice, "task")
 
 
     def render(self):

@@ -167,7 +167,7 @@ class ReviewDisplay:
         )
 
         self.username_label.setPos(
-            self.image.getPos()[0] - 0.3,
+            self.image.getPos()[0] - 0.31,
             self.image.getPos()[1],
             self.image.getPos()[2] + self.image.getScale()[2] - 0.04
         )
