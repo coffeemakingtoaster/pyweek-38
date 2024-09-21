@@ -169,13 +169,13 @@ class main_game(ShowBase):
 
         base.audio3d.attachListener(self.player.model)
 
+        self.active_hud = hud()
         self.order_handler = OrderHandler()
         self.enemies = [
             Enemy(3, 3, station_handler=self.stations_handler),
             Enemy(1, 1, station_handler=self.stations_handler),
             Enemy(4, 2, station_handler=self.stations_handler),
         ]
-        self.active_hud = hud()
 
         self.suspicion_bar = DirectWaitBar(
             value=self.suspicion_level,

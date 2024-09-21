@@ -4,8 +4,7 @@ class VIABLE_FINISHED_ORDER_DISHES:
     SALAD = "finished_salad"
     STEAK = "finished_steak"
     SOUP = "plated_soup"
-    # TODO: update me
-    PIZZA = "pizza"
+    PIZZA = "plated_pizza"
     ICE_CREAM = "plated_ice_cream"
 
 # Used as a lookup map for what name should be displayed to the user
