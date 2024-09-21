@@ -18,7 +18,7 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Dish_Deception_Win
           path: ./build/win_amd64/
@@ -38,7 +38,7 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Dish_Deception_OSX
           path: ./build/macosx_10_9_x86_64/
@@ -55,7 +55,7 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Dish_Deception_Linux
           path: ./build/manylinux2010_x86_64/ 
@@ -68,8 +68,12 @@ jobs:
         with:
           path: build
 
+      - run: ls -R build 
+
       - run: zip -r linux.zip build/Dish_Deception_Linux
+
       - run: zip -r windows.zip build/Dish_Deception_Win
+
       - run: zip -r macos.zip build/Dish_Deception_OSX
 
       - name: Release
