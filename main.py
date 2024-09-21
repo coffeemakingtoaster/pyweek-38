@@ -13,8 +13,6 @@ from direct.gui.OnscreenImage import OnscreenImage
 from panda3d.core import TransparencyAttrib
 from constants.map import TARGETS
 from entities.camera_movement import CameraMovement
-from entities.pathfinding_visualizer import PathfinderVisualizer
-from os.path import join
 from handler.music_handler import MusicHandler
 from handler.order_handler import OrderHandler
 from handler.station_handler import StationHandler
@@ -34,6 +32,7 @@ from ui.settings_menu import settings_menu
 from entities.player import Player
 import json
 from entities.enemy import Enemy
+from direct.showbase import Audio3DManager
 
 loadPrcFile("./settings.prc")
 
@@ -45,6 +44,8 @@ class main_game(ShowBase):
         render.setShaderAuto()
         base.enableParticles()
         base.cTrav = None
+
+        base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.cam)
 
         self.camera_movement = None
         self.camera = base.cam
@@ -129,6 +130,7 @@ class main_game(ShowBase):
         # This still reacts to setting changes
         self.music_handler = MusicHandler()
 
+
         display_pathfinding_test()
 
     def game_loop(self, task):
@@ -149,6 +151,10 @@ class main_game(ShowBase):
         self.player.update(dt)
         self.camera_movement.update(dt)
         self.update_suspicion(dt)
+        
+        
+        if self.suspicion_level >= 100:
+            return
 
         return Task.cont
 
@@ -161,10 +167,13 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
+        base.audio3d.attachListener(self.player.model)
+
         self.order_handler = OrderHandler()
         self.enemies = [
-            # Enemy(3, 3, station_handler=self.stations_handler),
+            Enemy(3, 3, station_handler=self.stations_handler),
             Enemy(1, 1, station_handler=self.stations_handler),
+            Enemy(4, 2, station_handler=self.stations_handler),
         ]
         self.active_hud = hud()
 
@@ -212,6 +221,10 @@ class main_game(ShowBase):
 
         if base.cTrav is not None:
             base.cTrav.clearColliders()
+    
+        # disable and replace
+        base.audio3d.disable()
+        base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.cam)
 
         if self.suspicion_bar is not None:
             self.suspicion_bar.removeNode()

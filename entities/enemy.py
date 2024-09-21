@@ -12,7 +12,7 @@ from constants.enemy_const import MOVEMENT
 from handler.station_handler import StationHandler
 from helpers.dish_helper import VIABLE_FINISHED_ORDER_DISHES
 from helpers.math_helper import get_limited_rotation_target
-from helpers.model_helpers import load_particles
+from helpers.model_helpers import load_3d_sounds, load_particles
 from entities.item_base import ItemBase
 from helpers.model_helpers import load_model
 from entities.dish import Dish
@@ -23,6 +23,7 @@ import random
 
 from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global, pos_to_string
 from helpers.recipe_helper import RECIPES, Routine, Step, get_routine_at_step
+from helpers.review_generator import Review
 
 
 class Enemy(EntityBase):
@@ -38,6 +39,9 @@ class Enemy(EntityBase):
         self.waypoint_displays = []
         self.waypoint_hitboxes = []
         self.is_cutting_remaining_duration = None
+        
+        self.angermodel = None
+        self.angertask = None
 
         enemy = random.randrange(1,4)
 
@@ -74,11 +78,22 @@ class Enemy(EntityBase):
         self.holding.model.reparentTo(self.model)
 
         self.is_recovering = False
+
+        self.sounds = load_3d_sounds("angry",self.model)
+        self.accept(EVENT_NAMES.DISPLAY_REVIEW, self.__angry)
+
+    def __angry(self, review: Review):
+        if len(self.sounds):
+            return
+        if review.star_count > 2.5:
+            return
+        random.choice(self.sounds).play()
         
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
     def __hide_viewcone(self, sneak):
         if sneak:
+            self.grr()
             self.viewcone.unstash()
             self.viewconeModel = load_model("viewcone")
             self.viewconeModel.reparentTo(self.model)
@@ -309,6 +324,8 @@ class Enemy(EntityBase):
         if self.model is not None:
             self.model.cleanup()
             self.model.removeNode()
+        for sound in self.sounds:
+            sound.stop()
 
     def set_holding(self, new_item):
         if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
@@ -329,4 +346,17 @@ class Enemy(EntityBase):
         ep.setPos(0, -0.5, 0.76)
         self.holding = item
 
-    
+    def grr(self):
+        if self.angertask:
+            self.its_ok("task")
+        self.angertask = taskMgr.doMethodLater(2,self.its_ok,"task")
+        self.angermodel = load_model("Anger")
+        self.angermodel.reparentTo(self.model)
+        self.angermodel.setPos(0,0,1.5)
+        self.angermodel.setScale(2)
+        
+    def its_ok(self,name):
+        if self.angermodel:
+            self.angermodel.removeNode()
+        self.angermodel = None
+        

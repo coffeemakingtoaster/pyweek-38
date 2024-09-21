@@ -1,3 +1,4 @@
+from random import random
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3
 
@@ -5,7 +6,7 @@ import math
 from constants.map import TARGETS
 from entities.station import Station
 from entities.dish import Dish
-from helpers.model_helpers import load_model
+from helpers.model_helpers import load_3d_sounds, load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.progress_bar import ProgressBar
@@ -24,6 +25,8 @@ class CuttingBoard(Station):
         self.cuttables = ["tomato","potato","cheese","chocolate","salad","onion","Chili"]
         self.cuts = ["chopped_tomato","chopped_potatoes","chopped_cheese","chopped_chocolate","chopped_salad","chopped_onion","chopped_chili"]
         super().__init__(self.id,actor)
+
+        self.sounds = load_3d_sounds("cutting", self.model)
     
     def interact(self,item,player):
         print(item.id)
@@ -43,6 +46,7 @@ class CuttingBoard(Station):
             self.model.play("Cut")
             self.is_cutting = True 
             self.progressBar = ProgressBar(self.model,self.duration,0,player)
+            self.play_sound(True)
             self.task = taskMgr.do_method_later(self.duration,self.finish_cut,"task")
             # should block
         elif type(self.inventory) == Ingredient and type(item) == Dish:
@@ -66,6 +70,7 @@ class CuttingBoard(Station):
         self.inventory.model.removeNode()
         
     def finish_cut(self,name):
+        self.stop_sound()
         cuttable_id = self.cuts[self.cuttables.index(self.inventory.id)]
         self.is_cutting = False
         self.clean()

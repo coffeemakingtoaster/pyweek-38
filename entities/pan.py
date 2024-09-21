@@ -3,10 +3,11 @@ from entities.station import Station
 from entities.item_base import ItemBase
 from entities.dish import Dish
 from entities.ingredient import Ingredient
-from helpers.model_helpers import load_model
+from helpers.model_helpers import load_3d_sounds, load_model
 from direct.particles.ParticleEffect import ParticleEffect
 from panda3d.core import *
 from entities.progress_bar import ProgressBar
+import random
 
 class Pan(Station):
     def __init__(self, actor):
@@ -19,9 +20,9 @@ class Pan(Station):
         self.evil_duration = 3
         self.p = None
         self.evil_p = None
-        
-
         super().__init__(self.id, actor)
+
+        self.sounds = load_3d_sounds("pan", self.model)
 
     def interact(self, item, player):
         if player.sneaking and self.inventory.id == "raw_steak":
@@ -43,18 +44,19 @@ class Pan(Station):
             # Initialize the 3D progress bar
             self.progressBar = ProgressBar(self.model,self.duration,0,player)
 
+            self.play_sound(True)
+
             # Start the frying process and setup task to finish after the duration
             self.task = taskMgr.doMethodLater(self.duration, self.finish_pan_fry, "task")
         
         elif (item.id == "empty_hands" or isinstance(item, Dish)) and self.inventory.id == "steak":
-            player.set_holding(Ingredient("steak", load_model("steak")))
+            player.set_holding(Ingredient("steak", load_model("steak"))) 
             self.clean()
             self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
             self.render()
 
         else:
-            # Error Sound
-            print("I only cook steak :(")
+            self.play_error_sound()
 
     def render(self):
         ep = self.inventory.model
@@ -65,6 +67,7 @@ class Pan(Station):
         self.inventory.model.removeNode()
 
     def finish_pan_fry(self,name):
+        self.stop_sound()
         self.p.disable()  # Stop particle effect
         self.clean()  # Remove the raw steak model
         self.inventory = Ingredient("steak", load_model("steak"))  # Set cooked steak
