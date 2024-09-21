@@ -34,7 +34,7 @@ class Fry(Station):
             self.evil_p.load_config("assets/particles/flame/bad_flame.ptf")
             self.evil_p.start(self.model, self.model)
             self.evil_p.setPos(0,0,1)
-            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.burn, "task")
+            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.burn, "task",extraArgs = [player])
         
         elif item.id == "chopped_potatoes":
             print("potatoes!!!")
@@ -68,7 +68,7 @@ class Fry(Station):
             self.evil_progressBar.destroy()
             self.evil_progressBar = None
         
-    def burn(self,name):
+    def burn(self,player):
         self.model.stop()
         self.evil_p.disable()
         self.clean()  
