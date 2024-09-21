@@ -146,9 +146,9 @@ class main_game(ShowBase):
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
+        self.order_handler = OrderHandler()
         self.enemies = [Enemy(3, 3, station_handler=self.stations_handler, display_waypoint_info=True)]
         self.active_hud = hud()
-        self.order_handler = OrderHandler()
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
