@@ -1,9 +1,9 @@
-name: application-build 
+name: build-and-release
 
 on:
   push:
-    branches:
-      - "main"
+    tags:
+      - "v*.*.*"
 
 jobs:
   build-windows:
@@ -18,9 +18,9 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: Tube_Win
+          name: Dish_Deception_Win
           path: ./build/win_amd64/
 
   build-macos:
@@ -38,9 +38,9 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: Tube_OSX
+          name: Dish_Deception_OSX
           path: ./build/macosx_10_9_x86_64/
 
   build-linux:
@@ -55,9 +55,9 @@ jobs:
       - name: build
         run: python3 setup.py build_apps 
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: Tube_Linux
+          name: Dish_Deception_Linux
           path: ./build/manylinux2010_x86_64/ 
 
   release:
@@ -66,11 +66,13 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          path: builds
+          path: build
 
-      - run: zip -r linux.zip builds/build/manylinux2014_x86_64
-      - run: zip -r windows.zip builds/build/win_amd64
-      - run: zip -r macos.zip builds/build/macosx_10_9_x86_64
+      - run: zip -r linux.zip build/Dish_Deception_Linux
+
+      - run: zip -r windows.zip build/Dish_Deception_Win
+
+      - run: zip -r macos.zip build/Dish_Deception_OSX
 
       - name: Release
         uses: softprops/action-gh-release@v2
@@ -78,5 +80,5 @@ jobs:
         with:
           files: |
             linux.zip
-            windows.zip
             macos.zip
+            windows.zip
