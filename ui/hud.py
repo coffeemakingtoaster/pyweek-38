@@ -30,9 +30,6 @@ class hud(ui_base):
         self.accept(EVENT_NAMES.HIDE_PLAYER_ORDER, self.__hide_order)
         self.accept(EVENT_NAMES.ADD_SCORE, self.__add_score)
 
-        self.accept("5", self.__debug_enemy)
-        self.accept("6", self.__debug_player)
-
         self.player_score = 0
         self.enemy_score = 0
 
@@ -70,6 +67,7 @@ class hud(ui_base):
                 pos=(-1.35, 0, -0.9),
                 image=join("assets", "images", "hud", f"player_score_display.png")
         )
+
         player_score_image.setTransparency(TransparencyAttrib.MAlpha)
 
         self.ui_elements.append(player_score_image)
