@@ -34,6 +34,8 @@ class Enemy(EntityBase):
 
         self.model.reparentTo(render)
         self.__spawn_viewcone()
+        # Disable viewcone at beginning of the game
+        self.__hide_viewcone(False)
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         self.recipe: str = random.choice(list(RECIPES.keys()))
@@ -56,12 +58,16 @@ class Enemy(EntityBase):
 
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
-       
     def __hide_viewcone(self, sneak):
         if sneak:
             self.viewcone.unstash()
+            self.accept(f"{self.id}-into-player_hitbox", self.__handle_player_enter_viewcone)
+            self.accept(f"{self.id}-out-player_hitbox", self.__handle_player_leave_viewcone)
         elif not sneak:
             self.viewcone.stash()
+            self.ignore(f"{self.id}-into-player_hitbox")
+            self.ignore(f"{self.id}-out-player_hitbox")
+
 
     def __double_check_waypoints(self, cords):
         print("Recalculating!")
@@ -113,7 +119,7 @@ class Enemy(EntityBase):
 
         self.viewcone.show()
         self.viewcone.setPos(0, 0, 0)
-        self.viewcone.node().addSolid(CollisionBox(Point3(0.5, 0.5, 0.5), 1, 1, 1))
+        self.viewcone.node().addSolid(CollisionBox(Point3(0, -0.6, 0.5), 0.25, -0.75, 0.25))
         # setup notifier
         self.notifier = CollisionHandlerEvent()
         self.notifier.addInPattern(f"{self.id}-into-%in")
@@ -125,12 +131,10 @@ class Enemy(EntityBase):
         self.accept(f"{self.id}-out-player_hitbox", self.__handle_player_leave_viewcone)
 
     def __handle_player_enter_viewcone(self, _: CollisionEntry):
-        pass
-        #print(f"I ({self.id}) see the player")
+        print(f"I ({self.id}) see the player")
 
     def __handle_player_leave_viewcone(self, _: CollisionEntry):
-        pass
-        #print(f"I ({self.id}) lost him")
+        print(f"I ({self.id}) lost him")
 
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
