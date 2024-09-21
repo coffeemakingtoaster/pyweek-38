@@ -49,7 +49,7 @@ def load_map(json_data):
             actor = Actor("assets/models/MapObjects/"+name+"/"+name+".bam", {"Open": "assets/models/MapObjects/"+name+"/"+name+"-Open.bam","Close":"assets/models/MapObjects/"+name+"/"+name+"-Close.bam"})
             actor.setPos(position["x"],position["y"],position["z"])
             actor.setH(rotation)
-            __add_collision_box(element=actor, dimension=LVector3(0.45,0.38,2),offset=Point3(0.45,0.4,0.5))
+            __add_collision_box(element=actor, dimension=LVector3(0.45,0.38,2),offset=Point3(0,0,0.5))
             actor.reparentTo(render)
             stations.append(Oven(actor))
         elif name == "Washer":
