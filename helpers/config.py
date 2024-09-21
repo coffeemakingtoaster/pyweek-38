@@ -19,6 +19,7 @@ def load_config(path):
     if "sfx_volume" in config:
        set_sfx_volume(config["sfx_volume"]) 
        
+       
     if "music_volume" in config:
        set_music_volume(config["music_volume"]) 
     
