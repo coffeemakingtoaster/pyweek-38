@@ -57,6 +57,7 @@ class UsageHandler:
             element = self.state[key]
             if element.corresponding_station_uuid == uuid:
                 element.update(status, owner_id)
+                # Notify npcs
                 self.__notify_of_takeover(element.cords)
                 return True
         print("Could not find station by uuid")

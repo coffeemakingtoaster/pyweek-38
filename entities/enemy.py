@@ -1,5 +1,4 @@
 import math
-from os import stat
 
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
@@ -9,7 +8,6 @@ from constants.layers import VIEW_COLLISION_BITMASK
 from constants.map import TARGET_BLOCKING_MAP
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
-from handler import station_handler
 from handler.station_handler import StationHandler
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
@@ -30,6 +28,8 @@ class Enemy(EntityBase):
         super().__init__()
         self.id = f"enemy-{str(uuid.uuid4())}"
         self.move_speed = MOVEMENT.ENEMY_MOVEMENT_SPEED
+
+        self.sneaking = False
 
         self.display_waypoint_info = display_waypoint_info
         self.waypoint_displays = []
@@ -66,6 +66,8 @@ class Enemy(EntityBase):
         self.holding = ItemBase("empty_hands", load_model("empty_hands"))
         self.holding.model.setPos(0, -0.4, 0.76)
         self.holding.model.reparentTo(self.model)
+
+        self.is_recovering = False
         
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
@@ -195,6 +197,9 @@ class Enemy(EntityBase):
                     self.get_central_pos(),
                     self.id
                 ) 
+                # pathfinding has failed silently! recover somehow
+                if len(self.waypoints) == 1 and self.waypoints[0] == (0,0):
+                    self.is_recovering = True
                 # does this have to go below the grid update again?
                 self.target_grid_var = self.waypoints[-1]
                 # Is the target a station that only one can use?
@@ -222,6 +227,9 @@ class Enemy(EntityBase):
         self.model.setY(self.model.getY() - y_direction)
 
     def __interact_with_item_and_get_success(self):
+        if self.is_recovering:
+            self.is_recovering = False
+            return True
         station = None
         self.routine.current_step.repeats -= 1
         # are we going to a specific target?
