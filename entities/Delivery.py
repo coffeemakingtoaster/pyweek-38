@@ -25,12 +25,10 @@ class Delivery(Station):
 
     def interact(self,item,player):
         
-        print("HELLLO ITS ME")
-        
         if self.inventory.id == "empty_hands" and type(item) == Dish and item.finished:
             c_item = copy.deepcopy(item)
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
-            self.item_was_dropped_off_by_player = True
+            self.item_was_dropped_off_by_player = player.id == "player"
             self.inventory = c_item
             taskMgr.do_method_later(10 ,self.clean,"empty_delivery")
             self.render()

@@ -12,7 +12,8 @@ class Step:
     remember_target = None
     target_from_step = None
     release_target_after = None
-    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0, remember_target=False, target_from=None, release_target_after=None) -> None:
+    repeats=1
+    def __init__(self,name,next,target,overwrite_step=None, onfail_goto_step=0, remember_target=False, target_from=None, release_target_after=None, repeats=1) -> None:
         self.name = name
         self.next = next
         self.target = target
@@ -20,6 +21,7 @@ class Step:
         self.onfail_goto_step = onfail_goto_step
         self.remember_target = remember_target
         self.target_from_step = target_from 
+        self.repeats = repeats
         if target_from is not None:
             # Assume that after this use the station is not needed by this npc anymore
             if release_target_after is None:
@@ -159,35 +161,46 @@ RECIPES = {
         "Get chocolate",
         target=TARGETS.CHOCOLATE_STATION,
         next=Step(
-            "Put chocolate into icemachine",
-            target=TARGETS.ICEMAKER,
+            "Cut chocolate",
+            target=TARGETS.CUTTING_BOARD,
             remember_target=True,
-            onfail_goto_step=-1,
             next=Step(
-                "Get ice",
-                target=TARGETS.ICE_STATION,
-                next=Step(
-                    "Add ice to icecreammachine",
-                    target=TARGETS.ICEMAKER,
-                    target_from="Put chocolate into icemachine",
-                    release_target_after=False,
+                    "Pickup chocolate",
+                    target=TARGETS.CUTTING_BOARD,
+                    target_from="Cut chocolate",
                     next=Step(
-                        "Get Plate",
-                        target=TARGETS.WASHER,
+                        "Put chocolate into icemachine",
+                        target=TARGETS.ICEMAKER,
+                        remember_target=True,
                         onfail_goto_step=-1,
                         next=Step(
-                            "Get icecream",
-                            target=TARGETS.ICEMAKER,
-                            target_from="Put chocolate into icemachine",
+                            "Get ice",
+                            target=TARGETS.ICE_STATION,
                             next=Step(
-                                "Dropoff icecream",
-                                target=TARGETS.DROPOFF,
-                                next=None
+                                "Add ice to icecreammachine",
+                                target=TARGETS.ICEMAKER,
+                                target_from="Put chocolate into icemachine",
+                                release_target_after=False,
+                                next=Step(
+                                    "Get Plate",
+                                    target=TARGETS.WASHER,
+                                    onfail_goto_step=-1,
+                                    next=Step(
+                                        "Get icecream",
+                                        target=TARGETS.ICEMAKER,
+                                        target_from="Put chocolate into icemachine",
+                                        repeats=100,
+                                        next=Step(
+                                            "Dropoff icecream",
+                                            target=TARGETS.DROPOFF,
+                                            next=None
+                                        )
+                                    )
+                                )
                             )
                         )
                     )
                 )
             )
         )
-    )
 }
