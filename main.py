@@ -147,7 +147,7 @@ class main_game(ShowBase):
         self.camera_movement = CameraMovement(self.player.model, self.camera)
 
         self.order_handler = OrderHandler()
-        self.enemies = [Enemy(3, 3, station_handler=self.stations_handler, display_waypoint_info=True)]
+        self.enemies = [Enemy(3, 3, station_handler=self.stations_handler)]
         self.active_hud = hud()
 
         # DO NOT DELETE please uwu 

@@ -201,7 +201,7 @@ def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=Fal
 
         print("Could not find target....")
         # this is a recovery strategy! ideally this should never occur
-        return [(0,0)]
+        return [(1,1)]
     
     res = __backtrack(target_pos, start_pos, visited, debug_print)
     diff = (datetime.datetime.now() - start_time)

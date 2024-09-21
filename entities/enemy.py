@@ -9,6 +9,7 @@ from constants.map import TARGET_BLOCKING_MAP
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
 from handler.station_handler import StationHandler
+from helpers.dish_helper import VIABLE_FINISHED_ORDER_DISHES
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 from entities.item_base import ItemBase
@@ -45,7 +46,8 @@ class Enemy(EntityBase):
         self.__hide_viewcone(False)
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
-        self.recipe: str = random.choice(list(RECIPES.keys()))
+        #self.recipe: str = random.choice(list(RECIPES.keys()))
+        self.recipe = VIABLE_FINISHED_ORDER_DISHES.ICE_CREAM
         self.routine = Routine(key=self.recipe)
         self.waypoints = self.routine.get_waypoints(
             self.model.getPos(), 
@@ -186,7 +188,11 @@ class Enemy(EntityBase):
                             next=get_routine_at_step(self.recipe, self.routine.current_step.onfail_goto_step)
                         )
                 if self.routine.current_step.next is None:
-                    self.recipe = random.choice(list(RECIPES.keys()))
+                    if self.holding.id != "empty_hands":
+                        self.holding.model.removeNode()
+                        self.holding = ItemBase("empty_hands", load_model("empty_hands"))
+                    #self.recipe = random.choice(list(RECIPES.keys()))
+                    self.recipe = VIABLE_FINISHED_ORDER_DISHES.SOUP
                     self.routine.get_new_recipe(self.recipe)
                 # currently disabled
                 elif False:
@@ -198,7 +204,8 @@ class Enemy(EntityBase):
                     self.id
                 ) 
                 # pathfinding has failed silently! recover somehow
-                if len(self.waypoints) == 1 and self.waypoints[0] == (0,0):
+                if len(self.waypoints) == 1 and self.waypoints[0] == (1,1):
+                    self.routine.recover()
                     self.is_recovering = True
                 # does this have to go below the grid update again?
                 self.target_grid_var = self.waypoints[-1]
