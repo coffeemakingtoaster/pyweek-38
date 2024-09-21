@@ -68,9 +68,9 @@ jobs:
         with:
           path: builds
 
-      - run: zip -r linux.zip builds/manylinux2014_x86_64
-      - run: zip -r windows.zip builds/win_amd64
-      - run: zip -r macos.zip builds/macosx_10_9_x86_64
+      - run: zip -r linux.zip builds/build/manylinux2014_x86_64
+      - run: zip -r windows.zip builds/build/win_amd64
+      - run: zip -r macos.zip builds/build/macosx_10_9_x86_64
 
       - name: Release
         uses: softprops/action-gh-release@v2
