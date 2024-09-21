@@ -1,4 +1,5 @@
 import math
+from os import stat
 
 from direct.actor.Actor import Actor
 from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, CollisionHandlerEvent, CollisionEntry
@@ -8,13 +9,13 @@ from constants.layers import VIEW_COLLISION_BITMASK
 from constants.map import TARGET_BLOCKING_MAP
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
+from handler import station_handler
 from handler.station_handler import StationHandler
 from helpers.math_helper import get_limited_rotation_target
 from helpers.model_helpers import load_particles
 from entities.item_base import ItemBase
 from helpers.model_helpers import load_model
 from entities.dish import Dish
-from entities.ingredient import Ingredient
 from entities.CuttingBoard import CuttingBoard
 
 import uuid
@@ -33,9 +34,7 @@ class Enemy(EntityBase):
         self.display_waypoint_info = display_waypoint_info
         self.waypoint_displays = []
         self.waypoint_hitboxes = []
-        self.cuttingTask = None
-        
-        
+        self.is_cutting_remaining_duration = None
 
         self.model = Actor("assets/models/MapObjects/Enemy1/Enemy1.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
@@ -79,7 +78,6 @@ class Enemy(EntityBase):
             self.viewcone.stash()
             self.ignore(f"{self.id}-into-player_hitbox")
             self.ignore(f"{self.id}-out-player_hitbox")
-
 
     def __double_check_waypoints(self, cords):
         print("Recalculating!")
@@ -150,6 +148,14 @@ class Enemy(EntityBase):
 
     def update(self, dt):
         self.model.node().resetAllPrevTransform()
+
+        if self.is_cutting_remaining_duration is not None:
+            self.is_cutting_remaining_duration -= dt
+            if self.is_cutting_remaining_duration <= 0:
+                self.is_cutting_remaining_duration = None
+            else:
+                return
+
         current_pos = self.get_central_pos()
         delta_to_end = Vec3(current_pos.x - self.desired_pos.x, current_pos.y - self.desired_pos.y,
                             current_pos.z - self.desired_pos.z)
@@ -159,12 +165,14 @@ class Enemy(EntityBase):
         y_direction = normalized.y * self.move_speed * dt
 
         # TODO: implement check if error occured
-
         if delta_to_end.length() <= 0.1:
             x_direction = 0
             y_direction = 0
             if len(self.waypoints) == 0:
                 if not self.__interact_with_item_and_get_success():
+                    if self.routine.current_step.repeats > 0:
+                        self.is_cutting_remaining_duration = 1
+                        return
                     # -1 -> get a new recipe! This one is blocked
                     if self.routine.current_step.onfail_goto_step == -1:
                         self.routine.current_step.next = None
@@ -176,7 +184,6 @@ class Enemy(EntityBase):
                             next=get_routine_at_step(self.recipe, self.routine.current_step.onfail_goto_step)
                         )
                 if self.routine.current_step.next is None:
-                    print("new recipe!")
                     self.recipe = random.choice(list(RECIPES.keys()))
                     self.routine.get_new_recipe(self.recipe)
                 # currently disabled
@@ -200,6 +207,7 @@ class Enemy(EntityBase):
                 next_pos.y,
                 next_pos.z
             )
+
         if delta_to_end.length() > 0:
             target_rotation = math.degrees(math.atan2(delta_to_end.x, -delta_to_end.y)) 
             self.model.setH(
@@ -215,6 +223,7 @@ class Enemy(EntityBase):
 
     def __interact_with_item_and_get_success(self):
         station = None
+        self.routine.current_step.repeats -= 1
         # are we going to a specific target?
         if (uuid := self.routine.get_step_target_uuid()) is not None:
             station = self.station_handler.get_station_by_uuid(uuid[0])
@@ -226,8 +235,14 @@ class Enemy(EntityBase):
         
         if type(station) == CuttingBoard:
             station.ai_interact(self.holding,self)
-            self.cuttingTask = taskMgr.do_method_later(station.duration,station.unset_interact,"cutting_task")
+            if self.holding.id == "empty_hands":
+                station.ai_interact(self.holding,self)
+                if station.is_cutting:
+                    self.is_cutting_remaining_duration = station.duration + 0.25
         else:
+            # Is the station not done yet
+            if station.task is not None:
+                return False
             station.ai_interact(self.holding, self)
         if self.routine.current_step.release_target_after:
             base.usage_handler.set_cord_status(self.target_grid_var, False, None, station.uuid)
@@ -246,8 +261,8 @@ class Enemy(EntityBase):
         if self.model is not None:
             self.model.cleanup()
             self.model.removeNode()
-    def set_holding(self, new_item):
 
+    def set_holding(self, new_item):
         if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
 
             if self.holding.add_ingredient(new_item.id):
