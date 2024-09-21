@@ -27,6 +27,7 @@ from constants.events import EVENT_NAMES
 from helpers.game_helpers import release_mouse_from_window, lock_mouse_in_window
 from entities.map_loader import load_map
 from ui.settings_menu import settings_menu
+from ui.game_over import game_over
 
 from entities.player import Player
 import json
@@ -159,7 +160,7 @@ class main_game(ShowBase):
         
         
         if self.suspicion_level >= 100:
-            return
+            self.gameOverBad()
 
         return Task.cont
 
@@ -284,6 +285,23 @@ class main_game(ShowBase):
             
         self.suspicion_bar['value'] = self.suspicion_level
         
+    def gameOverBad(self):
+        if self.active_ui is not None:
+            self.active_ui.destroy()
+        if self.active_hud is not None:
+            self.active_hud.destroy()
+            self.active_hud = None
+
+        if self.order_handler is not None:
+            self.order_handler.destroy()
+            self.order_handler = None
+    
+        
+        self.set_game_status(GAME_STATUS.PAUSED)
+        release_mouse_from_window()
+        self.active_ui = game_over()
+        
+    
 def start_game():
     print("Starting game..")
     game = main_game()
@@ -291,7 +309,8 @@ def start_game():
 
 def display_pathfinding_test():
     print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, debug_print=True))
-    
+
+
 
 
 if __name__ == "__main__":

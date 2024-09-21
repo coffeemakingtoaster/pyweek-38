@@ -155,7 +155,7 @@ class Enemy(EntityBase):
         self.viewcone = self.model.attachNewNode(CollisionNode("enemy_viewcone"))
         self.viewcone.setCollideMask(VIEW_COLLISION_BITMASK)
 
-        #self.viewcone.show()
+        self.viewcone.show()
         self.viewconeModel = load_model("viewcone")
         self.viewconeModel.reparentTo(self.model)
         self.viewconeModel.setPos(0,-1,1)

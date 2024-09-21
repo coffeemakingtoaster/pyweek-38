@@ -19,7 +19,7 @@ class ProgressBar():
         self.progress_bar_foreground = load_model("timer_fg")
         self.progress_bar_foreground.reparentTo(self.model)
         self.progress_bar_foreground.setHpr(Vec3(0,0,0)-self.model.getHpr())
-        self.progress_bar_foreground.setPos(0, 0, 1.5-self.model.getZ()+evil)
+        self.progress_bar_foreground.setPos(0, 0, 1.5-self.model.getZ()+(evil*0.3))
         self.progress_bar_foreground.setLightOff(1)
         self.progress_bar_foreground.setColor(0+evil,0.5-evil,0,1)  
 
