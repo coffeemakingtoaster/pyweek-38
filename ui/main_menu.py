@@ -35,7 +35,7 @@ class main_menu(ui_base):
             frameSize=(-0.5, 0.5, -0.23, 0.23),
             frameColor = (1,1,1,1),
             pos=(-0.84,0,0.60),
-            frameTexture = "assets/textures/game_logo.png"
+            frameTexture = "assets/textures/game_logo_bright.png"
         )
         game_logo.setTransparency(TransparencyAttrib.MAlpha)
         self.ui_elements.append(game_logo)
