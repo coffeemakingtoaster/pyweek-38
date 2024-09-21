@@ -14,8 +14,8 @@ class settings_menu(ui_base):
 
         self.load_background_image()
 
-        TEXT_COLOR = (0.968, 0.929, 0.835, 1) # rgb(247, 237, 213)
-        TEXT_ALTERNATE_COLOR = (0.62, 0.67, 0.345, 1) # rgb(158, 172, 88)
+        TEXT_COLOR = (0.82, 0.34, 0.14, 1) #  NEW: rgb(208, 86, 36) (0.82f, 0.34f, 0.14f, 1f)
+        TEXT_ALTERNATE_COLOR = (1.0, 0.84, 0.62, 1) # rgb(255, 214, 159) (1f, 0.84f, 0.62f, 1f)
         TEXT_BOX_COLOR = (1, 1, 1, 1) # RGB: 235, 198, 81
 
         buttonImages = (
@@ -44,7 +44,7 @@ class settings_menu(ui_base):
             scale=0.2, 
             pos=(0,0,0.5), 
             relief=None, 
-            text_fg=(TEXT_COLOR), 
+            text_fg=(TEXT_ALTERNATE_COLOR), 
             text_font = self.font, 
             text_align = TextNode.ACenter)
         )
@@ -65,7 +65,7 @@ class settings_menu(ui_base):
             boxPlacement = 'right',
             boxImageScale = 0.5,
             boxRelief = None,
-            text_fg=(TEXT_COLOR),
+            text_fg=(TEXT_ALTERNATE_COLOR),
             text_font = self.font,
             pad = (0.5,0), 
             text_align = TextNode.ALeft
@@ -85,7 +85,7 @@ class settings_menu(ui_base):
             boxRelief = None,
             boxImage = (checkbox_image, checkbox_checked_image),
             boxImageScale = 0.5,
-            text_fg=(TEXT_COLOR),
+            text_fg=(TEXT_ALTERNATE_COLOR),
             text_font = self.font,
             pad = (1,0), 
             text_align = TextNode.ALeft
@@ -98,7 +98,7 @@ class settings_menu(ui_base):
             parent = menu_box,
             text="Music volume",
             relief=None, 
-            text_fg=(TEXT_COLOR),
+            text_fg=(TEXT_ALTERNATE_COLOR),
             text_font = self.font,
             scale=0.1, 
             pos=(-0.5,0,-0.15)
@@ -126,7 +126,7 @@ class settings_menu(ui_base):
         sfx_slider_text = DirectLabel(
             parent = menu_box,
             text="SFX volume",
-            text_fg=(TEXT_COLOR),
+            text_fg=(TEXT_ALTERNATE_COLOR),
             text_font = self.font,
             relief=None,  
             scale=0.1, 
@@ -160,6 +160,7 @@ class settings_menu(ui_base):
             #pad = (1, 0.1),
             frameSize = (-4, 4, -1, 1),
             text_pos = (0, -0.2),
+            frameColor = (1,1,1,1),
             command=self.play_sample_sound)
         play_sample_sfx_button.setTransparency(TransparencyAttrib.MAlpha)
         self.menu_elements.append(play_sample_sfx_button)
@@ -175,6 +176,7 @@ class settings_menu(ui_base):
             frameTexture = buttonImages,
             #pad = (1, 0.1),
             frameSize = (-4, 4, -1, 1),
+            frameColor = (1,1,1,1),
             text_pos = (0, -0.2),
             command=self.return_to_main_menu)
         main_menu_button.setTransparency(TransparencyAttrib.MAlpha)
