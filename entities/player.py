@@ -40,6 +40,7 @@ class Player(EntityBase):
         self.accept("w-up", self.unset_movement_status, ["up"])
         self.accept("s", self.set_movement_status, ["down"])
         self.accept("s-up", self.unset_movement_status, ["down"])
+        self.accept("r", self.__help_stepbro_i_am_stuck_please)
         
         self.accept("q", self.sneako_mode)
 
@@ -86,6 +87,10 @@ class Player(EntityBase):
         self.interacting_station = None
         return
         # print("Disabling interact.")
+
+    def __help_stepbro_i_am_stuck_please(self):
+        print("unstucking")
+        self.model.setPos(0, 0, MOVEMENT.PLAYER_FIXED_HEIGHT)
 
     def sneako_mode(self):
         if self.sneaking:
