@@ -23,7 +23,7 @@ import random
 
 from helpers.pathfinding_helper import global_pos_to_grid, grid_pos_to_global, pos_to_string
 from helpers.recipe_helper import RECIPES, Routine, Step, get_routine_at_step
-from helpers.review_generator import Review
+from helpers.review_generator import TEAM, Review
 
 
 class Enemy(EntityBase):
@@ -54,8 +54,7 @@ class Enemy(EntityBase):
         self.__hide_viewcone(False)
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
-        #self.recipe: str = random.choice(list(RECIPES.keys()))
-        self.recipe = VIABLE_FINISHED_ORDER_DISHES.PIZZA
+        self.recipe: str = random.choice(list(RECIPES.keys()))
         self.routine = Routine(key=self.recipe)
         self.waypoints = self.routine.get_waypoints(
             self.model.getPos(), 
@@ -79,21 +78,31 @@ class Enemy(EntityBase):
 
         self.is_recovering = False
 
-        self.sounds = load_3d_sounds("angry",self.model)
+        self.sounds = load_3d_sounds("angry", self.model)
+        print(self.sounds)
+
         self.accept(EVENT_NAMES.DISPLAY_REVIEW, self.__angry)
 
     def __angry(self, review: Review):
-        if len(self.sounds):
+        print("angry!")
+        if len(self.sounds) == 0:
             return
-        if review.star_count > 2.5:
+        print("sound ready")
+        if review.star_count > 2.5 or review.team != TEAM.ENEMY:
             return
         random.choice(self.sounds).play()
+        if self.angertask:
+            self.its_ok("task")
+        self.angertask = taskMgr.doMethodLater(2,self.its_ok,"task")
+        self.angermodel = load_model("Anger")
+        self.angermodel.reparentTo(self.model)
+        self.angermodel.setPos(0,0,1.5)
+        self.angermodel.setScale(2)
         
     # TODO: Revisit the viewcone/hitbox;
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
     def __hide_viewcone(self, sneak):
         if sneak:
-            self.grr()
             self.viewcone.unstash()
             self.viewconeModel = load_model("viewcone")
             self.viewconeModel.reparentTo(self.model)
@@ -346,16 +355,9 @@ class Enemy(EntityBase):
         ep.setPos(0, -0.5, 0.76)
         self.holding = item
 
-    def grr(self):
-        if self.angertask:
-            self.its_ok("task")
-        self.angertask = taskMgr.doMethodLater(2,self.its_ok,"task")
-        self.angermodel = load_model("Anger")
-        self.angermodel.reparentTo(self.model)
-        self.angermodel.setPos(0,0,1.5)
-        self.angermodel.setScale(2)
-        
-    def its_ok(self,name):
+       
+    def its_ok(self,_=None):
+        print("okay again")
         if self.angermodel:
             self.angermodel.removeNode()
         self.angermodel = None
