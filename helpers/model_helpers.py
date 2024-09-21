@@ -1,4 +1,5 @@
 from os.path import join
+import os
 
 from direct.particles.ParticleEffect import ParticleEffect
 
@@ -22,3 +23,28 @@ def load_particles(name):
 def load_font(name):
    if 'loader' in locals():
       return loader.loadFont(join("assets","fonts",f"{name}.ttf"))
+
+def load_sounds(name):
+   sounds = []
+   directory = os.fsencode(join("assets","sfx",name))
+   for file in os.listdir(directory):
+      filename = os.fsdecode(file)
+      if filename.endswith(".wav"):
+         sound = base.loader.loadSfx(join("assets","sfx",name, filename))
+         sounds.append(
+            sound
+         )
+   return sounds
+
+def load_3d_sounds(name, obj):
+   sounds = []
+   directory = os.fsencode(join("assets","sfx",name))
+   for file in os.listdir(directory):
+      filename = os.fsdecode(file)
+      if filename.endswith(".wav"):
+         sound = base.audio3d.loadSfx(join("assets","sfx",name, filename))
+         sounds.append(
+            sound
+         )
+         base.audio3d.attachSoundToObject(sound, obj)
+   return sounds

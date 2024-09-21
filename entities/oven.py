@@ -6,7 +6,7 @@ from entities.station import Station
 from entities.item_base import ItemBase
 from entities.dish import Dish
 from entities.ingredient import Ingredient
-from helpers.model_helpers import load_model
+from helpers.model_helpers import load_3d_sounds, load_model
 import copy
 from entities.progress_bar import ProgressBar
 
@@ -18,6 +18,8 @@ class Oven(Station):
         self.inventory = ItemBase("empty_hands", load_model("empty_hands"))
         
         super().__init__(self.id,actor)
+
+        self.sounds = load_3d_sounds("oven", self.model)
     
     def interact(self,item,player):
         

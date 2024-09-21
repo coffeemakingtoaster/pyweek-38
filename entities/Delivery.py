@@ -5,7 +5,7 @@ import math
 from constants.events import EVENT_NAMES
 from entities.station import Station
 from entities.dish import Dish
-from helpers.model_helpers import load_model
+from helpers.model_helpers import load_3d_sounds, load_model
 from entities.item_base import ItemBase
 from entities.ingredient import Ingredient
 from entities.salt import Salt
@@ -26,6 +26,7 @@ class Delivery(Station):
         self.evil_progressBar = None
         self.evil_task = None
         self.evil_duration = 3
+        self.sounds = load_3d_sounds("dish_delivery", self.model)
 
     def interact(self,item,player):
         
@@ -34,6 +35,7 @@ class Delivery(Station):
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
             self.item_was_dropped_off_by_player = player.id == "player"
             self.inventory = c_item
+            self.play_sound()
             taskMgr.do_method_later(10 ,self.clean,"empty_delivery")
             self.render()
         
@@ -61,6 +63,7 @@ class Delivery(Station):
         ep.reparentTo(self.model)
         
     def clean(self,_=None):
+        self.stop_sound()
         if not self.inventory is None:
             print(f"currently {self.item_was_dropped_off_by_player}")
             messenger.send(EVENT_NAMES.FINISH_ORDER, [self.inventory, self.item_was_dropped_off_by_player ])
