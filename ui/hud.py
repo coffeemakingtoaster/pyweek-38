@@ -29,6 +29,8 @@ class hud(ui_base):
         self.accept(EVENT_NAMES.SHOW_PLAYER_ORDER, self.__display_order)
         self.accept(EVENT_NAMES.HIDE_PLAYER_ORDER, self.__hide_order)
         self.accept(EVENT_NAMES.ADD_SCORE, self.__add_score)
+        #self.accept("5", self.__send_win)
+        #self.accept("6", self.__send_lose)
 
         self.player_score = 0
         self.enemy_score = 0
@@ -170,6 +172,12 @@ class hud(ui_base):
                 break
         self.__render_orders()
 
+    def __send_win(self):
+        messenger.send(EVENT_NAMES.GAME_VICTORY, [self.player_score, self.enemy_score])
+
+    def __send_lose(self):
+        messenger.send(EVENT_NAMES.GAME_OVER, [True])
+
     def __add_score(self, score, team,shitty):
         if team == TEAM.ENEMY:
             self.enemy_score += (score * 10) -shitty
@@ -177,6 +185,12 @@ class hud(ui_base):
             self.player_score += (score * 10) -shitty
         # there seems to be a weird bug within panda3d that sometimes causes this to fail
         # Worst case: we update it again sometime else
+        if self.player_score >= 250:
+            self.__send_win()
+            return
+        if self.enemy_score >= 250:
+            self.__send_lose()
+            return
         try:
             self.player_score_display["text"] = f"{int(self.player_score)}"
             self.enemy_score_display["text"] = f"{int(self.enemy_score)}"

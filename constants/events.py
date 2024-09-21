@@ -12,3 +12,5 @@ class EVENT_NAMES:
     ADD_SCORE = "add_score"
     SHOW_PLAYER_ORDER = "show_player_order"
     HIDE_PLAYER_ORDER = "hide_player_order"
+    GAME_VICTORY = "i_know_someone_who_will_never_see_this_because_they_dont_use_consts"
+    GAME_OVER = "game_over"

@@ -36,6 +36,8 @@ import json
 from entities.enemy import Enemy
 from direct.showbase import Audio3DManager
 
+from ui.victory_screen import victory_screen
+
 loadPrcFile("./settings.prc")
 
 
@@ -87,6 +89,8 @@ class main_game(ShowBase):
         self.accept(EVENT_NAMES.GOTO_MAIN_MENU, self.goto_main_menu)
         self.accept(EVENT_NAMES.GOTO_SETTINGS_MENU, self.goto_settings_menu)
         self.accept(EVENT_NAMES.SNEAKING, self.change_light)
+        self.accept(EVENT_NAMES.GAME_VICTORY, self.gameOverGood)
+        self.accept(EVENT_NAMES.GAME_OVER, self.gameOverBad)
         self.gameTask = base.taskMgr.add(self.game_loop, "gameLoop")
 
         self.status_display = OnscreenText(text=GAME_STATUS.MAIN_MENU, pos=(0.9, 0.9), scale=0.07, fg=(255, 0, 0, 1))
@@ -131,7 +135,6 @@ class main_game(ShowBase):
         
         # This still reacts to setting changes
         self.music_handler = MusicHandler()
-
 
         display_pathfinding_test()
 
@@ -195,6 +198,8 @@ class main_game(ShowBase):
         self.sustash.setTransparency(TransparencyAttrib.MAlpha)
         self.sustash.setScale(0.3, 0.6, 0.2)
         self.sustash.setBin('gui-popup', 0)
+
+        self.acceptOnce(EVENT_NAMES.GAME_VICTORY, self.gameOverGood)
 
         # DO NOT DELETE please uwu 
         # show pathfinding grid
@@ -297,7 +302,6 @@ class main_game(ShowBase):
         self.player_in_sight = False
 
     def update_suspicion(self, dt):
-        
         if self.player_in_sight and self.player.is_evil:
             self.suspicion_level = min(self.suspicion_level + 50 * dt, self.suspicion_max)
         else:
@@ -305,7 +309,22 @@ class main_game(ShowBase):
 
         self.suspicion_bar['value'] = self.suspicion_level
 
-    def gameOverBad(self):
+    def gameOverBad(self, score_based=False):
+        if self.active_ui is not None:
+            self.active_ui.destroy() 
+            self.active_hud = None
+
+        if self.order_handler is not None:
+            self.order_handler.destroy()
+            self.order_handler = None
+    
+        task = taskMgr.do_method_later(3,self.goto_main_menu,"task",extraArgs = [])
+        self.set_game_status(GAME_STATUS.PAUSED)
+        release_mouse_from_window()
+        self.active_ui = game_over(score_based)
+
+    def gameOverGood(self,own_score, enemy_score):
+        print("good")
         if self.active_ui is not None:
             self.active_ui.destroy()
         if self.active_hud is not None:
@@ -316,11 +335,10 @@ class main_game(ShowBase):
             self.order_handler.destroy()
             self.order_handler = None
     
-        task = taskMgr.do_method_later(3,self.goto_main_menu,"task",extraArgs = [])
+        #task = taskMgr.do_method_later(3,self.goto_main_menu,"task",extraArgs = [])
         self.set_game_status(GAME_STATUS.PAUSED)
         release_mouse_from_window()
-        self.active_ui = game_over()
-        
+        self.active_ui = victory_screen(own_score,enemy_score)
     
 def start_game():
     print("Starting game..")
