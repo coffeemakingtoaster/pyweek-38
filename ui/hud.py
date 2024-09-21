@@ -29,8 +29,8 @@ class hud(ui_base):
         self.accept(EVENT_NAMES.SHOW_PLAYER_ORDER, self.__display_order)
         self.accept(EVENT_NAMES.HIDE_PLAYER_ORDER, self.__hide_order)
         self.accept(EVENT_NAMES.ADD_SCORE, self.__add_score)
-        self.accept("5", self.__send_win)
-        self.accept("6", self.__send_lose)
+        #self.accept("5", self.__send_win)
+        #self.accept("6", self.__send_lose)
 
         self.player_score = 0
         self.enemy_score = 0
