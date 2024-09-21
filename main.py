@@ -56,7 +56,7 @@ class main_game(ShowBase):
         self.map_stations = []
         self.stations_handler = None
         self.order_handler = None
-        self.player_in_sight = False
+        self.player_in_sight = True
         
         self.suspicion_level = 0.0
         self.suspicion_max = 100.0
