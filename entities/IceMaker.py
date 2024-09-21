@@ -45,7 +45,7 @@ class IceMaker(Station):
                    
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spiced:
             self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
-            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.pice, "task")
+            self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.spice, "task",extraArgs = [player])
                 
                 
             self.inventory.apply_effects()
@@ -99,7 +99,7 @@ class IceMaker(Station):
         self.evil_progressBar.destroy()
         self.evil_progressBar = None
     
-    def spice(self,name):
+    def spice(self,player):
         self.inventory.spice = True
         player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
         self.inventory.apply_effects()
