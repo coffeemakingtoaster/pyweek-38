@@ -16,7 +16,6 @@ class Food_Station(Station):
         super().__init__(self.id,actor)
     
     def interact(self,item,player):
-        print(self.inventory)
         
         if item.id == "empty_hands" and self.inventory[0] is not None:
             player.set_holding(Ingredient(self.food_id,load_model(self.food_id)))

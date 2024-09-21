@@ -79,10 +79,8 @@ class OrderHandler(DirectObject):
         print(f"Added a {dishId} order for enemies")
 
     def __get_order(self, dish, is_from_player):
-        print(f"{is_from_player} player??")
         if is_from_player:
             for i in range(len(self.player_orders)):
-                print(f"{dish.id} {self.player_orders[i].wanted_dish}")
                 if self.player_orders[i].wanted_dish == dish.id:
                     return self.player_orders.pop(i)
         else:

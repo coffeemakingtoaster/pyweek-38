@@ -47,7 +47,6 @@ class Pot(Station):
         
         elif (item.id == "chopped_potatoes" or item.id == "chopped_onion") and self.inventory is not "unplated_soup":
             if item.id not in self.ingredients:
-                print("Yay" + item.id)
                 self.ingredients.append(item.id)
                 player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
             if len(self.ingredients) == 2:

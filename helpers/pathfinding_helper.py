@@ -6,9 +6,10 @@ import datetime
 from panda3d.core import Point3
 
 class VisitedNode:
-    def __init__(self,score,dist_to_target) -> None:
+    def __init__(self,score,dist_to_target, pos) -> None:
         self.score = score
         self.rating = score + dist_to_target
+        self.pos = pos
 
 # this is n squared and therefore slow as shit!
 # For now this is fine as we are working with dummy data
@@ -131,15 +132,18 @@ def get_path_from_to_tile(start_pos, target_pos, debug_print=False):
     todo_queue = PriorityQueue()
     todo_queue.put((1,start_pos))
     visited = dict()
-    visited[pos_to_string(start_pos)] = VisitedNode(0,0)
+    visited[pos_to_string(start_pos)] = VisitedNode(0,0, start_pos)
+
+    found = False
 
     # build value grid
     while not todo_queue.empty():
         current = todo_queue.get()[1]
 
-        current_node = visited.get(pos_to_string(current))
+        current_node = visited[pos_to_string(current)]
 
         if (current[0],current[1]) == target_pos:
+            found = True
             break
         
         for adj in __get_adjacent(current):
@@ -148,13 +152,21 @@ def get_path_from_to_tile(start_pos, target_pos, debug_print=False):
             adj_visited = VisitedNode(
                 current_node.score + 1,
                 (adj[0] - target_pos[0])**2 + (adj[1] - target_pos[1])**2,
+                adj
             )
             visited[pos_to_string(adj)] = adj_visited
             todo_queue.put((adj_visited.rating, adj))
-     
+   
+    if not found:
+        print("i gotchu homie")
+        nodes = [visited[id] for id in visited.keys()]
+        nodes.sort(key=lambda node: node.rating)
+        target_pos = nodes[0].pos
+
     res = __backtrack(target_pos, start_pos, visited, debug_print)
     diff = (datetime.datetime.now() - start_time)
-    print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
+    if debug_print:
+        print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
     return res
 
 def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=False):
@@ -173,7 +185,7 @@ def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=Fal
     todo_queue = PriorityQueue()
     todo_queue.put((1,start_pos))
     visited = dict()
-    visited[pos_to_string(start_pos)] = VisitedNode(0,0)
+    visited[pos_to_string(start_pos)] = VisitedNode(0,0, start_pos)
 
     target_pos = None
 
@@ -192,7 +204,8 @@ def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=Fal
                 continue
             adj_visited = VisitedNode(
                 current_node.score + 1,
-                __find_closest_target_dist(adj, target, enemy_id)
+                __find_closest_target_dist(adj, target, enemy_id),
+                adj
             )
             visited[pos_to_string(adj)] = adj_visited
             todo_queue.put((adj_visited.rating, adj))
@@ -205,7 +218,8 @@ def get_path_from_to_tile_type(start_pos, target, enemy_id=None, debug_print=Fal
     
     res = __backtrack(target_pos, start_pos, visited, debug_print)
     diff = (datetime.datetime.now() - start_time)
-    print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
+    if debug_print:
+        print(f"Pathfinding ran for: {diff.total_seconds() * 1000} ms")
     return res
 
 def grid_pos_to_global(gridpos):

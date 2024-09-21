@@ -86,7 +86,6 @@ class Player(EntityBase):
         self.interacting_station.unset_interact(self) 
         self.interacting_station = None
         return
-        # print("Disabling interact.")
 
     def __help_stepbro_i_am_stuck_please(self):
         print("unstucking")
@@ -103,7 +102,6 @@ class Player(EntityBase):
         print(self.sneaking)
 
     def set_holding(self, new_item):
-
         if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
 
             if self.holding.add_ingredient(new_item.id):

@@ -128,7 +128,7 @@ class ReviewDisplay:
     def __get_size(self,text: str):
         if len(text) < TEXT_WRAP * 2:
             return 's'
-        if len(text) < TEXT_WRAP * 4.5:
+        if len(text) < TEXT_WRAP * 4:
             return 'm'
         return 'l'
     
