@@ -50,7 +50,7 @@ class Delivery(Station):
                 self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
                 self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.salt, "task")
                    
-        elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spice:
+        elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking and not self.inventory.spiced:
             self.evil_progressBar = ProgressBar(self.model,self.evil_duration,1,player)
             self.evil_task = taskMgr.doMethodLater(self.evil_duration, self.pice, "task")
 
@@ -76,7 +76,7 @@ class Delivery(Station):
         self.evil_progressBar = None
     
     def spice(self,name):
-        self.inventory.spice = True
+        self.inventory.spiced = True
         player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
         self.inventory.apply_effects()
         self.evil_task = None

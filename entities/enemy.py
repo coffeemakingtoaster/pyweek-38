@@ -38,6 +38,9 @@ class Enemy(EntityBase):
         self.waypoint_displays = []
         self.waypoint_hitboxes = []
         self.is_cutting_remaining_duration = None
+        
+        self.angermodel = None
+        self.angertask = None
 
         enemy = random.randrange(1,4)
 
@@ -79,6 +82,7 @@ class Enemy(EntityBase):
     #  Viewcone is being stashed & not displayed, but still sees player with "{self.id}-into-player_hitbox" event.
     def __hide_viewcone(self, sneak):
         if sneak:
+            self.grr()
             self.viewcone.unstash()
             self.viewconeModel = load_model("viewcone")
             self.viewconeModel.reparentTo(self.model)
@@ -329,4 +333,17 @@ class Enemy(EntityBase):
         ep.setPos(0, -0.5, 0.76)
         self.holding = item
 
-    
+    def grr(self):
+        if self.angertask:
+            self.its_ok("task")
+        self.angertask = taskMgr.doMethodLater(2,self.its_ok,"task")
+        self.angermodel = load_model("Anger")
+        self.angermodel.reparentTo(self.model)
+        self.angermodel.setPos(0,0,1.5)
+        self.angermodel.setScale(2)
+        
+    def its_ok(self,name):
+        if self.angermodel:
+            self.angermodel.removeNode()
+        self.angermodel = None
+        

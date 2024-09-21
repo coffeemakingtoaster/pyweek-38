@@ -56,7 +56,7 @@ class main_game(ShowBase):
         self.map_stations = []
         self.stations_handler = None
         self.order_handler = None
-        self.player_in_sight = True
+        self.player_in_sight = False
         
         self.suspicion_level = 0.0
         self.suspicion_max = 100.0
@@ -154,6 +154,10 @@ class main_game(ShowBase):
         self.player.update(dt)
         self.camera_movement.update(dt)
         self.update_suspicion(dt)
+        
+        
+        if self.suspicion_level >= 100:
+            return
 
         return Task.cont
 
@@ -168,8 +172,9 @@ class main_game(ShowBase):
 
         self.order_handler = OrderHandler()
         self.enemies = [
-            #Enemy(3, 3, station_handler=self.stations_handler),
+            Enemy(3, 3, station_handler=self.stations_handler),
             Enemy(1, 1, station_handler=self.stations_handler),
+            Enemy(4, 2, station_handler=self.stations_handler),
         ]
         self.active_hud = hud()
 
@@ -263,6 +268,7 @@ class main_game(ShowBase):
         self.player_in_sight = False
     
     def update_suspicion(self,dt):
+        
         if self.player_in_sight and self.player.is_evil:
             self.suspicion_level = min(self.suspicion_level + 40 *dt,self.suspicion_max)
         else:
