@@ -30,7 +30,7 @@ class Delivery(Station):
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
             self.item_was_dropped_off_by_player = player.id == "player"
             self.inventory = c_item
-            taskMgr.do_method_later(10 ,self.clean,"empty_delivery")
+            taskMgr.do_method_later(6 ,self.clean,"empty_delivery")
             self.render()
         elif type(self.inventory) == Dish and item.id =="Salt":
             
