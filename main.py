@@ -1,6 +1,7 @@
 from panda3d.core import *
 
-from collections import defaultdict
+from os.path import join
+
 from direct.showbase.ShowBase import ShowBase
 
 from direct.gui.DirectGui import DirectWaitBar
@@ -189,7 +190,7 @@ class main_game(ShowBase):
             sortOrder=0
         )
 
-        self.sustash = OnscreenImage(image='mustache_hole.png', pos=(0, 0, 0.85))
+        self.sustash = OnscreenImage(image=join('assets','images','hud','mustache_hole.png'), pos=(0, 0, 0.85))
         self.sustash.setTransparency(TransparencyAttrib.MAlpha)
         self.sustash.setScale(0.3, 0.6, 0.2)
         self.sustash.setBin('gui-popup', 0)
@@ -301,7 +302,6 @@ class main_game(ShowBase):
 
         self.suspicion_bar['value'] = self.suspicion_level
 
-        
     def gameOverBad(self):
         if self.active_ui is not None:
             self.active_ui.destroy()
@@ -326,9 +326,5 @@ def start_game():
 
 def display_pathfinding_test():
     print(get_path_from_to_tile_type((9, 8), TARGETS.TOMATO_STATION, debug_print=True))
-
-
-
-
 if __name__ == "__main__":
     start_game()
