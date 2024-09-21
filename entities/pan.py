@@ -75,6 +75,12 @@ class Pan(Station):
         self.progressBar = None
 
         self.task = None
+        if self.evil_task:
+            self.evil_task = None
+            taskMgr.remove(self.evil_task)
+            self.evil_p.disable()
+            self.evil_progressBar.destroy()
+            self.evil_progressBar = None
     def burn(self,name):
         self.p.disable()
         self.evil_p.disable()
@@ -94,7 +100,12 @@ class Pan(Station):
         
     
     def unset_interact(self,player):
-        return
+        if self.evil_task:
+            self.evil_progressBar.destroy()
+            self.evil_progressBar = None
+            self.evil_p.disable()
+            taskMgr.remove(self.evil_task)
+            self.evil_task = None
     
 
    
