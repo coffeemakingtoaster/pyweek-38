@@ -65,6 +65,7 @@ class IceMaker(Station):
             
     def finish_ice(self,name):
         self.inventory.id = "plated_ice_cream"
+        self.inventory.finished = True
         self.play_anim("Open")
         self.task = None
         self.progressBar.destroy()
