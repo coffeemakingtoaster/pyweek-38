@@ -11,10 +11,8 @@ class main_menu(ui_base):
     def __init__(self):
         ui_base.__init__(self)
 
-        TEXT_COLOR = (0.968, 0.929, 0.835, 1) # rgb(247, 237, 213)
-        TEXT_ALTERNATE_COLOR = (0.62, 0.67, 0.345, 1) # rgb(158, 172, 88)
-        #TEXT_BOX_COLOR = (0.921, 0.776, 0.317, 1) # RGB: 235, 198, 81
-        TEXT_BOX_COLOR = (1, 1, 1, 1) # RGB: 235, 198, 81
+        TEXT_COLOR = (0.82, 0.34, 0.14, 1) #  NEW: rgb(208, 86, 36) (0.82f, 0.34f, 0.14f, 1f)
+        TEXT_ALTERNATE_COLOR = (1.0, 0.84, 0.62, 1) # rgb(255, 214, 159) (1f, 0.84f, 0.62f, 1f)
         
         #buttonImages = (
         #    loader.loadTexture("assets/textures/button_bg.png"),
@@ -33,36 +31,23 @@ class main_menu(ui_base):
         
         self.load_background_image()
 
-        menu_box = DirectFrame(
-            frameColor=TEXT_BOX_COLOR, 
-            frameSize=(-0.8, 0.8, 0.8, -0.8),
+        game_logo = DirectFrame(
+            frameSize=(-0.5, 0.5, -0.23, 0.23),
+            frameColor = (1,1,1,1),
+            pos=(-0.84,0,0.60),
+            frameTexture = "assets/textures/game_logo.png"
+        )
+        game_logo.setTransparency(TransparencyAttrib.MAlpha)
+        self.ui_elements.append(game_logo)
+
+        menu_box = DirectFrame( 
+            frameSize=(-0.60, 0.60, -0.80, 0.30),
             pos=(-0.85, 0, 0), 
+            frameColor = (1,1,1,1),
             frameTexture = "assets/textures/main_menu_board.png"
         )
         menu_box.setTransparency(TransparencyAttrib.MAlpha)
         self.ui_elements.append(menu_box)
-        
-        self.menu_elements.append(DirectLabel(
-            parent = menu_box,
-            text="- Definitely not -", 
-            scale=0.1, 
-            pos=(0,0,0.55), 
-            relief=None, 
-            text_fg=(TEXT_COLOR), 
-            text_font = self.font, 
-            text_align = TextNode.ACenter)
-        )
-
-        self.menu_elements.append(DirectLabel(
-            parent = menu_box,
-            text="Overcooked", 
-            scale=0.2, 
-            pos=(0,0,0.3), 
-            relief=None, 
-            text_fg=(TEXT_COLOR), 
-            text_font = self.font, 
-            text_align = TextNode.ACenter)
-        )
         
         start_button = DirectButton(text=("Start"),
                     parent = menu_box,
@@ -77,7 +62,8 @@ class main_menu(ui_base):
                     #pad = (1, 0.1),
                     frameSize = (-4, 4, -1, 1),
                     text_scale = 1.3,
-                    text_pos = (0, -0.3))
+                    text_pos = (0, -0.3),
+                    frameColor = (1,1,1,1))
         start_button.setTransparency(TransparencyAttrib.MAlpha)
         self.menu_elements.append(start_button)
 
@@ -94,7 +80,8 @@ class main_menu(ui_base):
                     #pad = (1, 0.1),
                     frameSize = (-4, 4, -1, 1),
                     text_scale = 1.3,
-                    text_pos = (0, -0.3))
+                    text_pos = (0, -0.3),
+                    frameColor = (1,1,1,1))
         settings_button.setTransparency(TransparencyAttrib.MAlpha)
         self.menu_elements.append(settings_button)
 
@@ -111,7 +98,8 @@ class main_menu(ui_base):
                     #pad = (1, 0.1),
                     frameSize = (-4, 4, -1, 1),
                     text_scale = 1.3,
-                    text_pos = (0, -0.3))
+                    text_pos = (0, -0.3),
+                    frameColor = (1,1,1,1))
         quit_button.setTransparency(TransparencyAttrib.MAlpha)
         self.menu_elements.append(quit_button)
 
