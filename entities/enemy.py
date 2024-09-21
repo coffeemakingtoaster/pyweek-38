@@ -5,7 +5,8 @@ from panda3d.core import Vec3, Point2, CollisionNode, CollisionBox, Point3, Coll
 
 from constants.events import EVENT_NAMES
 from constants.layers import VIEW_COLLISION_BITMASK
-from constants.map import TARGET_BLOCKING_MAP
+from constants.map import TARGET_BLOCKING_MAP, TARGETS
+from entities.ItemArea import ItemArea
 from entities.entity_base import EntityBase
 from constants.enemy_const import MOVEMENT
 from handler.station_handler import StationHandler
@@ -37,7 +38,9 @@ class Enemy(EntityBase):
         self.waypoint_hitboxes = []
         self.is_cutting_remaining_duration = None
 
-        self.model = Actor("assets/models/MapObjects/Enemy1/Enemy1.bam", {"Idle": "assets/models/MapObjects/Oven/Oven.bam"})
+        enemy = random.randrange(1,4)
+
+        self.model = Actor(f"assets/models/MapObjects/Enemy{enemy}/Enemy{enemy}.bam")
         self.model.setPos(spawn_x, spawn_y, MOVEMENT.ENEMY_FIXED_HEIGHT)
 
         self.model.reparentTo(render)
@@ -47,7 +50,7 @@ class Enemy(EntityBase):
         self.walk_particles = load_particles("dust")
         self.walk_particles_active = False
         #self.recipe: str = random.choice(list(RECIPES.keys()))
-        self.recipe = VIABLE_FINISHED_ORDER_DISHES.ICE_CREAM
+        self.recipe = VIABLE_FINISHED_ORDER_DISHES.PIZZA
         self.routine = Routine(key=self.recipe)
         self.waypoints = self.routine.get_waypoints(
             self.model.getPos(), 
@@ -84,9 +87,8 @@ class Enemy(EntityBase):
             self.ignore(f"{self.id}-out-player_hitbox")
 
     def __double_check_waypoints(self, cords):
-        print("Recalculating!")
         if cords != self.target_grid_var:
-            print("Nice! Doesnt affect me")
+            return
         # Recalculate route
         self.waypoints = self.routine.get_waypoints(
             self.get_central_pos(),
@@ -190,15 +192,16 @@ class Enemy(EntityBase):
                 if self.routine.current_step.next is None:
                     if self.holding.id != "empty_hands":
                         self.holding.model.removeNode()
-                        self.holding = ItemBase("empty_hands", load_model("empty_hands"))
-                    #self.recipe = random.choice(list(RECIPES.keys()))
-                    self.recipe = VIABLE_FINISHED_ORDER_DISHES.SOUP
+                        self.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+
+                    self.recipe = random.choice(list(RECIPES.keys()))
                     self.routine.get_new_recipe(self.recipe)
                 # currently disabled
                 elif False:
                     self.routine.insert_immediate_overwrite("example")
                 else:
                     self.routine.advance()
+                    print(f"Now at step {self.routine.current_step.name}")
                 self.waypoints = self.routine.get_waypoints(
                     self.get_central_pos(),
                     self.id
@@ -247,13 +250,31 @@ class Enemy(EntityBase):
         if station is None: 
             print("Could not find station")
             return False
-        
         if type(station) == CuttingBoard:
             station.ai_interact(self.holding,self)
             if self.holding.id == "empty_hands":
                 station.ai_interact(self.holding,self)
                 if station.is_cutting:
                     self.is_cutting_remaining_duration = station.duration + 0.25
+        elif type(station) == ItemArea:
+            # This area should be full...but it is not :/
+            if self.routine.current_step.target_from_step is not None and station.inventory.id == "empty_hands":
+                if (plate_uuid:=self.routine.remember_my_plate()) is not None:
+                    if (station:=self.station_handler.get_station_by_content_uuid(plate_uuid)) is not None:
+                        print("lets get it back!")
+                        self.routine.item_fetch_interrupt(station.uuid, global_pos_to_grid(station.model.getPos()))
+                        print(self.routine.current_step.next.name)
+                        return True 
+                # plate was lost
+                self.routine.current_step.onfail_goto_step = 0
+                self.routine.current_step.repeats = 0
+                self.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
+                return False
+            else:
+                if self.routine.current_step.target == TARGETS.COUNTERTOP and self.routine.current_step.remember_target:
+                    print(self.holding.uuid)
+                    self.routine.own_plate(self.holding.uuid)
+                station.ai_interact(self.holding, self)
         else:
             # Is the station not done yet
             if station.task is not None:
@@ -279,7 +300,6 @@ class Enemy(EntityBase):
 
     def set_holding(self, new_item):
         if type(self.holding) == Dish and new_item.id is not "empty_hands" and type(new_item) is not Dish:
-
             if self.holding.add_ingredient(new_item.id):
                 self.holding.model.reparentTo(self.model)
                 return True
@@ -287,11 +307,11 @@ class Enemy(EntityBase):
                 return False
         else:
             self.hardset(new_item)
+
     def hardset(self, item):
         self.holding.model.removeNode()
 
         ep = item.model
-        print(item.model)
         ep.reparentTo(self.model)
 
         ep.setPos(0, -0.5, 0.76)

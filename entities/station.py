@@ -24,13 +24,13 @@ class Station(EntityBase):
             taskMgr.remove(self.task)
     
     def interact(self,item,player):
-        print("Interact: "+ self.name)
+        pass
 
     def ai_interact(self,item,enemy):
         self.interact(item,enemy)
-        print(f"Enemy interacted with {self.name} ({self.uuid})")
         
     def unset_interact(self,player):
         return
 
-    
+    def contains_uuid(self,uuid):
+        return False

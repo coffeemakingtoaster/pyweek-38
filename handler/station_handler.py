@@ -39,3 +39,9 @@ class StationHandler:
             if station.uuid == uuid:
                 return station
         return None
+
+    def get_station_by_content_uuid(self, uuid: str) -> Station | None:
+        for station in self.stations:
+            if station.contains_uuid(uuid):
+                return station
+        return None

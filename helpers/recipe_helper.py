@@ -33,6 +33,7 @@ class Step:
 class Routine:
     def __init__(self, start_step=None, key=None) -> None:
         self.state = dict()
+        self.ownership_memory = dict()
         if start_step is not None:
             self.current_step = start_step
         else:
@@ -47,6 +48,7 @@ class Routine:
         self.current_step = copy.deepcopy(RECIPES[key])
         messenger.send(EVENT_NAMES.ADD_ORDER, [key])
         self.state = {}
+        self.ownership_memory = {}
 
     def get_step_target_uuid(self):
         if self.current_step.target_from_step is not None:
@@ -64,6 +66,14 @@ class Routine:
             print(f"Oh i better remember this {self.current_step.target}")
             self.state[self.current_step.name] = (uuid,pos)
 
+    def own_plate(self, uuid):
+        self.ownership_memory[self.current_step.name] = uuid
+
+    def remember_my_plate(self):
+        if self.current_step.target_from_step in self.ownership_memory:
+            return self.ownership_memory[self.current_step.target_from_step]
+        return None
+
     def advance(self):
         self.previous = self.current_step
         self.current_step = self.current_step.next
@@ -80,17 +90,25 @@ class Routine:
                 next=next
             )
 
-
     def get_waypoints(self, start_pos, enemy_id):
         # goto any station
         if self.current_step.target_from_step is not None:
-            print(self.get_step_target_uuid()[1])
             return get_path_from_to_tile(
                 global_pos_to_grid(start_pos),
                 self.get_step_target_uuid()[1]
             )
         else:
             return get_path_from_to_tile_type(global_pos_to_grid(start_pos),self.current_step.target, enemy_id) 
+
+    def item_fetch_interrupt(self, station_uuid, pos):
+        next = self.current_step.next
+        self.current_step.next = Step(
+            f"Get item {station_uuid}",
+            target=None,
+            target_from=f"Get item {station_uuid}",
+            next=next
+        )
+        self.state[f"Get item {station_uuid}"] = (station_uuid,pos)
 
     def insert_immediate_overwrite(self, key):
         routine = copy.deepcopy(FALLBACK_ROUTINE[key])
@@ -107,7 +125,8 @@ def get_routine_at_step(key, step):
     curr = copy.deepcopy(RECIPES[key])
     for i in range(step):
         curr = curr.next
-    return curr.next
+    print(f"reset to {curr.name}")
+    return curr
 
 # This is an example
 FALLBACK_ROUTINE = {

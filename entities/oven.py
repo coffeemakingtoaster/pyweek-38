@@ -22,7 +22,6 @@ class Oven(Station):
     def interact(self,item,player):
         
         if item.id == "raw_pizza":
-            print("Yay Pizza")
             self.inventory = copy.deepcopy(item)
             self.play_anim("Open")
             self.progressBar = ProgressBar(self.model,self.duration,0)

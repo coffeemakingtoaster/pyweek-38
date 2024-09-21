@@ -45,7 +45,6 @@ class IceMaker(Station):
         
         elif (item.id == "ice_cubes" or item.id == "chopped_chocolate")and self.inventory.id is not "unplated_ice_cream" and len(self.ingredients) is not 2:
             if item.id not in self.ingredients:
-                print("Yay" + item.id)
                 self.ingredients.append(item.id)
                 player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
             if len(self.ingredients) == 2:

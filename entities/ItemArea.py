@@ -26,31 +26,17 @@ class ItemArea(Station):
         
     
     def interact(self,item,player):
-        
-        
-        
         if type(self.inventory) == Dish and item.id =="Salt":
-            
-            
             if not player.sneaking and not self.inventory.badSalt:
                 self.inventory.goodSalt = True
-                
             elif player.sneaking:
                 self.inventory.badSalt = True
-                
             self.inventory.apply_effects()
-            
-        
         elif type(self.inventory) == Dish and item.id =="chopped_chili":
-            
-            
             if player.sneaking and not self.inventory.spiced:
                 self.inventory.spiced = True
                 player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
-                
-                
             self.inventory.apply_effects()
-                        
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:
             self.inventory.spice = True
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))
@@ -76,15 +62,11 @@ class ItemArea(Station):
         else:
             self.swap(item,player)
             return True
-    
-    
         
     def render(self):
-        
         ep = self.inventory.model
         ep.setPos(0,0,0.78)
         ep.reparentTo(self.model)
-        
         
     def clean(self):
         self.inventory.model.removeNode()
@@ -94,6 +76,15 @@ class ItemArea(Station):
         c_inv = copy.deepcopy(self.inventory)
         c_inv.apply_effects()
         self.clean()
+        print(f"received: {c_item.uuid}")
+        print(f"gave: {c_inv.uuid}")
         player.hardset(c_inv)
         self.inventory = c_item
         self.render()
+
+    def contains_uuid(self,uuid):
+        if self.inventory is not None:
+            print(f"{self.inventory.uuid} {self.inventory.uuid == uuid}")
+
+            return self.inventory.uuid == uuid
+        return False

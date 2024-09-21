@@ -204,7 +204,7 @@ def load_map(json_data):
             elif name in MODEL_COLLISION_OFFSET_LOOKUP and name in MODEL_COLLISION_DIMENSION_LOOKUP:
                 __add_collision_box(element=model, dimension=MODEL_COLLISION_DIMENSION_LOOKUP[name], offset=MODEL_COLLISION_OFFSET_LOOKUP[name])
             else:
-                print(name)
+                pass
             
             model.reparentTo(render)
             models.append(model)
