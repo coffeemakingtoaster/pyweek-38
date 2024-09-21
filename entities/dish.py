@@ -22,21 +22,23 @@ class Dish(ItemBase):
         return add_ingredient(self, ingredient)
     
     def apply_effects(self):
-        print("Salt")
-        if self.goodSalt:
-           
+        
+        
+        print("Pllay Affect")
+        if self.goodSalt and not self.saltEffect:
             self.saltEffect = ParticleEffect()
-            
             self.saltEffect.loadConfig("assets/particles/salt/salt.ptf")
             self.saltEffect.start(self.model, self.model)
-            print("Hush")
-
-        if self.badSalt:
-            print("bad salt")
             
+
+        if self.badSalt and not self.saltEffect:
             self.saltEffect = ParticleEffect()
             self.saltEffect.loadConfig("assets/particles/salt/bad_salt.ptf")
             self.saltEffect.start(self.model, self.model)
+        if self.spiced and not self.spiceEffect:
+            self.spiceEffect = ParticleEffect()
+            self.spiceEffect.loadConfig("assets/particles/flame/flame.ptf")
+            self.spiceEffect.start(self.model, self.model)
         
     @staticmethod
     def init_from_scratch(id ,model, finished, badSalt, spiced, burned):

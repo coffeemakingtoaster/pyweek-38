@@ -39,7 +39,18 @@ class ItemArea(Station):
                 self.inventory.badSalt = True
                 
             self.inventory.apply_effects()
+            
+        
+        elif type(self.inventory) == Dish and item.id =="chopped_chili":
+            
+            
+            if player.sneaking and not self.inventory.spiced:
+                self.inventory.spiced = True
+                player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
                 
+                
+            self.inventory.apply_effects()
+                        
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:
             self.inventory.spice = True
             player.set_holding(ItemBase("empty_hands", load_model("empty_hands")))

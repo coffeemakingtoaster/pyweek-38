@@ -35,13 +35,24 @@ class Delivery(Station):
             taskMgr.do_method_later(10 ,self.clean,"empty_delivery")
             self.render()
         elif type(self.inventory) == Dish and item.id =="Salt":
-            print("Salz?")
+            
             
             if not player.sneaking and not self.inventory.badSalt:
                 self.inventory.goodSalt = True
+                
             elif player.sneaking:
                 self.inventory.badSalt = True
+                
+            self.inventory.apply_effects()
             
+        
+        elif type(self.inventory) == Dish and item.id =="chopped_chili":
+            
+            
+            if player.sneaking and not self.inventory.spiced:
+                self.inventory.spiced = True
+                
+                
             self.inventory.apply_effects()
                 
         elif type(self.inventory) == Dish and item.id =="chopped_chili" and player.sneaking:

@@ -28,7 +28,7 @@ class Oven(Station):
             self.progressBar = ProgressBar(self.model,self.duration,0)
             self.task = taskMgr.do_method_later(1,self.close_door,"task",extraArgs = [player])
         elif item.id == "empty_hands" and self.inventory.id == "plated_pizza":
-            player.set_holding(copy.deepCopy(self.inventory))
+            player.hardset(copy.deepcopy(self.inventory))
             player.holding.apply_effects()
             self.play_anim("Close")
             self.clean()
@@ -39,14 +39,16 @@ class Oven(Station):
             print("I only eat pizza :()")
             
     def finish_bake(self,name):
-        self.inventory.add_ingredient(Ingredient("unplated_pizza",load_model("plated_pizza")))
+        self.inventory.id = "plated_pizza"
+        self.inventory.model = load_model("plated_pizza")
+        self.inventory.finished = True
         self.play_anim("Open")
         self.task = None
         self.progressBar.destroy()
         self.progressBar = None
     def close_door(self,player):
         self.play_anim("Close")
-        player.set_holding(Dish("empty_hands",load_model("empty_hands")))
+        player.set_holding(ItemBase("empty_hands",load_model("empty_hands")))
         self.task = taskMgr.do_method_later(self.duration,self.finish_bake,"task")
     def clean(self):
         self.inventory.model.removeNode()
