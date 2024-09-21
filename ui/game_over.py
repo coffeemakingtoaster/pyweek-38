@@ -8,7 +8,7 @@ class game_over(ui_base):
     def __init__(self):
         ui_base.__init__(self)
 
-        
+        self.ui_elements = []
         TEXT_COLOR = (1, 0, 0, 1)  # Red color for text
 
         # Large "GAME OVER" text
@@ -37,7 +37,8 @@ class game_over(ui_base):
         self.game_over_label.setTransparency(TransparencyAttrib.MAlpha)
         self.blow_cover_label.setTransparency(TransparencyAttrib.MAlpha)
 
-
+        self.ui_elements.append(self.blow_cover_label)
+        self.ui_elements.append(self.game_over_label)
         
     
 

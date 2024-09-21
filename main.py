@@ -154,7 +154,7 @@ class main_game(ShowBase):
         self.update_suspicion(dt)
         
         
-        if self.suspicion_level >= 100:
+        if self.suspicion_level >= 98:
             self.gameOverBad()
             
 
@@ -165,6 +165,7 @@ class main_game(ShowBase):
         base.cTrav = CollisionTraverser()
 
         self.load_game()
+        self.suspicion_level = 0.0
 
         self.player = Player(self.map_stations)
         self.camera_movement = CameraMovement(self.player.model, self.camera)
@@ -294,8 +295,9 @@ class main_game(ShowBase):
         self.player_in_sight = False
 
     def update_suspicion(self, dt):
+        
         if self.player_in_sight and self.player.is_evil:
-            self.suspicion_level = min(self.suspicion_level + 40 * dt, self.suspicion_max)
+            self.suspicion_level = min(self.suspicion_level + 50 * dt, self.suspicion_max)
         else:
             self.suspicion_level = max(self.suspicion_level - 1 * dt, 0)
 
@@ -313,7 +315,7 @@ class main_game(ShowBase):
             self.order_handler.destroy()
             self.order_handler = None
     
-        
+        task = taskMgr.do_method_later(3,self.goto_main_menu,"task",extraArgs = [])
         self.set_game_status(GAME_STATUS.PAUSED)
         release_mouse_from_window()
         self.active_ui = game_over()

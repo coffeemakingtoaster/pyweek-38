@@ -164,12 +164,12 @@ class Enemy(EntityBase):
         self.viewcone = self.model.attachNewNode(CollisionNode("enemy_viewcone"))
         self.viewcone.setCollideMask(VIEW_COLLISION_BITMASK)
 
-        self.viewcone.show()
+        #self.viewcone.show()
         self.viewconeModel = load_model("viewcone")
         self.viewconeModel.reparentTo(self.model)
         self.viewconeModel.setPos(0,-1,1)
         self.viewcone.setPos(0, 0, 0)
-        self.viewcone.node().addSolid(CollisionBox(Point3(0, -0.6, 0.5), 0.25, -0.75, 0.25))
+        self.viewcone.node().addSolid(CollisionBox(Point3(0, -1, 0.5), 0.5, -1, 0.25))
         # setup notifier
         self.notifier = CollisionHandlerEvent()
         self.notifier.addInPattern(f"{self.id}-into-%in")
