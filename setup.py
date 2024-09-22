@@ -15,8 +15,9 @@ setup(
             # Specify which files are included with the distribution
             'include_patterns': [
                 'assets/**/*',
-                "user_config.json",
-                "map.json"
+                'user_config.json',
+                'map.json',
+                '*.png'
             ],
 
             # Include the OpenGL renderer and OpenAL audio plug-in
